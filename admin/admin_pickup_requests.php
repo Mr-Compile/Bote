@@ -92,38 +92,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 break;
                 
             case 'complete_request':
-                $request_id = (int)$_POST['request_id'];
-                $actual_weight = (float)$_POST['actual_weight'];
-                
-                // Get request details
-                $stmt = prepare_statement($conn, "SELECT pr.*, rt.points_per_kg FROM pickuprequests pr JOIN recyclabletypes rt ON pr.type_id = rt.type_id WHERE pr.request_id = ?");
-                $stmt->bind_param("i", $request_id);
-                $stmt->execute();
-                $request = $stmt->get_result()->fetch_assoc();
-                
-                if ($request) {
-                    $points_earned = $actual_weight * $request['points_per_kg'];
-                    // Normalize to integer points to match schema expectations
-                    $points_earned = (int) round($points_earned);
-                    
-                    // Update request
-                    $stmt = prepare_statement($conn, "UPDATE pickuprequests SET status = 'Completed', actual_weight = ?, points_earned = ? WHERE request_id = ?");
-                    $stmt->bind_param("ddi", $actual_weight, $points_earned, $request_id);
-                    
-                    if ($stmt->execute()) {
-                        // Add points to resident's account
-                        $stmt = prepare_statement($conn, "INSERT INTO pointsledger (user_id, points, transaction_type, description) VALUES (?, ?, 'Earned', ?)");
-                        $description = "Pickup completed - " . $request['type_name'];
-                        $stmt->bind_param("iis", $request['resident_id'], $points_earned, $description);
-                        $stmt->execute();
-                        
-                        // Send SMS notification to resident about completion
-                        sendPickupCompletedSMS($request_id);
-                        
-                        $success_message = "Request completed successfully! " . $points_earned . " points awarded.";
-                    } else {
-                        $error_message = "Failed to complete request.";
-                    }
+                $request_id = (int) $_POST['request_id'];
+                $actual_weight = (float) $_POST['actual_weight'];
+
+                try {
+                    $completed = $container->pickupService->completeAsAdmin(
+                        requestId: $request_id,
+                        actualWeight: $actual_weight,
+                        actualQuantity: null,
+                        description: 'Pickup completed - ' . ($container->pickupRepository->findById($request_id)?->recyclableType->name ?? ''),
+                    );
+
+                    // Send SMS notification to resident about completion
+                    sendPickupCompletedSMS($completed->requestId);
+
+                    $success_message = "Request completed successfully! " . $completed->pointsEarned . " points awarded.";
+                } catch (Exception $e) {
+                    $error_message = "Failed to complete request: " . $e->getMessage();
                 }
                 break;
         }

@@ -64,87 +64,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         }
     }
     elseif ($_POST['action'] === 'complete_pickup') {
-        $request_id = (int)$_POST['request_id'];
-        $actual_weight = isset($_POST['actual_weight']) ? floatval($_POST['actual_weight']) : null;
-        $actual_quantity = isset($_POST['actual_quantity']) ? intval($_POST['actual_quantity']) : null;
-        
-        // Start transaction
-        $conn->begin_transaction();
-        
+        $request_id = (int) $_POST['request_id'];
+        $actual_weight = isset($_POST['actual_weight']) ? (float) $_POST['actual_weight'] : null;
+        $actual_quantity = isset($_POST['actual_quantity']) ? (int) $_POST['actual_quantity'] : null;
+
         try {
-            // Get pickup details for points calculation
-            $stmt = prepare_statement($conn, "
-                SELECT pr.resident_id, pr.weight_kg, pr.quantity_pcs, rt.unit, rt.points_per_kg, rt.points_per_unit, rt.name as material_name
-                FROM pickuprequests pr 
-                JOIN recyclabletypes rt ON pr.type_id = rt.type_id 
-                WHERE pr.request_id = ?
-            ");
-            $stmt->bind_param("i", $request_id);
-            $stmt->execute();
-            $pickup_data = $stmt->get_result()->fetch_assoc();
-            
-            if (!$pickup_data) {
-                throw new Exception("Pickup request not found");
+            $pickup = $container->pickupRepository->findById($request_id);
+
+            if ($pickup === null) {
+                throw new Exception('Pickup request not found');
             }
-            
-            // Calculate points based on recyclable unit type
-            $points_earned = 0;
-            $actual_amount = 0;
-            
-            if ($pickup_data['unit'] === 'kg') {
-                if ($actual_weight === null || $actual_weight <= 0) {
-                    throw new Exception("Please enter a valid weight");
-                }
-                $points_earned = floor($actual_weight * $pickup_data['points_per_kg']);
-                $actual_amount = $actual_weight;
-                
-                // Update pickup request with actual weight
-                $stmt = prepare_statement($conn, "UPDATE pickuprequests SET status = 'Completed', actual_weight = ?, points_earned = ? WHERE request_id = ? AND assigned_worker_id = ?");
-                $stmt->bind_param("ddii", $actual_weight, $points_earned, $request_id, $worker_id);
-            } else { // unit === 'pcs'
-                if ($actual_quantity === null || $actual_quantity <= 0) {
-                    throw new Exception("Please enter a valid quantity");
-                }
-                $points_earned = floor($actual_quantity * $pickup_data['points_per_unit']);
-                $actual_amount = $actual_quantity;
-                
-                // Update pickup request with actual quantity
-                $stmt = prepare_statement($conn, "UPDATE pickuprequests SET status = 'Completed', quantity_pcs = ?, points_earned = ? WHERE request_id = ? AND assigned_worker_id = ?");
-                $stmt->bind_param("iiii", $actual_quantity, $points_earned, $request_id, $worker_id);
-            }
-            
-            $stmt->execute();
-            
-            if ($stmt->affected_rows === 0) {
-                throw new Exception("Failed to update pickup request or request not assigned to you");
-            }
-            
-            // Check if points have already been awarded for this pickup to prevent duplicates
-            $check = prepare_statement($conn, "SELECT 1 FROM pointsledger WHERE request_id = ? AND user_id = ? AND transaction_type = 'Earned' LIMIT 1");
-            $check->bind_param("ii", $request_id, $pickup_data['resident_id']);
-            $check->execute();
-            $exists = $check->get_result()->fetch_assoc();
-            
-            // Only add points if they haven't been awarded already
-            if (!$exists) {
-                $stmt = prepare_statement($conn, "INSERT INTO pointsledger (user_id, request_id, points, transaction_type) VALUES (?, ?, ?, 'Earned')");
-                $stmt->bind_param("iii", $pickup_data['resident_id'], $request_id, $points_earned);
-                $stmt->execute();
-            }
-            
-            $conn->commit();
-            
+
+            $effectiveWeight = $actual_weight ?? $pickup->weightKg;
+            $effectiveQuantity = $actual_quantity ?? $pickup->quantityPcs;
+
+            $completed = $container->pickupService->complete(
+                requestId: $request_id,
+                workerId: (int) $worker_id,
+                actualWeight: $effectiveWeight,
+                actualQuantity: $effectiveQuantity,
+                description: null,
+            );
+
             // Send SMS notification to resident about completion
-            sendPickupCompletedSMS($request_id);
-            
+            sendPickupCompletedSMS($completed->requestId);
+
             // Send SMS notification to admin about completion
-            sendAdminPickupCompletionSMS($request_id);
-            
-            $unit_text = $pickup_data['unit'] === 'kg' ? 'kg' : 'pieces';
-            $success_message = "Pickup completed successfully! Collected {$actual_amount} {$unit_text} of {$pickup_data['material_name']}. Resident earned {$points_earned} points.";
-            
+            sendAdminPickupCompletionSMS($completed->requestId);
+
+            $actual_amount = $completed->recyclableType->unit === \App\Enums\Unit::Pcs
+                ? $completed->quantityPcs
+                : $completed->actualWeight;
+            $unit_text = $completed->recyclableType->unit === \App\Enums\Unit::Pcs ? 'pieces' : 'kg';
+
+            $success_message = "Pickup completed successfully! Collected {$actual_amount} {$unit_text} of {$completed->recyclableType->name}. Resident earned {$completed->pointsEarned} points.";
         } catch (Exception $e) {
-            $conn->rollback();
             $error_message = "Failed to complete pickup: " . $e->getMessage();
         }
     }

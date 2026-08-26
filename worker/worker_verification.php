@@ -7,76 +7,49 @@ $user_role = $_SESSION['role'];
 
 // Handle verification action
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
-    $dropoff_id = (int)$_POST['dropoff_id'];
+    $dropoff_id = (int) $_POST['dropoff_id'];
     $action = $_POST['action'];
-    
+
     try {
-        // Start transaction
-        $conn->begin_transaction();
-        
         if ($action === 'verify') {
-            $verification_notes = isset($_POST['verification_notes']) ? $_POST['verification_notes'] : '';
-            
-            // Update drop-off status to verified
-            $stmt = $conn->prepare("UPDATE direct_dropoffs SET status = 'Verified', verified_by = ?, verification_notes = ?, verified_at = NOW() WHERE dropoff_id = ?");
-            $stmt->bind_param("isi", $user_id, $verification_notes, $dropoff_id);
-            $stmt->execute();
-            
-            // Get drop-off details for points processing
-            $stmt = $conn->prepare("SELECT resident_id, points_earned FROM direct_dropoffs WHERE dropoff_id = ?");
-            $stmt->bind_param("i", $dropoff_id);
-            $stmt->execute();
-            $dropoff_data = $stmt->get_result()->fetch_assoc();
-            
-            // Check if points have already been awarded for this dropoff to prevent duplicates
-            $check = $conn->prepare("SELECT 1 FROM pointsledger WHERE dropoff_id = ? AND user_id = ? AND transaction_type = 'Earned' LIMIT 1");
-            $check->bind_param("ii", $dropoff_id, $dropoff_data['resident_id']);
-            $check->execute();
-            $exists = $check->get_result()->fetch_assoc();
-            
-            // Only add points if they haven't been awarded already
-            if (!$exists) {
-                $stmt = $conn->prepare("INSERT INTO pointsledger (user_id, dropoff_id, points, transaction_type) VALUES (?, ?, ?, 'Earned')");
-                $stmt->bind_param("iii", $dropoff_data['resident_id'], $dropoff_id, $dropoff_data['points_earned']);
-                $stmt->execute();
-            }
-            
-            // Update drop-off status to completed
-            $stmt = $conn->prepare("UPDATE direct_dropoffs SET status = 'Completed' WHERE dropoff_id = ?");
-            $stmt->bind_param("i", $dropoff_id);
-            $stmt->execute();
-            
+            $verification_notes = $_POST['verification_notes'] ?? '';
+
+            $container->dropoffService->verify(
+                dropoffId: $dropoff_id,
+                staffId: (int) $user_id,
+                notes: $verification_notes,
+            );
+
             // Send SMS notification for drop-off verification
             require_once '../includes/sms_notifications.php';
             sendDropoffVerificationSMS($dropoff_id);
-            
-            $message = "Drop-off verified and points credited successfully!";
-            
+
+            $message = 'Drop-off verified and points credited successfully!';
         } elseif ($action === 'reject') {
-            $rejection_reason = isset($_POST['rejection_reason']) ? $_POST['rejection_reason'] : '';
-            
-            // Update drop-off status to rejected
-            $stmt = $conn->prepare("UPDATE direct_dropoffs SET status = 'Rejected', verification_notes = ?, verified_by = ?, verified_at = NOW() WHERE dropoff_id = ?");
-            $stmt->bind_param("sii", $rejection_reason, $user_id, $dropoff_id);
-            $stmt->execute();
-            
+            $rejection_reason = $_POST['rejection_reason'] ?? '';
+
+            $container->dropoffService->reject(
+                dropoffId: $dropoff_id,
+                staffId: (int) $user_id,
+                reason: $rejection_reason,
+            );
+
             // Send SMS notification for drop-off rejection
             require_once '../includes/sms_notifications.php';
             sendDropoffRejectionSMS($dropoff_id);
-            
-            $message = "Drop-off rejected successfully!";
+
+            $message = 'Drop-off rejected successfully!';
+        } else {
+            $message = 'Unknown action.';
+            header('Location: worker_verification.php?error=' . urlencode($message));
+            exit();
         }
-        
-        // Commit transaction
-        $conn->commit();
-        
-        header("Location: worker_verification.php?success=" . urlencode($message));
+
+        header('Location: worker_verification.php?success=' . urlencode($message));
         exit();
-        
     } catch (Exception $e) {
-        $conn->rollback();
-        error_log("Error in worker verification: " . $e->getMessage());
-        header("Location: worker_verification.php?error=" . urlencode($e->getMessage()));
+        error_log('Error in worker verification: ' . $e->getMessage());
+        header('Location: worker_verification.php?error=' . urlencode($e->getMessage()));
         exit();
     }
 }

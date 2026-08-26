@@ -44,3 +44,18 @@
 ## Environment Constraints
 - The live database contains only 3 user accounts.
 - Avoid destructive user/pickup/points operations; prefer creating isolated test data over modifying the 3 real accounts.
+
+## Core Application (new app/ layer)
+- `app/Core/ConnectionInterface.php` and `app/Core/Database.php` — MySQLi wrapper with typed `query/selectOne/execute/insert` and transaction helpers.
+- `app/Core/TypeCaster.php` — database-row-to-typed-value helper used by models.
+- `app/Models/{RecyclableType,Pickup,Dropoff}.php` — immutable domain models with `fromArray` factories.
+- `app/Enums/{Unit,PickupStatus,DropoffStatus,TransactionType}.php` — backed enums for schema enums.
+- `app/Services/{PointsService,PickupService,DropoffService}.php` — canonical business logic for awarding points, completing pickups, and verifying/rejecting drop-offs.
+- `app/Repositories/{Pickup,Dropoff,Points}RepositoryInterface.php` and `Mysqli*` implementations.
+
+## Build / Test
+- PHP CLI: `C:\wamp64\bin\php\php8.2.29\php.exe`
+- Composer: `C:\wamp64\bin\php\php8.2.29\php.exe C:\wamp64\bin\php\php8.2.29\composer`
+- Run tests: `C:\wamp64\bin\php\php8.2.29\php.exe vendor\bin\phpunit`
+- Run static analysis: `C:\wamp64\bin\php\php8.2.29\php.exe vendor\bin\phpstan analyse app tests --level=9`
+- WAMP database service `wampmariadb64` must be running for integration tests / web use.

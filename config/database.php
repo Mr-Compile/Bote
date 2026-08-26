@@ -1,5 +1,6 @@
 <?php
 // Database configuration
+require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/env_loader.php';
 
 $requiredEnv = ['DB_HOST', 'DB_USER', 'DB_PASS', 'DB_NAME', 'DB_CHARSET'];
@@ -165,4 +166,7 @@ function close_db_connection($conn) {
 register_shutdown_function(function() use ($conn) {
     close_db_connection($conn);
 });
+
+// Wire the new service container.
+$container = new \App\Core\Container(new \App\Core\Database($conn));
 ?>

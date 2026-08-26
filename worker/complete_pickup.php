@@ -16,60 +16,31 @@ if (!isset($input['request_id'])) {
 }
 
 $request_id = (int) $input['request_id'];
-$user_id = $_SESSION['user_id'];
+$user_id = (int) $_SESSION['user_id'];
 
 try {
-    $conn->begin_transaction();
+    $pickup = $container->pickupRepository->findById($request_id);
 
-    // Verify the pickup request is assigned to this worker
-    $verify_sql = "SELECT pr.request_id, pr.weight_kg, pr.resident_id, pr.type_id, rt.points_per_kg 
-                   FROM pickuprequests pr 
-                   JOIN recyclabletypes rt ON pr.type_id = rt.type_id 
-                   WHERE pr.request_id = ? AND pr.assigned_worker_id = ? AND pr.status != 'Completed'";
-    
-    $result = execute_query($conn, $verify_sql, [$request_id, $user_id], 'ii');
-    
-    if (!$result || $result->num_rows === 0) {
-        throw new Exception('Pickup request not found or not assigned to you');
+    if ($pickup === null) {
+        throw new Exception('Pickup request not found');
     }
-    
-    $pickup = $result->fetch_assoc();
-    
-    // Update pickup status to completed
-    $update_sql = "UPDATE pickuprequests 
-                   SET status = 'Completed', 
-                       actual_weight = weight_kg, 
-                       points_earned = weight_kg * ?,
-                       updated_at = NOW() 
-                   WHERE request_id = ?";
-    
-    $points_earned = $pickup['weight_kg'] * $pickup['points_per_kg'];
-    execute_query($conn, $update_sql, [$pickup['points_per_kg'], $request_id], 'di');
-    
-    // Check if points have already been awarded for this pickup to prevent duplicates
-    $check_sql = "SELECT 1 FROM pointsledger WHERE request_id = ? AND user_id = ? AND transaction_type = 'Earned' LIMIT 1";
-    $check_result = execute_query($conn, $check_sql, [$request_id, $pickup['resident_id']], 'ii');
-    
-    // Only add points if they haven't been awarded already
-    if (!$check_result || $check_result->num_rows === 0) {
-        $points_sql = "INSERT INTO pointsledger (user_id, request_id, points, transaction_type) 
-                       VALUES (?, ?, ?, 'Earned')";
-        execute_query($conn, $points_sql, [$pickup['resident_id'], $request_id, $points_earned], 'iii');
-    }
-    
-    $conn->commit();
-    
+
+    $completed = $container->pickupService->complete(
+        requestId: $request_id,
+        workerId: $user_id,
+        actualWeight: $pickup->weightKg,
+        actualQuantity: $pickup->quantityPcs,
+        description: null,
+    );
+
     echo json_encode([
-        'success' => true, 
+        'success' => true,
         'message' => 'Pickup completed successfully',
-        'points_earned' => $points_earned
+        'points_earned' => $completed->pointsEarned,
     ]);
-    
 } catch (Exception $e) {
-    $conn->rollback();
     echo json_encode([
-        'success' => false, 
-        'message' => $e->getMessage()
+        'success' => false,
+        'message' => $e->getMessage(),
     ]);
 }
-?>
