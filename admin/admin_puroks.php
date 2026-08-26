@@ -420,7 +420,7 @@ try {
                                         <div class="flex items-center">
                                             <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                                                 <span class="text-white font-bold text-sm">
-                                                    <?php echo strtoupper(substr($purok['name'], 0, 2)); ?>
+                                                    <?php echo htmlspecialchars(strtoupper(substr($purok['name'], 0, 2))); ?>
                                                 </span>
                                             </div>
                                             <div class="ml-4">
@@ -510,6 +510,7 @@ try {
             <!-- Modal Body -->
             <div class="p-8">
                 <form method="POST" class="space-y-6">
+                    <?php echo \App\Core\Csrf::field(); ?>
                     <input type="hidden" name="action" value="add_purok">
                     
                     <div class="space-y-2">
@@ -570,6 +571,7 @@ try {
             <!-- Modal Body -->
             <div class="p-8">
                 <form method="POST" class="space-y-6">
+                    <?php echo \App\Core\Csrf::field(); ?>
                     <input type="hidden" name="action" value="edit_purok">
                     <input type="hidden" name="purok_id" id="edit_purok_id">
                     
@@ -645,6 +647,7 @@ try {
                 </p>
                 
                 <form method="POST" class="space-y-6">
+                    <?php echo \App\Core\Csrf::field(); ?>
                     <input type="hidden" name="action" value="delete_purok">
                     <input type="hidden" name="purok_id" id="delete_purok_id">
                     

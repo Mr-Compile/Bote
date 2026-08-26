@@ -641,7 +641,7 @@ $recent_notifications = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                                 } else {
                                     $bg_class = 'bg-yellow-50';
                                     $dot_class = 'bg-yellow-500';
-                                    $message = "Status update for request #" . $notification['request_id'] . ": " . $notification['status'];
+                                    $message = "Status update for request #" . $notification['request_id'] . ": " . htmlspecialchars($notification['status']);
                                 }
                                 
                                 // Calculate time difference
@@ -660,7 +660,7 @@ $recent_notifications = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                                 <div class="flex gap-3 p-3 <?php echo $bg_class; ?> rounded-lg">
                                     <div class="w-2 h-2 <?php echo $dot_class; ?> rounded-full mt-2 flex-shrink-0"></div>
                                     <div>
-                                        <p class="text-sm text-gray-900"><?php echo $message; ?></p>
+                                        <p class="text-sm text-gray-900"><?php echo htmlspecialchars($message); ?></p>
                                         <p class="text-xs text-gray-500 mt-1"><?php echo $time_ago; ?></p>
                                     </div>
                                 </div>

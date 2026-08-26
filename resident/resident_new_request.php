@@ -106,7 +106,7 @@ $total_points = $stmt->get_result()->fetch_assoc()['total_points'];
                         </div>
                         <div>
                             <h3 class="font-semibold text-lg">Request Submitted Successfully!</h3>
-                            <p class="text-green-700"><?php echo $success_message; ?></p>
+                            <p class="text-green-700"><?php echo htmlspecialchars($success_message); ?></p>
                         </div>
                     </div>
                 </div>
@@ -177,6 +177,7 @@ $total_points = $stmt->get_result()->fetch_assoc()['total_points'];
                 </div>
                 
                 <form method="POST" action="resident_save_request.php" class="p-8" id="pickupForm">
+                    <?php echo \App\Core\Csrf::field(); ?>
                     <!-- Enhanced Material Type Selection -->
                     <div class="mb-10">
                         <div class="flex items-center mb-6">
@@ -404,7 +405,7 @@ $total_points = $stmt->get_result()->fetch_assoc()['total_points'];
                                 <?php foreach ($collection_points as $point): ?>
                                     <div class="collection-point-card bg-white rounded-xl p-4 border-2 border-blue-100 hover:border-blue-300 cursor-pointer transition-all duration-300 hover:shadow-lg" 
                                          onclick="selectCollectionPointCard(<?php echo $point['point_id']; ?>, '<?php echo htmlspecialchars($point['name']); ?>', <?php echo $point['latitude']; ?>, <?php echo $point['longitude']; ?>, '<?php echo htmlspecialchars($point['description']); ?>')"
-                                         data-name="<?php echo strtolower($point['name']); ?>"
+                                         data-name="<?php echo htmlspecialchars(strtolower($point['name'])); ?>"
                                          data-description="<?php echo strtolower($point['description'] ?? ''); ?>"
                                          data-lat="<?php echo $point['latitude']; ?>"
                                          data-lng="<?php echo $point['longitude']; ?>"

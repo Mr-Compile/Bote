@@ -651,12 +651,12 @@ $recent_transactions = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                                     <a href="?period=monthly" class="px-3 py-1 rounded text-sm font-medium transition-all <?php echo $period === 'monthly' ? 'bg-white text-yellow-600' : 'text-yellow-100 hover:text-white'; ?>">Monthly</a>
                                     <a href="?period=all-time" class="px-3 py-1 rounded text-sm font-medium transition-all <?php echo $period === 'all-time' ? 'bg-white text-yellow-600' : 'text-yellow-100 hover:text-white'; ?>">All-Time</a>
                                 </div>
-                                <a href="resident_leaderboard.php?period=<?php echo $period; ?>" class="text-yellow-100 hover:text-white text-sm font-medium transition-colors">
+                                <a href="resident_leaderboard.php?period=<?php echo htmlspecialchars($period); ?>" class="text-yellow-100 hover:text-white text-sm font-medium transition-colors">
                                     View Full →
                                 </a>
                             </div>
                         </div>
-                        <p class="text-yellow-100 mt-2">Top eco-champions (<?php echo $period_label; ?>)</p>
+                        <p class="text-yellow-100 mt-2">Top eco-champions (<?php echo htmlspecialchars($period_label); ?>)</p>
                     </div>
                     
                     <div class="p-8">
@@ -664,7 +664,7 @@ $recent_transactions = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                         <div class="mb-8">
                             <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
                                 <i data-lucide="user" class="w-5 h-5 text-purple-600"></i>
-                                Individual Ranking (<?php echo $period_label; ?>)
+                                Individual Ranking (<?php echo htmlspecialchars($period_label); ?>)
                             </h3>
                             <div class="space-y-3">
                                 <?php if (!empty($top_residents)): ?>
@@ -722,7 +722,7 @@ $recent_transactions = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                         <div class="border-t border-gray-200 pt-6">
                             <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
                                 <i data-lucide="map" class="w-5 h-5 text-green-600"></i>
-                                Purok Ranking (<?php echo $period_label; ?>)
+                                Purok Ranking (<?php echo htmlspecialchars($period_label); ?>)
                             </h3>
                             <div class="space-y-3">
                                 <?php if (!empty($top_puroks)): ?>

@@ -1,5 +1,6 @@
 <?php
 require_once 'config/database.php';
+require_once 'includes/session.php';
 require_once 'includes/system_functions.php';
 
 // Get login image if available
@@ -7,6 +8,8 @@ $login_image = getSystemSetting($conn, 'login_image', '');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
+        \App\Core\Csrf::validate($_POST['csrf_token'] ?? null);
+
         // Validate input
         $first_name = trim($_POST['first_name']);
         $last_name = trim($_POST['last_name']);
@@ -164,6 +167,7 @@ $purok_result = $conn->query("SELECT purok_id, name FROM puroks ORDER BY name AS
         <?php endif; ?>
 
         <form method="POST" action="register.php" class="space-y-5" id="registrationForm">
+          <?php echo \App\Core\Csrf::field(); ?>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
             <!-- First Name -->
             <div class="form-group">

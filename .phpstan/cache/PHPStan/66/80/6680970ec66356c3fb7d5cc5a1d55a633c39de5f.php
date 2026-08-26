@@ -2,6 +2,6 @@
 
 // variadic-method-App\Repositories\PickupRepositoryInterface-findById-C:\wamp64\www\Bote\app\Repositories\PickupRepositoryInterface.php
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => '1787755927-v4',
+   'variableKey' => '1787757822-v4',
    'data' => false,
 ));

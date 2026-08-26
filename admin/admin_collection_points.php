@@ -343,6 +343,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
                     <!-- Form Section -->
                     <div class="space-y-6">
                         <form id="modalCollectionPointForm" class="space-y-6">
+                            <?php echo \App\Core\Csrf::field(); ?>
                             <input type="hidden" id="editPointId" name="point_id">
                             
                             <!-- Basic Information Section -->
@@ -1004,7 +1005,8 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
             try {
                 const deleteData = {
                     action: 'delete',
-                    point_id: deletePointId
+                    point_id: deletePointId,
+                    csrf_token: document.getElementById('modalCollectionPointForm').querySelector('input[name="csrf_token"]').value
                 };
                 
                 console.log('Sending delete request:', deleteData);

@@ -269,14 +269,14 @@ include 'resident_sidebar.php';
                 </div>
                 <h1 class="text-3xl font-bold text-gray-800"><?php echo htmlspecialchars($system_name); ?> Leaderboard</h1>
             </div>
-            <p class="text-gray-600 text-lg">Track recycling performance of individuals and puroks (<?php echo $period_label; ?> Rankings)</p>
+            <p class="text-gray-600 text-lg">Track recycling performance of individuals and puroks (<?php echo htmlspecialchars($period_label); ?> Rankings)</p>
         </div>
 
         <!-- Summary Card -->
         <div class="bg-white rounded-xl shadow-lg p-6 mb-8 hover:shadow-xl transition-shadow duration-300">
             <div class="flex items-center justify-between">
                 <div>
-                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Community Impact (<?php echo $period_label; ?>)</h3>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Community Impact (<?php echo htmlspecialchars($period_label); ?>)</h3>
                     <div class="flex items-center gap-6">
                         <div class="text-center">
                             <div class="text-2xl font-bold text-green-600"><?php echo number_format($community_stats['total_points']); ?></div>
@@ -299,7 +299,7 @@ include 'resident_sidebar.php';
         <!-- Time Period Toggle -->
         <div class="flex justify-center mb-8">
             <div class="bg-white rounded-lg p-1 shadow-md">
-                <a href="?period=weekly" 
+                <a href="?period=<?php echo htmlspecialchars('weekly'); ?>" 
                    class="px-6 py-2 rounded-md font-medium transition-all duration-300 <?php echo $period === 'weekly' ? 'bg-gradient-to-r from-green-500 to-emerald-600 text-white' : 'text-gray-600 hover:text-gray-800'; ?>">
                     Weekly Rankings
                 </a>
@@ -330,7 +330,7 @@ include 'resident_sidebar.php';
                     <div class="bg-gradient-to-r from-green-500 to-emerald-600 px-6 py-4">
                         <h3 class="text-xl font-bold text-white flex items-center gap-3">
                             <i data-lucide="users" class="w-6 h-6"></i>
-                            Individual Leaderboard (<?php echo $period_label; ?>)
+                            Individual Leaderboard (<?php echo htmlspecialchars($period_label); ?>)
                         </h3>
                         <p class="text-green-100 mt-1">Rankings based on total points earned from recycling activities</p>
                     </div>
@@ -375,10 +375,10 @@ include 'resident_sidebar.php';
                                     <td class="px-6 py-4">
                                         <div class="flex items-center gap-3">
                                             <?php if ($profile['type'] === 'photo'): ?>
-                                                <img src="<?php echo $profile['src']; ?>" alt="Profile" class="w-12 h-12 rounded-full object-cover ring-2 ring-green-200">
+                                                <img src="<?php echo htmlspecialchars($profile['src']); ?>" alt="Profile" class="w-12 h-12 rounded-full object-cover ring-2 ring-green-200">
                                             <?php else: ?>
                                                 <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center text-white font-bold ring-2 ring-green-200">
-                                                    <?php echo $profile['initials']; ?>
+                                                    <?php echo htmlspecialchars($profile['initials']); ?>
                                                 </div>
                                             <?php endif; ?>
                                             <div>
@@ -399,7 +399,7 @@ include 'resident_sidebar.php';
                                     </td>
                                     <td class="px-6 py-4 text-center">
                                         <span class="inline-block <?php echo $badge['class']; ?> px-3 py-2 rounded-full text-sm font-medium">
-                                            <?php echo $badge['name']; ?>
+                                            <?php echo htmlspecialchars($badge['name']); ?>
                                         </span>
                                     </td>
                                 </tr>
@@ -425,7 +425,7 @@ include 'resident_sidebar.php';
                     <div class="bg-gradient-to-r from-blue-500 to-indigo-600 px-6 py-4">
                         <h3 class="text-xl font-bold text-white flex items-center gap-3">
                             <i data-lucide="map" class="w-6 h-6"></i>
-                            Purok Leaderboard (<?php echo $period_label; ?>)
+                            Purok Leaderboard (<?php echo htmlspecialchars($period_label); ?>)
                         </h3>
                         <p class="text-blue-100 mt-1">Community rankings based on collective recycling efforts</p>
                     </div>
@@ -494,7 +494,7 @@ include 'resident_sidebar.php';
                                     </td>
                                     <td class="px-6 py-4 text-center">
                                         <span class="inline-block <?php echo $badge['class']; ?> px-3 py-2 rounded-full text-sm font-medium">
-                                            <?php echo $badge['name']; ?>
+                                            <?php echo htmlspecialchars($badge['name']); ?>
                                         </span>
                                     </td>
                                 </tr>

@@ -189,7 +189,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
                     </div>
                     <div class="ml-3">
-                        <p class="text-green-800 font-medium"><?php echo $success_message; ?></p>
+                        <p class="text-green-800 font-medium"><?php echo htmlspecialchars($success_message); ?></p>
                     </div>
                 </div>
             </div>
@@ -231,6 +231,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
 
                 <form method="POST" class="p-8 space-y-8">
+                    <?php echo \App\Core\Csrf::field(); ?>
                     <!-- Personal Information Section -->
                     <div class="space-y-6">
                         <div class="flex items-center space-x-3 mb-6">

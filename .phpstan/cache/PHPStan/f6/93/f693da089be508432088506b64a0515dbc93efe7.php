@@ -126,7 +126,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\wamp64\\www\\Bote\\app\\Models\\Pickup.php' => 
     array (
-      0 => '74641c19e38d45e97beb7f473d13a8ac44c2f77a',
+      0 => '3e7f2648134f4558ad2a841ca5133d42bf4191fa',
       1 => 
       array (
         0 => 'app\\models\\pickup',
@@ -135,7 +135,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       array (
         0 => 'app\\models\\__construct',
         1 => 'app\\models\\fromarray',
-        2 => 'app\\models\\completed',
+        2 => 'app\\models\\assigntoworker',
+        3 => 'app\\models\\completed',
       ),
       3 => 
       array (
@@ -159,7 +160,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\wamp64\\www\\Bote\\app\\Repositories\\DropoffRepositoryInterface.php' => 
     array (
-      0 => '58d0d9d44457b8ef3c280db856fd15b19871a2a7',
+      0 => 'e8befa2ad9d18da000f308c8153ef021f887ac4c',
       1 => 
       array (
         0 => 'app\\repositories\\dropoffrepositoryinterface',
@@ -168,6 +169,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       array (
         0 => 'app\\repositories\\findbyid',
         1 => 'app\\repositories\\save',
+        2 => 'app\\repositories\\create',
       ),
       3 => 
       array (
@@ -175,7 +177,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\wamp64\\www\\Bote\\app\\Repositories\\MysqliDropoffRepository.php' => 
     array (
-      0 => '64e8bde0dcf8c1a0996834d374cf8a4b670e4b7b',
+      0 => '234cf86ec2ab4eebb53f32e43d3adcaf2d1e91d3',
       1 => 
       array (
         0 => 'app\\repositories\\mysqlidropoffrepository',
@@ -185,7 +187,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         0 => 'app\\repositories\\__construct',
         1 => 'app\\repositories\\findbyid',
         2 => 'app\\repositories\\save',
-        3 => 'app\\repositories\\hydrate',
+        3 => 'app\\repositories\\create',
+        4 => 'app\\repositories\\hydrate',
       ),
       3 => 
       array (
@@ -193,7 +196,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\wamp64\\www\\Bote\\app\\Repositories\\MysqliPickupRepository.php' => 
     array (
-      0 => '2292dd1fa1867ce3de6ed585514ae3d6c71fbb44',
+      0 => '945e19d6f644d222f401898cd1a20a7b82525bc4',
       1 => 
       array (
         0 => 'app\\repositories\\mysqlipickuprepository',
@@ -203,7 +206,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         0 => 'app\\repositories\\__construct',
         1 => 'app\\repositories\\findbyid',
         2 => 'app\\repositories\\save',
-        3 => 'app\\repositories\\hydrate',
+        3 => 'app\\repositories\\assign',
+        4 => 'app\\repositories\\create',
+        5 => 'app\\repositories\\hydrate',
       ),
       3 => 
       array (
@@ -228,7 +233,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\wamp64\\www\\Bote\\app\\Repositories\\PickupRepositoryInterface.php' => 
     array (
-      0 => 'ec2901f13dca09861708529b6a63a5879d2cb00e',
+      0 => '8774cc0faf49d04f0b7de8e6dd572841b9b5f673',
       1 => 
       array (
         0 => 'app\\repositories\\pickuprepositoryinterface',
@@ -237,6 +242,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       array (
         0 => 'app\\repositories\\findbyid',
         1 => 'app\\repositories\\save',
+        2 => 'app\\repositories\\assign',
+        3 => 'app\\repositories\\create',
       ),
       3 => 
       array (
@@ -336,7 +343,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     'C:\\wamp64\\www\\Bote\\app\\Core\\Container.php' => 
     array (
-      0 => 'dfa9a4a8c74eaf197f4165ae6e7774bf2c229e26',
+      0 => 'f5ccc2adfc8bfac7a28b68ba116743f2000ecadf',
       1 => 
       array (
         0 => 'app\\core\\container',
@@ -344,6 +351,98 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       2 => 
       array (
         0 => 'app\\core\\__construct',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\wamp64\\www\\Bote\\app\\Repositories\\MysqliRecyclableTypeRepository.php' => 
+    array (
+      0 => '266765dde613907ca86e44d82458e65107525585',
+      1 => 
+      array (
+        0 => 'app\\repositories\\mysqlirecyclabletyperepository',
+      ),
+      2 => 
+      array (
+        0 => 'app\\repositories\\__construct',
+        1 => 'app\\repositories\\findbyid',
+        2 => 'app\\repositories\\all',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\wamp64\\www\\Bote\\app\\Repositories\\RecyclableTypeRepositoryInterface.php' => 
+    array (
+      0 => '798fe7f6e3ad112d1bb61995ffd635bdf73b3866',
+      1 => 
+      array (
+        0 => 'app\\repositories\\recyclabletyperepositoryinterface',
+      ),
+      2 => 
+      array (
+        0 => 'app\\repositories\\findbyid',
+        1 => 'app\\repositories\\all',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\wamp64\\www\\Bote\\app\\Services\\DropoffRequestService.php' => 
+    array (
+      0 => '8772c867b34b881a970686a238e5e3a5680908fc',
+      1 => 
+      array (
+        0 => 'app\\services\\dropoffrequestservice',
+      ),
+      2 => 
+      array (
+        0 => 'app\\services\\__construct',
+        1 => 'app\\services\\create',
+        2 => 'app\\services\\findtypeorfail',
+        3 => 'app\\services\\validatematerial',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\wamp64\\www\\Bote\\app\\Services\\PickupRequestService.php' => 
+    array (
+      0 => '8161bde8117ab7b8da043f169ea5f68496d65b1d',
+      1 => 
+      array (
+        0 => 'app\\services\\pickuprequestservice',
+      ),
+      2 => 
+      array (
+        0 => 'app\\services\\__construct',
+        1 => 'app\\services\\create',
+        2 => 'app\\services\\assigntoworker',
+        3 => 'app\\services\\findtypeorfail',
+        4 => 'app\\services\\validatematerial',
+        5 => 'app\\services\\validatepickuptype',
+      ),
+      3 => 
+      array (
+      ),
+    ),
+    'C:\\wamp64\\www\\Bote\\app\\Core\\Csrf.php' => 
+    array (
+      0 => 'de63ff0fef043e1b93bbb9c398e251d160455960',
+      1 => 
+      array (
+        0 => 'app\\core\\csrf',
+      ),
+      2 => 
+      array (
+        0 => 'app\\core\\ensuresessionstarted',
+        1 => 'app\\core\\token',
+        2 => 'app\\core\\field',
+        3 => 'app\\core\\validate',
+        4 => 'app\\core\\submittedtoken',
+        5 => 'app\\core\\validaterequest',
+        6 => 'app\\core\\reset',
       ),
       3 => 
       array (

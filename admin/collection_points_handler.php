@@ -377,6 +377,17 @@ try {
             break;
 
         case 'POST':
+            // Validate CSRF token from JSON body or form data
+            try {
+                \App\Core\Csrf::validateRequest();
+            } catch (\InvalidArgumentException $e) {
+                echo json_encode([
+                    'success' => false,
+                    'message' => 'Invalid or expired session token.'
+                ]);
+                exit;
+            }
+
             // Handle POST requests for adding/updating/deleting collection points
             $input = json_decode(file_get_contents('php://input'), true);
             

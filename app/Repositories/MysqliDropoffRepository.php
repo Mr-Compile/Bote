@@ -59,6 +59,31 @@ final class MysqliDropoffRepository implements DropoffRepositoryInterface
         ], 'sissi');
     }
 
+    public function create(
+        int $residentId,
+        int $pointId,
+        int $typeId,
+        float $weightKg,
+        ?int $quantityPcs,
+        int $pointsEarned,
+    ): int {
+        $sql = <<<'SQL'
+            INSERT INTO direct_dropoffs
+                (resident_id, point_id, type_id, weight_kg, quantity_pcs, points_earned, status, created_at)
+            VALUES
+                (?, ?, ?, ?, ?, ?, 'Pending', NOW())
+        SQL;
+
+        return $this->db->insert($sql, [
+            $residentId,
+            $pointId,
+            $typeId,
+            $weightKg,
+            $quantityPcs,
+            $pointsEarned,
+        ], 'iiidii');
+    }
+
     /**
      * @param array<string, mixed> $row
      */

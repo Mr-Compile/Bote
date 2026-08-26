@@ -552,7 +552,7 @@ try {
                                                 }
                                                 ?>
                                                 <i data-lucide="<?php echo $role_icon; ?>" class="w-3 h-3 mr-1"></i>
-                                                <?php echo ucfirst($user['role']); ?>
+                                                <?php echo htmlspecialchars(ucfirst($user['role'])); ?>
                                             </span>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -601,13 +601,13 @@ try {
                                 Showing <?php echo count($users); ?> users
                                 <?php if (!empty($role_filter)): ?>
                                     <span class="ml-2 px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">
-                                        Filtered by: <?php echo ucfirst($role_filter); ?>
+                                        Filtered by: <?php echo htmlspecialchars(ucfirst($role_filter)); ?>
                                     </span>
                                 <?php endif; ?>
                             </span>
                             <span class="flex items-center text-xs">
                                 <i data-lucide="sort-desc" class="w-3 h-3 mr-1"></i>
-                                Sorted by: <?php echo ucfirst(str_replace('_', ' ', $sort_by)); ?> (<?php echo $sort_order; ?>)
+                                Sorted by: <?php echo htmlspecialchars(ucfirst(str_replace('_', ' ', $sort_by))); ?> (<?php echo htmlspecialchars($sort_order); ?>)
                             </span>
                         </div>
                         <div class="flex items-center space-x-4 text-xs">
@@ -651,6 +651,7 @@ try {
         <!-- Modal Body -->
         <div class="p-6">
             <form method="POST" id="addWorkerForm" class="grid grid-cols-2 gap-6">
+                <?php echo \App\Core\Csrf::field(); ?>
                 <input type="hidden" name="action" value="add_worker">
 
                 <!-- First Name -->
@@ -792,6 +793,7 @@ try {
             <!-- Modal Body -->
             <div class="p-6">
                 <form method="POST">
+                    <?php echo \App\Core\Csrf::field(); ?>
                     <input type="hidden" name="action" value="update_role">
                     <input type="hidden" name="user_id" id="edit_user_id">
                     
@@ -886,6 +888,7 @@ try {
                     </div>
                     
                     <form method="POST">
+                        <?php echo \App\Core\Csrf::field(); ?>
                         <input type="hidden" name="action" value="delete_user">
                         <input type="hidden" name="user_id" id="delete_user_id">
                         
@@ -910,8 +913,8 @@ try {
     <script>
         // Current sort state
         let currentSort = {
-            column: '<?php echo $sort_by; ?>',
-            order: '<?php echo strtolower($sort_order); ?>'
+            column: <?php echo json_encode($sort_by, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT); ?>,
+            order: <?php echo json_encode(strtolower($sort_order), JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT); ?>
         };
 
         // Function to sort table

@@ -53,6 +53,7 @@ if ($slide_id > 0) {
             <div class="max-w-4xl mx-auto">
                 <div class="bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden">
                     <form action="carousel_handler.php" method="POST" enctype="multipart/form-data" id="carouselForm">
+                        <?php echo \App\Core\Csrf::field(); ?>
                         <input type="hidden" name="action" value="<?php echo $slide ? 'update' : 'add'; ?>">
                         <?php if ($slide): ?>
                             <input type="hidden" name="slide_id" value="<?php echo $slide['slide_id']; ?>">

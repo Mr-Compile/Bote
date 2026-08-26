@@ -203,6 +203,7 @@ $today_sms = $stmt->get_result()->fetch_assoc()['today_sms'];
             <div class="sms-card">
                 <h3>Test SMS Functionality</h3>
                 <form method="POST">
+                    <?php echo \App\Core\Csrf::field(); ?>
                     <input type="hidden" name="action" value="test_sms">
                     
                     <div class="form-group">
@@ -230,6 +231,7 @@ $today_sms = $stmt->get_result()->fetch_assoc()['today_sms'];
             <div class="sms-card">
                 <h3>Send Bulk SMS</h3>
                 <form method="POST">
+                    <?php echo \App\Core\Csrf::field(); ?>
                     <input type="hidden" name="action" value="send_bulk_sms">
                     
                     <div class="form-group">

@@ -618,6 +618,7 @@
         if (!selectedFile) return;
 
         const formData = new FormData();
+        formData.append('csrf_token', document.querySelector('input[name="csrf_token"]').value);
         formData.append('profile_photo', selectedFile);
         formData.append('user_role', 'admin'); // Add role info for proper handling
 

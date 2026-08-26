@@ -101,7 +101,7 @@ include 'worker_sidebar.php';
         <div class="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-xl mb-6">
             <div class="flex items-center">
                 <i data-lucide="check-circle" class="w-5 h-5 mr-2"></i>
-                <?php echo $success_message; ?>
+                <?php echo htmlspecialchars($success_message); ?>
             </div>
         </div>
         <?php endif; ?>
@@ -258,6 +258,7 @@ include 'worker_sidebar.php';
         </div>
         
         <form method="POST" class="space-y-4">
+            <?php echo \App\Core\Csrf::field(); ?>
             <input type="hidden" name="create_report" value="1">
             
             <div>

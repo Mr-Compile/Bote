@@ -1,11 +1,18 @@
 <?php
 require_once '../config/database.php';
-require '../includes/auth_res.php'; // For now, using resident auth - you may want to create a separate staff auth
+require '../includes/auth_staff.php'; // Only workers and admins can verify drop-offs
 
 $user_id = $_SESSION['user_id'];
 
 // Handle verification action
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
+    try {
+        \App\Core\Csrf::validate($_POST['csrf_token'] ?? null);
+    } catch (\InvalidArgumentException $e) {
+        header('Location: resident_staff_verification.php?error=' . urlencode('Invalid or expired session token.'));
+        exit();
+    }
+
     $dropoff_id = (int) $_POST['dropoff_id'];
     $action = $_POST['action'];
 
@@ -172,7 +179,7 @@ $recent_verified = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                                     <h4 class="font-semibold text-gray-900 mb-2">Material Details</h4>
                                     <p class="text-sm text-gray-600">
                                         <strong>Type:</strong> <?php echo htmlspecialchars($dropoff['recyclable_type']); ?><br>
-                                        <strong>Unit:</strong> <?php echo $dropoff['unit']; ?><br>
+                                        <strong>Unit:</strong> <?php echo htmlspecialchars($dropoff['unit']); ?><br>
                                         <?php if ($dropoff['unit'] === 'kg'): ?>
                                             <strong>Weight:</strong> <?php echo $dropoff['weight_kg']; ?> kg<br>
                                             <strong>Rate:</strong> ₱<?php echo $dropoff['points_per_kg']; ?>/kg
@@ -258,7 +265,7 @@ $recent_verified = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                                     </td>
                                     <td class="py-3 px-4">
                                         <span class="px-2 py-1 text-xs font-medium rounded-full <?php echo $verified['status'] === 'Completed' ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'; ?>">
-                                            <?php echo ucfirst($verified['status']); ?>
+                                            <?php echo htmlspecialchars(ucfirst($verified['status'])); ?>
                                         </span>
                                     </td>
                                     <td class="py-3 px-4">
@@ -285,6 +292,7 @@ $recent_verified = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                 <p class="text-gray-600 mb-6">Are you sure you want to verify this drop-off and credit points to the resident?</p>
                 
                 <form method="POST" id="verifyForm">
+                    <?php echo \App\Core\Csrf::field(); ?>
                     <input type="hidden" name="action" value="verify">
                     <input type="hidden" name="dropoff_id" id="verifyDropoffId">
                     
@@ -315,6 +323,7 @@ $recent_verified = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                 <p class="text-gray-600 mb-6">Please provide a reason for rejecting this drop-off.</p>
                 
                 <form method="POST" id="rejectForm">
+                    <?php echo \App\Core\Csrf::field(); ?>
                     <input type="hidden" name="action" value="reject">
                     <input type="hidden" name="dropoff_id" id="rejectDropoffId">
                     

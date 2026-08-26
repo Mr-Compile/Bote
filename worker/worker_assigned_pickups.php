@@ -7,60 +7,47 @@ $worker_id = $_SESSION['user_id'];
 
 // Handle pickup operations
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
+    try {
+        \App\Core\Csrf::validate($_POST['csrf_token'] ?? null);
+    } catch (\InvalidArgumentException $e) {
+        $error_message = 'Invalid or expired session token.';
+        return;
+    }
+
     if ($_POST['action'] === 'accept_pickup') {
-        $request_id = (int)$_POST['request_id'];
-        
-        // Start transaction
-        $conn->begin_transaction();
-        
+        $request_id = (int) $_POST['request_id'];
+
         try {
-            // Check if request is still available (not assigned to another worker)
-            $stmt = prepare_statement($conn, "SELECT status, assigned_worker_id FROM pickuprequests WHERE request_id = ?");
-            $stmt->bind_param("i", $request_id);
-            $stmt->execute();
-            $result = $stmt->get_result()->fetch_assoc();
-            
-            if (!$result) {
-                throw new Exception("Request not found");
-            }
-            
-            if ($result['status'] !== 'Pending' || $result['assigned_worker_id'] !== null) {
-                throw new Exception("Request is no longer available");
-            }
-            
-            // Assign the request to this worker and set status to Scheduled
-            $stmt = prepare_statement($conn, "UPDATE pickuprequests SET assigned_worker_id = ?, status = 'Scheduled' WHERE request_id = ?");
-            $stmt->bind_param("ii", $worker_id, $request_id);
-            $stmt->execute();
-            
+            $container->pickupRequestService->assignToWorker(
+                requestId: $request_id,
+                workerId: (int) $worker_id,
+            );
+
             // Auto-generate route if this is the worker's first pickup of the day
             $check_route_stmt = prepare_statement($conn, "
-                SELECT COUNT(*) as route_count 
-                FROM collectionroutes cr 
+                SELECT COUNT(*) as route_count
+                FROM collectionroutes cr
                 WHERE cr.worker_id = ? AND DATE(cr.generated_on) = CURDATE()
             ");
             $check_route_stmt->bind_param("i", $worker_id);
             $check_route_stmt->execute();
             $route_count = $check_route_stmt->get_result()->fetch_assoc()['route_count'];
-            
+
             // If no route exists for today, auto-generate one
             if ($route_count == 0) {
                 // Default starting point (can be customized as needed)
                 $starting_point = ['lat' => 6.4214082, 'lng' => 124.7811843];
                 generateAutoRoute($conn, $worker_id, $starting_point);
-                $success_message = "Pickup request accepted successfully! Auto route generated - check Collection Routes tab.";
+                $success_message = 'Pickup request accepted successfully! Auto route generated - check Collection Routes tab.';
             } else {
-                $success_message = "Pickup request accepted successfully!";
+                $success_message = 'Pickup request accepted successfully!';
             }
-            
-            $conn->commit();
-            
+
             // Send SMS notification to resident about assignment
             sendPickupAssignedSMS($request_id);
-            
+
         } catch (Exception $e) {
-            $conn->rollback();
-            $error_message = "Failed to accept pickup: " . $e->getMessage();
+            $error_message = 'Failed to accept pickup: ' . $e->getMessage();
         }
     }
     elseif ($_POST['action'] === 'complete_pickup') {
@@ -324,7 +311,7 @@ $pending_count = count(array_filter($assigned_pickups, function($pickup) { retur
                                             <div class="detail-content">
                                                 <div class="detail-label">Quantity/Weight</div>
                                                 <div class="detail-value">
-                                                    <?= $pickup['weight_kg'] ?> <?= $pickup['unit'] ?>
+                                                    <?= $pickup['weight_kg'] ?> <?= htmlspecialchars($pickup['unit']) ?>
                                                     <?php if ($pickup['quantity_pcs']): ?>
                                                         (<?= $pickup['quantity_pcs'] ?> pcs)
                                                     <?php endif; ?>
@@ -347,8 +334,9 @@ $pending_count = count(array_filter($assigned_pickups, function($pickup) { retur
                                     
                                     <div class="pickup-footer">
                                         <form method="POST" style="width: 100%;">
+                                            <?php echo \App\Core\Csrf::field(); ?>
                                             <input type="hidden" name="action" value="accept_pickup">
-                                            <input type="hidden" name="request_id" value="<?= $pickup['request_id'] ?>">
+                                            <input type="hidden" name="request_id" value="<?= htmlspecialchars((string) $pickup['request_id'], ENT_QUOTES, 'UTF-8') ?>">
                                             <button type="submit" class="action-btn btn-primary" style="width: 100%;">
                                                 <i data-feather="check-circle"></i>
                                                 Accept Pickup Request
@@ -402,7 +390,7 @@ $pending_count = count(array_filter($assigned_pickups, function($pickup) { retur
                                 $is_today = date('Y-m-d') == date('Y-m-d', $pickup_date);
                                 $is_urgent = $pickup_date < time();
                                 ?>
-                                <div class="pickup-card" data-date="<?= $pickup_date ?>">
+                                <div class="pickup-card" data-date="<?= htmlspecialchars($pickup_date) ?>">
                                     <div class="pickup-header">
                                         <div class="pickup-info">
                                             <h3 class="resident-name">
@@ -498,7 +486,7 @@ $pending_count = count(array_filter($assigned_pickups, function($pickup) { retur
                                     </div>
                                     
                                     <div class="pickup-footer">
-                                        <button onclick="openCompleteModal(<?= $pickup['request_id'] ?>, '<?= $pickup['unit'] ?>', '<?= htmlspecialchars($pickup['first_name'] . ' ' . $pickup['last_name']) ?>')" class="action-btn btn-secondary">
+                                        <button onclick="openCompleteModal(<?= (int) $pickup['request_id'] ?>, <?= json_encode($pickup['unit'], JSON_HEX_QUOT | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS) ?>, <?= json_encode($pickup['first_name'] . ' ' . $pickup['last_name'], JSON_HEX_QUOT | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS) ?>)" class="action-btn btn-secondary">
                                             <i data-feather="check-circle"></i>
                                             Complete Pickup
                                         </button>
@@ -539,6 +527,7 @@ $pending_count = count(array_filter($assigned_pickups, function($pickup) { retur
             </div>
             
             <form method="POST" id="completeForm">
+                <?php echo \App\Core\Csrf::field(); ?>
                 <input type="hidden" name="action" value="complete_pickup">
                 <input type="hidden" name="request_id" id="modalRequestId">
                 

@@ -5,6 +5,13 @@ require '../includes/sms_notifications.php'; // Include SMS notification system
 
 // Handle pickup request operations
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    try {
+        \App\Core\Csrf::validate($_POST['csrf_token'] ?? null);
+    } catch (\InvalidArgumentException $e) {
+        $error_message = 'Invalid or expired session token.';
+        goto skip_post_processing;
+    }
+
     if (isset($_POST['action'])) {
         switch ($_POST['action']) {
             case 'assign_worker':
@@ -114,8 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 }
-
-// Get all pickup requests with details
+skip_post_processing:
 $stmt = prepare_statement($conn, "
     SELECT pr.*, 
            CONCAT(r.first_name, ' ', r.last_name) as resident_name,
@@ -187,13 +193,13 @@ foreach ($statuses as $status) {
             <!-- Success/Error Messages -->
             <?php if (isset($success_message)): ?>
                 <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6">
-                    <?php echo $success_message; ?>
+                    <?php echo htmlspecialchars($success_message); ?>
                 </div>
             <?php endif; ?>
             
             <?php if (isset($error_message)): ?>
                 <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6">
-                    <?php echo $error_message; ?>
+                    <?php echo htmlspecialchars($error_message); ?>
                 </div>
             <?php endif; ?>
 
@@ -331,6 +337,7 @@ foreach ($statuses as $status) {
         <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4">
             <h3 class="text-xl font-bold text-gray-900 mb-4">Assign Worker</h3>
             <form method="POST">
+                <?php echo \App\Core\Csrf::field(); ?>
                 <input type="hidden" name="action" value="assign_worker">
                 <input type="hidden" name="request_id" id="assign_request_id">
                 
@@ -371,6 +378,7 @@ foreach ($statuses as $status) {
         <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4">
             <h3 class="text-xl font-bold text-gray-900 mb-4">Complete Pickup Request</h3>
             <form method="POST">
+                <?php echo \App\Core\Csrf::field(); ?>
                 <input type="hidden" name="action" value="complete_request">
                 <input type="hidden" name="request_id" id="complete_request_id">
                 
@@ -404,6 +412,7 @@ foreach ($statuses as $status) {
         <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4">
             <h3 class="text-xl font-bold text-gray-900 mb-4">Update Status</h3>
             <form method="POST">
+                <?php echo \App\Core\Csrf::field(); ?>
                 <input type="hidden" name="action" value="update_status">
                 <input type="hidden" name="request_id" id="status_request_id">
                 

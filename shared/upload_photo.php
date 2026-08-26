@@ -18,6 +18,14 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
+try {
+    \App\Core\Csrf::validateRequest();
+} catch (\InvalidArgumentException $e) {
+    http_response_code(403);
+    echo json_encode(['success' => false, 'message' => 'Invalid or expired session token.']);
+    exit;
+}
+
 if (!isset($_FILES['profile_photo']) || $_FILES['profile_photo']['error'] !== UPLOAD_ERR_OK) {
     echo json_encode(['success' => false, 'message' => 'No file uploaded or upload error']);
     exit;

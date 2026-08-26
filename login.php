@@ -1,5 +1,6 @@
 <?php
 require_once 'config/database.php';
+require_once 'includes/session.php';
 require_once 'includes/system_functions.php';
 
 // Get login image if available
@@ -66,6 +67,7 @@ $login_image = getSystemSetting($conn, 'login_image', '');
 
                 <!-- Login Form -->
                 <form class="mt-8 space-y-6" action="login_handler.php" method="POST">
+                    <?php echo \App\Core\Csrf::field(); ?>
                     <?php if (isset($_GET['error'])): ?>
                         <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
                             <span class="block sm:inline"><?php echo htmlspecialchars($_GET['error']); ?></span>

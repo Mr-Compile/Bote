@@ -135,7 +135,7 @@ include 'worker_sidebar.php';
         <div class="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-xl mb-6">
             <div class="flex items-center">
                 <i data-lucide="check-circle" class="w-5 h-5 mr-2"></i>
-                <?php echo $success_message; ?>
+                <?php echo htmlspecialchars($success_message); ?>
             </div>
         </div>
         <?php endif; ?>
@@ -196,6 +196,7 @@ include 'worker_sidebar.php';
             </div>
 
             <form method="POST" class="p-6 space-y-6">
+                <?php echo \App\Core\Csrf::field(); ?>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                         <label for="first_name" class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
@@ -408,6 +409,7 @@ include 'worker_sidebar.php';
         if (!selectedFile) return;
 
         const formData = new FormData();
+        formData.append('csrf_token', document.querySelector('input[name="csrf_token"]').value);
         formData.append('profile_photo', selectedFile);
 
         const uploadBtn = document.getElementById('uploadBtn');

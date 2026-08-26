@@ -439,21 +439,30 @@ return [
       2 => 'C:\\wamp64\\www\\Bote\\app\\Repositories\\MysqliDropoffRepository.php',
       3 => 'C:\\wamp64\\www\\Bote\\app\\Repositories\\MysqliPickupRepository.php',
       4 => 'C:\\wamp64\\www\\Bote\\app\\Repositories\\MysqliPointsRepository.php',
-      5 => 'C:\\wamp64\\www\\Bote\\app\\Services\\DropoffService.php',
-      6 => 'C:\\wamp64\\www\\Bote\\app\\Services\\PickupService.php',
-      7 => 'C:\\wamp64\\www\\Bote\\tests\\Support\\FakeConnection.php',
-      8 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Core\\ContainerTest.php',
-      9 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\DropoffServiceTest.php',
-      10 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PickupServiceAdminTest.php',
-      11 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PickupServiceTest.php',
+      5 => 'C:\\wamp64\\www\\Bote\\app\\Repositories\\MysqliRecyclableTypeRepository.php',
+      6 => 'C:\\wamp64\\www\\Bote\\app\\Services\\DropoffService.php',
+      7 => 'C:\\wamp64\\www\\Bote\\app\\Services\\PickupService.php',
+      8 => 'C:\\wamp64\\www\\Bote\\tests\\Support\\FakeConnection.php',
+      9 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Core\\ContainerTest.php',
+      10 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\DropoffServiceTest.php',
+      11 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PickupServiceAdminTest.php',
+      12 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PickupServiceTest.php',
     ),
   ),
   'C:\\wamp64\\www\\Bote\\app\\Core\\Container.php' => 
   array (
-    'fileHash' => 'dfa9a4a8c74eaf197f4165ae6e7774bf2c229e26',
+    'fileHash' => 'f5ccc2adfc8bfac7a28b68ba116743f2000ecadf',
     'dependentFiles' => 
     array (
       0 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Core\\ContainerTest.php',
+    ),
+  ),
+  'C:\\wamp64\\www\\Bote\\app\\Core\\Csrf.php' => 
+  array (
+    'fileHash' => 'de63ff0fef043e1b93bbb9c398e251d160455960',
+    'dependentFiles' => 
+    array (
+      0 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Core\\CsrfTest.php',
     ),
   ),
   'C:\\wamp64\\www\\Bote\\app\\Core\\Database.php' => 
@@ -485,7 +494,8 @@ return [
       1 => 'C:\\wamp64\\www\\Bote\\app\\Repositories\\MysqliDropoffRepository.php',
       2 => 'C:\\wamp64\\www\\Bote\\app\\Services\\DropoffService.php',
       3 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Models\\DropoffTest.php',
-      4 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\DropoffServiceTest.php',
+      4 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\DropoffRequestServiceTest.php',
+      5 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\DropoffServiceTest.php',
     ),
   ),
   'C:\\wamp64\\www\\Bote\\app\\Enums\\PickupStatus.php' => 
@@ -495,10 +505,12 @@ return [
     array (
       0 => 'C:\\wamp64\\www\\Bote\\app\\Models\\Pickup.php',
       1 => 'C:\\wamp64\\www\\Bote\\app\\Repositories\\MysqliPickupRepository.php',
-      2 => 'C:\\wamp64\\www\\Bote\\app\\Services\\PickupService.php',
-      3 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Models\\PickupTest.php',
-      4 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PickupServiceAdminTest.php',
-      5 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PickupServiceTest.php',
+      2 => 'C:\\wamp64\\www\\Bote\\app\\Services\\PickupRequestService.php',
+      3 => 'C:\\wamp64\\www\\Bote\\app\\Services\\PickupService.php',
+      4 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Models\\PickupTest.php',
+      5 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PickupRequestServiceTest.php',
+      6 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PickupServiceAdminTest.php',
+      7 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PickupServiceTest.php',
     ),
   ),
   'C:\\wamp64\\www\\Bote\\app\\Enums\\TransactionType.php' => 
@@ -519,15 +531,21 @@ return [
     'dependentFiles' => 
     array (
       0 => 'C:\\wamp64\\www\\Bote\\app\\Models\\RecyclableType.php',
-      1 => 'C:\\wamp64\\www\\Bote\\app\\Services\\PickupService.php',
-      2 => 'C:\\wamp64\\www\\Bote\\app\\Services\\PointsService.php',
-      3 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Models\\DropoffTest.php',
-      4 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Models\\PickupTest.php',
-      5 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Models\\RecyclableTypeTest.php',
-      6 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\DropoffServiceTest.php',
-      7 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PickupServiceAdminTest.php',
-      8 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PickupServiceTest.php',
-      9 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PointsServiceTest.php',
+      1 => 'C:\\wamp64\\www\\Bote\\app\\Services\\DropoffRequestService.php',
+      2 => 'C:\\wamp64\\www\\Bote\\app\\Services\\PickupRequestService.php',
+      3 => 'C:\\wamp64\\www\\Bote\\app\\Services\\PickupService.php',
+      4 => 'C:\\wamp64\\www\\Bote\\app\\Services\\PointsService.php',
+      5 => 'C:\\wamp64\\www\\Bote\\tests\\Support\\FakeDropoffRepository.php',
+      6 => 'C:\\wamp64\\www\\Bote\\tests\\Support\\FakePickupRepository.php',
+      7 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Models\\DropoffTest.php',
+      8 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Models\\PickupTest.php',
+      9 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Models\\RecyclableTypeTest.php',
+      10 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\DropoffRequestServiceTest.php',
+      11 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\DropoffServiceTest.php',
+      12 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PickupRequestServiceTest.php',
+      13 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PickupServiceAdminTest.php',
+      14 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PickupServiceTest.php',
+      15 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PointsServiceTest.php',
     ),
   ),
   'C:\\wamp64\\www\\Bote\\app\\Models\\Dropoff.php' => 
@@ -537,24 +555,28 @@ return [
     array (
       0 => 'C:\\wamp64\\www\\Bote\\app\\Repositories\\DropoffRepositoryInterface.php',
       1 => 'C:\\wamp64\\www\\Bote\\app\\Repositories\\MysqliDropoffRepository.php',
-      2 => 'C:\\wamp64\\www\\Bote\\app\\Services\\DropoffService.php',
-      3 => 'C:\\wamp64\\www\\Bote\\tests\\Support\\FakeDropoffRepository.php',
-      4 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Models\\DropoffTest.php',
-      5 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\DropoffServiceTest.php',
+      2 => 'C:\\wamp64\\www\\Bote\\app\\Services\\DropoffRequestService.php',
+      3 => 'C:\\wamp64\\www\\Bote\\app\\Services\\DropoffService.php',
+      4 => 'C:\\wamp64\\www\\Bote\\tests\\Support\\FakeDropoffRepository.php',
+      5 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Models\\DropoffTest.php',
+      6 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\DropoffRequestServiceTest.php',
+      7 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\DropoffServiceTest.php',
     ),
   ),
   'C:\\wamp64\\www\\Bote\\app\\Models\\Pickup.php' => 
   array (
-    'fileHash' => '74641c19e38d45e97beb7f473d13a8ac44c2f77a',
+    'fileHash' => '3e7f2648134f4558ad2a841ca5133d42bf4191fa',
     'dependentFiles' => 
     array (
       0 => 'C:\\wamp64\\www\\Bote\\app\\Repositories\\MysqliPickupRepository.php',
       1 => 'C:\\wamp64\\www\\Bote\\app\\Repositories\\PickupRepositoryInterface.php',
-      2 => 'C:\\wamp64\\www\\Bote\\app\\Services\\PickupService.php',
-      3 => 'C:\\wamp64\\www\\Bote\\tests\\Support\\FakePickupRepository.php',
-      4 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Models\\PickupTest.php',
-      5 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PickupServiceAdminTest.php',
-      6 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PickupServiceTest.php',
+      2 => 'C:\\wamp64\\www\\Bote\\app\\Services\\PickupRequestService.php',
+      3 => 'C:\\wamp64\\www\\Bote\\app\\Services\\PickupService.php',
+      4 => 'C:\\wamp64\\www\\Bote\\tests\\Support\\FakePickupRepository.php',
+      5 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Models\\PickupTest.php',
+      6 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PickupRequestServiceTest.php',
+      7 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PickupServiceAdminTest.php',
+      8 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PickupServiceTest.php',
     ),
   ),
   'C:\\wamp64\\www\\Bote\\app\\Models\\RecyclableType.php' => 
@@ -566,33 +588,44 @@ return [
       1 => 'C:\\wamp64\\www\\Bote\\app\\Models\\Pickup.php',
       2 => 'C:\\wamp64\\www\\Bote\\app\\Repositories\\MysqliDropoffRepository.php',
       3 => 'C:\\wamp64\\www\\Bote\\app\\Repositories\\MysqliPickupRepository.php',
-      4 => 'C:\\wamp64\\www\\Bote\\app\\Services\\DropoffService.php',
-      5 => 'C:\\wamp64\\www\\Bote\\app\\Services\\PickupService.php',
-      6 => 'C:\\wamp64\\www\\Bote\\app\\Services\\PointsService.php',
-      7 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Models\\DropoffTest.php',
-      8 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Models\\PickupTest.php',
-      9 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Models\\RecyclableTypeTest.php',
-      10 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\DropoffServiceTest.php',
-      11 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PickupServiceAdminTest.php',
-      12 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PickupServiceTest.php',
-      13 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PointsServiceTest.php',
+      4 => 'C:\\wamp64\\www\\Bote\\app\\Repositories\\MysqliRecyclableTypeRepository.php',
+      5 => 'C:\\wamp64\\www\\Bote\\app\\Repositories\\RecyclableTypeRepositoryInterface.php',
+      6 => 'C:\\wamp64\\www\\Bote\\app\\Services\\DropoffRequestService.php',
+      7 => 'C:\\wamp64\\www\\Bote\\app\\Services\\DropoffService.php',
+      8 => 'C:\\wamp64\\www\\Bote\\app\\Services\\PickupRequestService.php',
+      9 => 'C:\\wamp64\\www\\Bote\\app\\Services\\PickupService.php',
+      10 => 'C:\\wamp64\\www\\Bote\\app\\Services\\PointsService.php',
+      11 => 'C:\\wamp64\\www\\Bote\\tests\\Support\\FakeDropoffRepository.php',
+      12 => 'C:\\wamp64\\www\\Bote\\tests\\Support\\FakePickupRepository.php',
+      13 => 'C:\\wamp64\\www\\Bote\\tests\\Support\\FakeRecyclableTypeRepository.php',
+      14 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Models\\DropoffTest.php',
+      15 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Models\\PickupTest.php',
+      16 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Models\\RecyclableTypeTest.php',
+      17 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\DropoffRequestServiceTest.php',
+      18 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\DropoffServiceTest.php',
+      19 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PickupRequestServiceTest.php',
+      20 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PickupServiceAdminTest.php',
+      21 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PickupServiceTest.php',
+      22 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PointsServiceTest.php',
     ),
   ),
   'C:\\wamp64\\www\\Bote\\app\\Repositories\\DropoffRepositoryInterface.php' => 
   array (
-    'fileHash' => '58d0d9d44457b8ef3c280db856fd15b19871a2a7',
+    'fileHash' => 'e8befa2ad9d18da000f308c8153ef021f887ac4c',
     'dependentFiles' => 
     array (
       0 => 'C:\\wamp64\\www\\Bote\\app\\Core\\Container.php',
       1 => 'C:\\wamp64\\www\\Bote\\app\\Repositories\\MysqliDropoffRepository.php',
-      2 => 'C:\\wamp64\\www\\Bote\\app\\Services\\DropoffService.php',
-      3 => 'C:\\wamp64\\www\\Bote\\tests\\Support\\FakeDropoffRepository.php',
-      4 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\DropoffServiceTest.php',
+      2 => 'C:\\wamp64\\www\\Bote\\app\\Services\\DropoffRequestService.php',
+      3 => 'C:\\wamp64\\www\\Bote\\app\\Services\\DropoffService.php',
+      4 => 'C:\\wamp64\\www\\Bote\\tests\\Support\\FakeDropoffRepository.php',
+      5 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\DropoffRequestServiceTest.php',
+      6 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\DropoffServiceTest.php',
     ),
   ),
   'C:\\wamp64\\www\\Bote\\app\\Repositories\\MysqliDropoffRepository.php' => 
   array (
-    'fileHash' => '64e8bde0dcf8c1a0996834d374cf8a4b670e4b7b',
+    'fileHash' => '234cf86ec2ab4eebb53f32e43d3adcaf2d1e91d3',
     'dependentFiles' => 
     array (
       0 => 'C:\\wamp64\\www\\Bote\\app\\Core\\Container.php',
@@ -600,7 +633,7 @@ return [
   ),
   'C:\\wamp64\\www\\Bote\\app\\Repositories\\MysqliPickupRepository.php' => 
   array (
-    'fileHash' => '2292dd1fa1867ce3de6ed585514ae3d6c71fbb44',
+    'fileHash' => '945e19d6f644d222f401898cd1a20a7b82525bc4',
     'dependentFiles' => 
     array (
       0 => 'C:\\wamp64\\www\\Bote\\app\\Core\\Container.php',
@@ -614,17 +647,27 @@ return [
       0 => 'C:\\wamp64\\www\\Bote\\app\\Core\\Container.php',
     ),
   ),
+  'C:\\wamp64\\www\\Bote\\app\\Repositories\\MysqliRecyclableTypeRepository.php' => 
+  array (
+    'fileHash' => '266765dde613907ca86e44d82458e65107525585',
+    'dependentFiles' => 
+    array (
+      0 => 'C:\\wamp64\\www\\Bote\\app\\Core\\Container.php',
+    ),
+  ),
   'C:\\wamp64\\www\\Bote\\app\\Repositories\\PickupRepositoryInterface.php' => 
   array (
-    'fileHash' => 'ec2901f13dca09861708529b6a63a5879d2cb00e',
+    'fileHash' => '8774cc0faf49d04f0b7de8e6dd572841b9b5f673',
     'dependentFiles' => 
     array (
       0 => 'C:\\wamp64\\www\\Bote\\app\\Core\\Container.php',
       1 => 'C:\\wamp64\\www\\Bote\\app\\Repositories\\MysqliPickupRepository.php',
-      2 => 'C:\\wamp64\\www\\Bote\\app\\Services\\PickupService.php',
-      3 => 'C:\\wamp64\\www\\Bote\\tests\\Support\\FakePickupRepository.php',
-      4 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PickupServiceAdminTest.php',
-      5 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PickupServiceTest.php',
+      2 => 'C:\\wamp64\\www\\Bote\\app\\Services\\PickupRequestService.php',
+      3 => 'C:\\wamp64\\www\\Bote\\app\\Services\\PickupService.php',
+      4 => 'C:\\wamp64\\www\\Bote\\tests\\Support\\FakePickupRepository.php',
+      5 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PickupRequestServiceTest.php',
+      6 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PickupServiceAdminTest.php',
+      7 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PickupServiceTest.php',
     ),
   ),
   'C:\\wamp64\\www\\Bote\\app\\Repositories\\PointsRepositoryInterface.php' => 
@@ -642,6 +685,29 @@ return [
       7 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PickupServiceTest.php',
     ),
   ),
+  'C:\\wamp64\\www\\Bote\\app\\Repositories\\RecyclableTypeRepositoryInterface.php' => 
+  array (
+    'fileHash' => '798fe7f6e3ad112d1bb61995ffd635bdf73b3866',
+    'dependentFiles' => 
+    array (
+      0 => 'C:\\wamp64\\www\\Bote\\app\\Core\\Container.php',
+      1 => 'C:\\wamp64\\www\\Bote\\app\\Repositories\\MysqliRecyclableTypeRepository.php',
+      2 => 'C:\\wamp64\\www\\Bote\\app\\Services\\DropoffRequestService.php',
+      3 => 'C:\\wamp64\\www\\Bote\\app\\Services\\PickupRequestService.php',
+      4 => 'C:\\wamp64\\www\\Bote\\tests\\Support\\FakeRecyclableTypeRepository.php',
+      5 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\DropoffRequestServiceTest.php',
+      6 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PickupRequestServiceTest.php',
+    ),
+  ),
+  'C:\\wamp64\\www\\Bote\\app\\Services\\DropoffRequestService.php' => 
+  array (
+    'fileHash' => '8772c867b34b881a970686a238e5e3a5680908fc',
+    'dependentFiles' => 
+    array (
+      0 => 'C:\\wamp64\\www\\Bote\\app\\Core\\Container.php',
+      1 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\DropoffRequestServiceTest.php',
+    ),
+  ),
   'C:\\wamp64\\www\\Bote\\app\\Services\\DropoffService.php' => 
   array (
     'fileHash' => '600092d39093bb6e13fc58ae913a8b8ad6af309b',
@@ -650,6 +716,15 @@ return [
       0 => 'C:\\wamp64\\www\\Bote\\app\\Core\\Container.php',
       1 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Core\\ContainerTest.php',
       2 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\DropoffServiceTest.php',
+    ),
+  ),
+  'C:\\wamp64\\www\\Bote\\app\\Services\\PickupRequestService.php' => 
+  array (
+    'fileHash' => '8161bde8117ab7b8da043f169ea5f68496d65b1d',
+    'dependentFiles' => 
+    array (
+      0 => 'C:\\wamp64\\www\\Bote\\app\\Core\\Container.php',
+      1 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PickupRequestServiceTest.php',
     ),
   ),
   'C:\\wamp64\\www\\Bote\\app\\Services\\PickupService.php' => 
@@ -669,11 +744,13 @@ return [
     'dependentFiles' => 
     array (
       0 => 'C:\\wamp64\\www\\Bote\\app\\Core\\Container.php',
-      1 => 'C:\\wamp64\\www\\Bote\\app\\Services\\PickupService.php',
-      2 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Core\\ContainerTest.php',
-      3 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PickupServiceAdminTest.php',
-      4 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PickupServiceTest.php',
-      5 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PointsServiceTest.php',
+      1 => 'C:\\wamp64\\www\\Bote\\app\\Services\\DropoffRequestService.php',
+      2 => 'C:\\wamp64\\www\\Bote\\app\\Services\\PickupService.php',
+      3 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Core\\ContainerTest.php',
+      4 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\DropoffRequestServiceTest.php',
+      5 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PickupServiceAdminTest.php',
+      6 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PickupServiceTest.php',
+      7 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PointsServiceTest.php',
     ),
   ),
   'C:\\wamp64\\www\\Bote\\tests\\Support\\FakeConnection.php' => 
@@ -689,19 +766,21 @@ return [
   ),
   'C:\\wamp64\\www\\Bote\\tests\\Support\\FakeDropoffRepository.php' => 
   array (
-    'fileHash' => '6ddd925aa823c31dc9eab9858cf5c30eb1343241',
+    'fileHash' => '771f74bb2b75058e1049a4cf9627e28c759ae000',
     'dependentFiles' => 
     array (
-      0 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\DropoffServiceTest.php',
+      0 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\DropoffRequestServiceTest.php',
+      1 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\DropoffServiceTest.php',
     ),
   ),
   'C:\\wamp64\\www\\Bote\\tests\\Support\\FakePickupRepository.php' => 
   array (
-    'fileHash' => 'e34c8e18f15bd5fbfd35231a64cbc811a530e2f2',
+    'fileHash' => '0d053f1bc466808cd9138e67c656492e92e4e3eb',
     'dependentFiles' => 
     array (
-      0 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PickupServiceAdminTest.php',
-      1 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PickupServiceTest.php',
+      0 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PickupRequestServiceTest.php',
+      1 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PickupServiceAdminTest.php',
+      2 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PickupServiceTest.php',
     ),
   ),
   'C:\\wamp64\\www\\Bote\\tests\\Support\\FakePointsRepository.php' => 
@@ -714,9 +793,25 @@ return [
       2 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PickupServiceTest.php',
     ),
   ),
+  'C:\\wamp64\\www\\Bote\\tests\\Support\\FakeRecyclableTypeRepository.php' => 
+  array (
+    'fileHash' => '9d5096bf0cacd3341b66a844d31ca0917e9c666b',
+    'dependentFiles' => 
+    array (
+      0 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\DropoffRequestServiceTest.php',
+      1 => 'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PickupRequestServiceTest.php',
+    ),
+  ),
   'C:\\wamp64\\www\\Bote\\tests\\Unit\\Core\\ContainerTest.php' => 
   array (
     'fileHash' => 'ea3f3d8f5097f2d17f0c9416225b6c7ccf9da90a',
+    'dependentFiles' => 
+    array (
+    ),
+  ),
+  'C:\\wamp64\\www\\Bote\\tests\\Unit\\Core\\CsrfTest.php' => 
+  array (
+    'fileHash' => '61a709a0660a12cb4625e2ca7159034f7e79d9da',
     'dependentFiles' => 
     array (
     ),
@@ -742,9 +837,23 @@ return [
     array (
     ),
   ),
+  'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\DropoffRequestServiceTest.php' => 
+  array (
+    'fileHash' => '40a145194a3165184744b6d8b875f3aa23aaacf9',
+    'dependentFiles' => 
+    array (
+    ),
+  ),
   'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\DropoffServiceTest.php' => 
   array (
     'fileHash' => 'c88134a81d0f573e5aed54a108c82d6ff2bff3b5',
+    'dependentFiles' => 
+    array (
+    ),
+  ),
+  'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PickupRequestServiceTest.php' => 
+  array (
+    'fileHash' => '4cd2f1a5dcd513d04e40dfd3f849d466df3db2b8',
     'dependentFiles' => 
     array (
     ),
@@ -1189,6 +1298,22 @@ return [
         \PHPStan\Dependency\ExportedNode\ExportedPropertiesNode::__set_state(array(
            'names' => 
           array (
+            0 => 'recyclableTypeRepository',
+          ),
+           'phpDoc' => NULL,
+           'type' => 'App\\Repositories\\MysqliRecyclableTypeRepository',
+           'public' => true,
+           'private' => false,
+           'static' => false,
+           'readonly' => true,
+           'attributes' => 
+          array (
+          ),
+        )),
+        5 => 
+        \PHPStan\Dependency\ExportedNode\ExportedPropertiesNode::__set_state(array(
+           'names' => 
+          array (
             0 => 'pointsService',
           ),
            'phpDoc' => NULL,
@@ -1201,7 +1326,7 @@ return [
           array (
           ),
         )),
-        5 => 
+        6 => 
         \PHPStan\Dependency\ExportedNode\ExportedPropertiesNode::__set_state(array(
            'names' => 
           array (
@@ -1217,7 +1342,7 @@ return [
           array (
           ),
         )),
-        6 => 
+        7 => 
         \PHPStan\Dependency\ExportedNode\ExportedPropertiesNode::__set_state(array(
            'names' => 
           array (
@@ -1233,7 +1358,39 @@ return [
           array (
           ),
         )),
-        7 => 
+        8 => 
+        \PHPStan\Dependency\ExportedNode\ExportedPropertiesNode::__set_state(array(
+           'names' => 
+          array (
+            0 => 'pickupRequestService',
+          ),
+           'phpDoc' => NULL,
+           'type' => 'App\\Services\\PickupRequestService',
+           'public' => true,
+           'private' => false,
+           'static' => false,
+           'readonly' => true,
+           'attributes' => 
+          array (
+          ),
+        )),
+        9 => 
+        \PHPStan\Dependency\ExportedNode\ExportedPropertiesNode::__set_state(array(
+           'names' => 
+          array (
+            0 => 'dropoffRequestService',
+          ),
+           'phpDoc' => NULL,
+           'type' => 'App\\Services\\DropoffRequestService',
+           'public' => true,
+           'private' => false,
+           'static' => false,
+           'readonly' => true,
+           'attributes' => 
+          array (
+          ),
+        )),
+        10 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => '__construct',
            'phpDoc' => NULL,
@@ -1257,6 +1414,205 @@ return [
               array (
               ),
             )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  'C:\\wamp64\\www\\Bote\\app\\Core\\Csrf.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Core\\Csrf',
+       'phpDoc' => NULL,
+       'abstract' => false,
+       'final' => true,
+       'extends' => NULL,
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedClassConstantsNode::__set_state(array(
+           'constants' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedClassConstantNode::__set_state(array(
+               'name' => 'TOKEN_KEY',
+               'value' => '\'csrf_token\'',
+               'attributes' => 
+              array (
+              ),
+            )),
+          ),
+           'public' => true,
+           'private' => false,
+           'final' => false,
+           'phpDoc' => NULL,
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedClassConstantsNode::__set_state(array(
+           'constants' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedClassConstantNode::__set_state(array(
+               'name' => 'INPUT_NAME',
+               'value' => '\'csrf_token\'',
+               'attributes' => 
+              array (
+              ),
+            )),
+          ),
+           'public' => true,
+           'private' => false,
+           'final' => false,
+           'phpDoc' => NULL,
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'ensureSessionStarted',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => true,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'token',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => true,
+           'returnType' => 'string',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        4 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'field',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => true,
+           'returnType' => 'string',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        5 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'validate',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => true,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'token',
+               'type' => '?string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        6 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'submittedToken',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => true,
+           'returnType' => '?string',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        7 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'validateRequest',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => true,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        8 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'reset',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => true,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
           ),
            'attributes' => 
           array (
@@ -2719,6 +3075,35 @@ return [
         )),
         2 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'assignToWorker',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'self',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'workerId',
+               'type' => 'int',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'completed',
            'phpDoc' => NULL,
            'byRef' => false,
@@ -2996,6 +3381,90 @@ return [
           array (
           ),
         )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'create',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'int',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'residentId',
+               'type' => 'int',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'pointId',
+               'type' => 'int',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            2 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'typeId',
+               'type' => 'int',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            3 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'weightKg',
+               'type' => 'float',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            4 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'quantityPcs',
+               'type' => '?int',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            5 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'pointsEarned',
+               'type' => 'int',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
       ),
     )),
   ),
@@ -3095,6 +3564,90 @@ return [
             \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
                'name' => 'dropoff',
                'type' => 'App\\Models\\Dropoff',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'create',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'int',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'residentId',
+               'type' => 'int',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'pointId',
+               'type' => 'int',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            2 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'typeId',
+               'type' => 'int',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            3 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'weightKg',
+               'type' => 'float',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            4 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'quantityPcs',
+               'type' => '?int',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            5 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'pointsEarned',
+               'type' => 'int',
                'byRef' => false,
                'variadic' => false,
                'hasDefault' => false,
@@ -3209,6 +3762,163 @@ return [
             \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
                'name' => 'pickup',
                'type' => 'App\\Models\\Pickup',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'assign',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'bool',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'requestId',
+               'type' => 'int',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'workerId',
+               'type' => 'int',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        4 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'create',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'int',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'residentId',
+               'type' => 'int',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'typeId',
+               'type' => 'int',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            2 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'weightKg',
+               'type' => 'float',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            3 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'quantityPcs',
+               'type' => '?int',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            4 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'preferredDate',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            5 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'pickupType',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            6 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'latitude',
+               'type' => '?float',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            7 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'longitude',
+               'type' => '?float',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            8 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'pointId',
+               'type' => '?int',
                'byRef' => false,
                'variadic' => false,
                'hasDefault' => false,
@@ -3396,6 +4106,109 @@ return [
       ),
     )),
   ),
+  'C:\\wamp64\\www\\Bote\\app\\Repositories\\MysqliRecyclableTypeRepository.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Repositories\\MysqliRecyclableTypeRepository',
+       'phpDoc' => NULL,
+       'abstract' => false,
+       'final' => true,
+       'extends' => NULL,
+       'implements' => 
+      array (
+        0 => 'App\\Repositories\\RecyclableTypeRepositoryInterface',
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => '__construct',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => NULL,
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'db',
+               'type' => 'App\\Core\\ConnectionInterface',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'findById',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => '?App\\Models\\RecyclableType',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'typeId',
+               'type' => 'int',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'all',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
   'C:\\wamp64\\www\\Bote\\app\\Repositories\\PickupRepositoryInterface.php' => 
   array (
     0 => 
@@ -3453,6 +4266,163 @@ return [
             \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
                'name' => 'pickup',
                'type' => 'App\\Models\\Pickup',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'assign',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'bool',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'requestId',
+               'type' => 'int',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'workerId',
+               'type' => 'int',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'create',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'int',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'residentId',
+               'type' => 'int',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'typeId',
+               'type' => 'int',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            2 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'weightKg',
+               'type' => 'float',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            3 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'quantityPcs',
+               'type' => '?int',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            4 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'preferredDate',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            5 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'pickupType',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            6 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'latitude',
+               'type' => '?float',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            7 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'longitude',
+               'type' => '?float',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            8 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'pointId',
+               'type' => '?int',
                'byRef' => false,
                'variadic' => false,
                'hasDefault' => false,
@@ -3592,6 +4562,228 @@ return [
           array (
           ),
         )),
+      ),
+    )),
+  ),
+  'C:\\wamp64\\www\\Bote\\app\\Repositories\\RecyclableTypeRepositoryInterface.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedInterfaceNode::__set_state(array(
+       'name' => 'App\\Repositories\\RecyclableTypeRepositoryInterface',
+       'phpDoc' => NULL,
+       'extends' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'findById',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => '?App\\Models\\RecyclableType',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'typeId',
+               'type' => 'int',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'all',
+           'phpDoc' => 
+          \PHPStan\Dependency\ExportedNode\ExportedPhpDocNode::__set_state(array(
+             'phpDocString' => '/** @return list<RecyclableType> */',
+             'namespace' => 'App\\Repositories',
+             'uses' => 
+            array (
+              'recyclabletype' => 'App\\Models\\RecyclableType',
+            ),
+             'constUses' => 
+            array (
+            ),
+          )),
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+    )),
+  ),
+  'C:\\wamp64\\www\\Bote\\app\\Services\\DropoffRequestService.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Services\\DropoffRequestService',
+       'phpDoc' => NULL,
+       'abstract' => false,
+       'final' => true,
+       'extends' => NULL,
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => '__construct',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => NULL,
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'dropoffs',
+               'type' => 'App\\Repositories\\DropoffRepositoryInterface',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'types',
+               'type' => 'App\\Repositories\\RecyclableTypeRepositoryInterface',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            2 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'calculator',
+               'type' => 'App\\Services\\PointsService',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'create',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'App\\Models\\Dropoff',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'residentId',
+               'type' => 'int',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'pointId',
+               'type' => 'int',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            2 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'typeId',
+               'type' => 'int',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            3 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'weightKg',
+               'type' => 'float',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            4 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'quantityPcs',
+               'type' => '?int',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
       ),
     )),
   ),
@@ -3756,6 +4948,229 @@ return [
             \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
                'name' => 'reason',
                'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  'C:\\wamp64\\www\\Bote\\app\\Services\\PickupRequestService.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'App\\Services\\PickupRequestService',
+       'phpDoc' => NULL,
+       'abstract' => false,
+       'final' => true,
+       'extends' => NULL,
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => '__construct',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => NULL,
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'pickups',
+               'type' => 'App\\Repositories\\PickupRepositoryInterface',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'types',
+               'type' => 'App\\Repositories\\RecyclableTypeRepositoryInterface',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'create',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'App\\Models\\Pickup',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'residentId',
+               'type' => 'int',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'typeId',
+               'type' => 'int',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            2 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'weightKg',
+               'type' => 'float',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            3 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'quantityPcs',
+               'type' => '?int',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            4 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'preferredDate',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            5 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'pickupType',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            6 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'pointId',
+               'type' => '?int',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            7 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'latitude',
+               'type' => '?float',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            8 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'longitude',
+               'type' => '?float',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'assignToWorker',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'App\\Models\\Pickup',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'requestId',
+               'type' => 'int',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'workerId',
+               'type' => 'int',
                'byRef' => false,
                'variadic' => false,
                'hasDefault' => false,
@@ -4533,6 +5948,90 @@ return [
           array (
           ),
         )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'create',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'int',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'residentId',
+               'type' => 'int',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'pointId',
+               'type' => 'int',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            2 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'typeId',
+               'type' => 'int',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            3 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'weightKg',
+               'type' => 'float',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            4 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'quantityPcs',
+               'type' => '?int',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            5 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'pointsEarned',
+               'type' => 'int',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
       ),
        'attributes' => 
       array (
@@ -4606,6 +6105,163 @@ return [
             \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
                'name' => 'pickup',
                'type' => 'App\\Models\\Pickup',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'assign',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'bool',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'requestId',
+               'type' => 'int',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'workerId',
+               'type' => 'int',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'create',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'int',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'residentId',
+               'type' => 'int',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            1 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'typeId',
+               'type' => 'int',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            2 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'weightKg',
+               'type' => 'float',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            3 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'quantityPcs',
+               'type' => '?int',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            4 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'preferredDate',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            5 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'pickupType',
+               'type' => 'string',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            6 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'latitude',
+               'type' => '?float',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            7 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'longitude',
+               'type' => '?float',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+            8 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'pointId',
+               'type' => '?int',
                'byRef' => false,
                'variadic' => false,
                'hasDefault' => false,
@@ -4844,6 +6500,109 @@ return [
       ),
     )),
   ),
+  'C:\\wamp64\\www\\Bote\\tests\\Support\\FakeRecyclableTypeRepository.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'Tests\\Support\\FakeRecyclableTypeRepository',
+       'phpDoc' => NULL,
+       'abstract' => false,
+       'final' => true,
+       'extends' => NULL,
+       'implements' => 
+      array (
+        0 => 'App\\Repositories\\RecyclableTypeRepositoryInterface',
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'add',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'type',
+               'type' => 'App\\Models\\RecyclableType',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'findById',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => '?App\\Models\\RecyclableType',
+           'parameters' => 
+          array (
+            0 => 
+            \PHPStan\Dependency\ExportedNode\ExportedParameterNode::__set_state(array(
+               'name' => 'typeId',
+               'type' => 'int',
+               'byRef' => false,
+               'variadic' => false,
+               'hasDefault' => false,
+               'attributes' => 
+              array (
+              ),
+            )),
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'all',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'array',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
   'C:\\wamp64\\www\\Bote\\tests\\Unit\\Core\\ContainerTest.php' => 
   array (
     0 => 
@@ -4867,6 +6626,194 @@ return [
         0 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'test_container_wires_services_from_connection',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  'C:\\wamp64\\www\\Bote\\tests\\Unit\\Core\\CsrfTest.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'Tests\\Unit\\Core\\CsrfTest',
+       'phpDoc' => NULL,
+       'abstract' => false,
+       'final' => true,
+       'extends' => 'PHPUnit\\Framework\\TestCase',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'setUp',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => false,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'test_generates_a_token',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'test_field_contains_token',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'test_validates_matching_token',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        4 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'test_rejects_missing_token',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        5 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'test_rejects_invalid_token',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        6 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'test_reset_changes_token',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        7 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'test_validate_request_from_post',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        8 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'test_validate_request_rejects_missing_header',
            'phpDoc' => NULL,
            'byRef' => false,
            'public' => true,
@@ -5110,6 +7057,122 @@ return [
       ),
     )),
   ),
+  'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\DropoffRequestServiceTest.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'Tests\\Unit\\Services\\DropoffRequestServiceTest',
+       'phpDoc' => NULL,
+       'abstract' => false,
+       'final' => true,
+       'extends' => 'PHPUnit\\Framework\\TestCase',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'setUp',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => false,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'test_creates_kg_dropoff_and_calculates_points',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'test_creates_pcs_dropoff_and_calculates_points',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'test_rejects_kg_dropoff_below_minimum',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        4 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'test_rejects_pcs_dropoff_below_minimum',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
   'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\DropoffServiceTest.php' => 
   array (
     0 => 
@@ -5205,6 +7268,158 @@ return [
         4 => 
         \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
            'name' => 'test_reject_throws_when_not_pending',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+      ),
+       'attributes' => 
+      array (
+      ),
+    )),
+  ),
+  'C:\\wamp64\\www\\Bote\\tests\\Unit\\Services\\PickupRequestServiceTest.php' => 
+  array (
+    0 => 
+    \PHPStan\Dependency\ExportedNode\ExportedClassNode::__set_state(array(
+       'name' => 'Tests\\Unit\\Services\\PickupRequestServiceTest',
+       'phpDoc' => NULL,
+       'abstract' => false,
+       'final' => true,
+       'extends' => 'PHPUnit\\Framework\\TestCase',
+       'implements' => 
+      array (
+      ),
+       'usedTraits' => 
+      array (
+      ),
+       'traitUseAdaptations' => 
+      array (
+      ),
+       'statements' => 
+      array (
+        0 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'setUp',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => false,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        1 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'test_creates_kg_home_pickup',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        2 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'test_creates_pcs_collection_point_pickup',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        3 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'test_rejects_kg_weight_below_minimum',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        4 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'test_rejects_pcs_quantity_below_minimum',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        5 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'test_assigns_pending_pickup_to_worker',
+           'phpDoc' => NULL,
+           'byRef' => false,
+           'public' => true,
+           'private' => false,
+           'abstract' => false,
+           'final' => false,
+           'static' => false,
+           'returnType' => 'void',
+           'parameters' => 
+          array (
+          ),
+           'attributes' => 
+          array (
+          ),
+        )),
+        6 => 
+        \PHPStan\Dependency\ExportedNode\ExportedMethodNode::__set_state(array(
+           'name' => 'test_rejects_assigning_non_pending_pickup',
            'phpDoc' => NULL,
            'byRef' => false,
            'public' => true,

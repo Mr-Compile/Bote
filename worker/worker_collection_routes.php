@@ -403,7 +403,7 @@ include 'worker_sidebar.php';
                         ?>
                         <div class="pickup-request-item p-6 hover:bg-gray-50 transition-colors" 
                              data-preferred-time="<?php echo strtotime($pickup['preferred_date']); ?>"
-                             data-status="<?php echo $pickup['status']; ?>">
+                             data-status="<?php echo htmlspecialchars($pickup['status']); ?>">
                             <div class="flex items-start justify-between">
                                 <div class="flex-1">
                                     <div class="flex items-center space-x-4 mb-3">
@@ -420,7 +420,7 @@ include 'worker_sidebar.php';
                                         </div>
                                         <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium <?php echo $status_colors[$pickup['status']]; ?>">
                                             <i data-lucide="<?php echo $status_icons[$pickup['status']]; ?>" class="w-4 h-4 mr-1"></i>
-                                            <?php echo $pickup['status']; ?>
+                                            <?php echo htmlspecialchars($pickup['status']); ?>
                                         </span>
                                     </div>
                                     
@@ -439,7 +439,7 @@ include 'worker_sidebar.php';
                                         </div>
                                         <div>
                                             <span class="text-gray-500">Type:</span>
-                                            <span class="font-medium ml-1"><?php echo $pickup['pickup_type'] === 'CollectionPoint' ? 'Collection Point' : 'Home Pickup'; ?></span>
+                                            <span class="font-medium ml-1"><?php echo htmlspecialchars($pickup['pickup_type'] === 'CollectionPoint' ? 'Collection Point' : 'Home Pickup'); ?></span>
                                         </div>
                                     </div>
                                     
@@ -461,13 +461,13 @@ include 'worker_sidebar.php';
                                 
                                 <div class="flex flex-col space-y-2 ml-4">
                                     <?php if ($pickup['status'] !== 'Completed'): ?>
-                                        <button onclick="showCompletePickupModal(<?php echo $pickup['request_id']; ?>, '<?php echo addslashes($pickup['first_name'] . ' ' . $pickup['last_name']); ?>', '<?php echo addslashes($pickup['material_type']); ?>', '<?php echo $pickup['unit']; ?>', <?php echo $pickup['weight_kg']; ?>, <?php echo $pickup['quantity_pcs'] ?: 0; ?>)" 
+                                        <button onclick="showCompletePickupModal(<?php echo (int) $pickup['request_id']; ?>, <?php echo json_encode($pickup['first_name'] . ' ' . $pickup['last_name'], JSON_HEX_QUOT | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS); ?>, <?php echo json_encode($pickup['material_type'], JSON_HEX_QUOT | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS); ?>, <?php echo json_encode($pickup['unit'], JSON_HEX_QUOT | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS); ?>, <?php echo (float) $pickup['weight_kg']; ?>, <?php echo (int) $pickup['quantity_pcs']; ?>)"
                                                 class="px-4 py-2 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-lg text-sm font-medium transition-all duration-200 flex items-center">
                                             <i data-lucide="check" class="w-4 h-4 mr-2"></i>
                                             Complete
                                         </button>
                                     <?php endif; ?>
-                                    <button onclick="showOnMapWithLoading(this, <?php echo $pickup['latitude']; ?>, <?php echo $pickup['longitude']; ?>, '<?php echo addslashes($pickup['first_name'] . ' ' . $pickup['last_name']); ?>')" 
+                                    <button onclick="showOnMapWithLoading(this, <?php echo (float) $pickup['latitude']; ?>, <?php echo (float) $pickup['longitude']; ?>, <?php echo json_encode($pickup['first_name'] . ' ' . $pickup['last_name'], JSON_HEX_QUOT | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS); ?>)"
                                             class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg text-sm font-medium transition-all duration-300 flex items-center group transform hover:scale-105 hover:shadow-lg">
                                         <i data-lucide="map-pin" class="w-4 h-4 mr-2 transition-transform group-hover:scale-110"></i>
                                         <span class="button-text">Show on Map</span>
@@ -536,6 +536,7 @@ include 'worker_sidebar.php';
         </div>
         
         <form id="completePickupForm" onsubmit="submitPickupCompletion(event)">
+            <?php echo \App\Core\Csrf::field(); ?>
             <input type="hidden" id="completeRequestId" name="request_id">
             
             <div id="pickupDetails" class="mb-6 p-4 bg-green-50 rounded-lg border border-green-200">
@@ -695,7 +696,8 @@ include 'worker_sidebar.php';
             request_id: parseInt(formData.get('request_id')),
             actual_weight: formData.get('actual_weight') ? parseFloat(formData.get('actual_weight')) : null,
             actual_quantity: formData.get('actual_quantity') ? parseInt(formData.get('actual_quantity')) : null,
-            notes: formData.get('notes')
+            notes: formData.get('notes'),
+            csrf_token: formData.get('csrf_token')
         };
         
         fetch('worker_assigned_pickups.php', {
@@ -1004,8 +1006,8 @@ include 'worker_sidebar.php';
 
     // Load route data and display on map
     function loadRouteData() {
-        const selectedDate = '<?php echo $selected_date; ?>';
-        fetch(`get_map_data.php?worker_id=${<?php echo $user_id; ?>}&date=${selectedDate}`)
+        const selectedDate = <?php echo json_encode($selected_date, JSON_HEX_QUOT | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS); ?>;
+        fetch(`get_map_data.php?worker_id=${<?php echo (int) $user_id; ?>}&date=${selectedDate}`)
         .then(response => response.json())
         .then(data => {
             if (data.success) {

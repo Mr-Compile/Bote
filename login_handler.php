@@ -1,18 +1,19 @@
 <?php
-session_start();
+require_once 'includes/session.php';
 require_once 'config/database.php';
 require_once 'includes/system_functions.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = trim($_POST['email']);
-    $password = $_POST['password'];
-    $error = "";
-
     try {
+        \App\Core\Csrf::validate($_POST['csrf_token'] ?? null);
+
+        $email = trim($_POST['email']);
+        $password = $_POST['password'];
+        $error = "";
         // Prepare SQL statement
         $sql = "SELECT user_id, first_name, last_name, email, password, role FROM users WHERE email = ?";
         $stmt = $conn->prepare($sql);
-        
+
         if ($stmt === false) {
             throw new Exception("Database error: " . $conn->error);
         }
@@ -23,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($result->num_rows === 1) {
             $user = $result->fetch_assoc();
-            
+
             // Verify password
             if (password_verify($password, $user['password'])) {
                 // Set session variables
@@ -33,7 +34,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['email'] = $user['email'];
                 $_SESSION['role'] = $user['role'];
 
-                
+                // Prevent session fixation by rotating the session ID
+                session_regenerate_id(true);
 
                 // Redirect based on role
                 switch ($user['role']) {
@@ -52,8 +54,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 exit();
             } else {
                 $error = "Invalid password";
-                
-                
             }
         } else {
             $error = "User not found";
@@ -72,4 +72,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 }
-?>

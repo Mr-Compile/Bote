@@ -7,86 +7,29 @@ $user_id = $_SESSION['user_id'];
 // Handle direct drop-off submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
-        // Validate required fields
-        if (!isset($_POST['type_id']) || !isset($_POST['point_id'])) {
-            throw new Exception("Missing required fields");
+        \App\Core\Csrf::validate($_POST['csrf_token'] ?? null);
+
+        if (!isset($_POST['type_id'], $_POST['point_id'])) {
+            throw new Exception('Missing required fields');
         }
 
-        $type_id = (int)$_POST['type_id'];
-        $point_id = (int)$_POST['point_id'];
-        $weight_kg = isset($_POST['weight_kg']) && $_POST['weight_kg'] !== '' ? floatval($_POST['weight_kg']) : 0;
-        $quantity_pcs = isset($_POST['quantity_pcs']) && $_POST['quantity_pcs'] !== '' ? (int)$_POST['quantity_pcs'] : null;
-
-        // Get material type info to determine validation rules
-        $type_stmt = $conn->prepare("SELECT unit, points_per_kg, points_per_unit FROM recyclabletypes WHERE type_id = ?");
-        $type_stmt->bind_param("i", $type_id);
-        $type_stmt->execute();
-        $type_result = $type_stmt->get_result();
-        $material_type = $type_result->fetch_assoc();
-        $type_stmt->close();
-        
-        if (!$material_type) {
-            throw new Exception("Invalid recyclable type selected");
-        }
-        
-        // Validate data based on material unit
-        if ($material_type['unit'] === 'kg') {
-            if ($weight_kg <= 0) {
-                throw new Exception("Weight must be greater than 0");
-            }
-            if ($weight_kg < 10) {
-                throw new Exception("Minimum weight requirement is 10 kilograms");
-            }
-            $points_earned = floor($weight_kg * $material_type['points_per_kg']);
-        } elseif ($material_type['unit'] === 'pcs') {
-            if (!$quantity_pcs || $quantity_pcs <= 0) {
-                throw new Exception("Quantity must be greater than 0");
-            }
-            if ($quantity_pcs < 30) {
-                throw new Exception("Minimum quantity requirement is 30 pieces");
-            }
-            $weight_kg = 0.01; // Set minimal weight for pieces-based materials
-            $points_earned = floor($quantity_pcs * $material_type['points_per_unit']);
-        }
-
-        // Start transaction
-        $conn->begin_transaction();
-
-        // Insert direct drop-off record
-        $sql = "INSERT INTO direct_dropoffs 
-                (resident_id, point_id, type_id, weight_kg, quantity_pcs, points_earned, status) 
-                VALUES (?,?,?,?,?,?,'Pending')";
-
-        $stmt = $conn->prepare($sql);
-        if (!$stmt) {
-            throw new Exception("Failed to prepare statement: " . $conn->error);
-        }
-
-        $stmt->bind_param("iiiddi", 
-            $user_id, $point_id, $type_id, $weight_kg, $quantity_pcs, $points_earned
+        $dropoff = $container->dropoffRequestService->create(
+            residentId: (int) $user_id,
+            pointId: (int) $_POST['point_id'],
+            typeId: (int) $_POST['type_id'],
+            weightKg: isset($_POST['weight_kg']) && $_POST['weight_kg'] !== '' ? (float) $_POST['weight_kg'] : 0.0,
+            quantityPcs: isset($_POST['quantity_pcs']) && $_POST['quantity_pcs'] !== '' ? (int) $_POST['quantity_pcs'] : null,
         );
 
-        if ($stmt->execute()) {
-            $dropoff_id = $conn->insert_id;
-            $stmt->close();
-            
-            // Commit transaction
-            $conn->commit();
-            
-            // Send SMS notification for drop-off submission
-            require_once '../includes/sms_notifications.php';
-            sendDropoffSubmissionSMS($dropoff_id);
-            
-            header("Location: resident_dropoff_success.php?dropoff_id=" . $dropoff_id);
-            exit();
-        } else {
-            throw new Exception("Failed to submit drop-off: " . $stmt->error);
-        }
+        // Send SMS notification for drop-off submission
+        require_once '../includes/sms_notifications.php';
+        sendDropoffSubmissionSMS($dropoff->dropoffId);
 
+        header('Location: resident_dropoff_success.php?dropoff_id=' . $dropoff->dropoffId);
+        exit();
     } catch (Exception $e) {
-        $conn->rollback();
-        error_log("Error in resident_direct_dropoff.php: " . $e->getMessage());
-        header("Location: resident_direct_dropoff.php?error=" . urlencode($e->getMessage()));
+        error_log('Error in resident_direct_dropoff.php: ' . $e->getMessage());
+        header('Location: resident_direct_dropoff.php?error=' . urlencode($e->getMessage()));
         exit();
     }
 }
@@ -260,6 +203,7 @@ $total_points = $stmt->get_result()->fetch_assoc()['total_points'];
 
             <!-- Direct Drop-off Form -->
             <form method="POST" class="space-y-8">
+                <?php echo \App\Core\Csrf::field(); ?>
                 <div class="bg-white rounded-3xl shadow-2xl border border-gray-100 p-8">
                     <div class="flex items-center mb-8">
                         <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl flex items-center justify-center mr-4">

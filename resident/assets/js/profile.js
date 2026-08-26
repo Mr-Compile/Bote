@@ -641,6 +641,7 @@
         if (!selectedFile) return;
 
         const formData = new FormData();
+        formData.append('csrf_token', document.querySelector('input[name="csrf_token"]').value);
         formData.append('profile_photo', selectedFile);
 
         const uploadBtn = document.getElementById('uploadBtn');

@@ -2,6 +2,6 @@
 
 // variadic-method-App\Repositories\MysqliPickupRepository-__construct-C:\wamp64\www\Bote\app\Repositories\MysqliPickupRepository.php
 return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => '1787756165-v4',
+   'variableKey' => '1787757845-v4',
    'data' => false,
 ));

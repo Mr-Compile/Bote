@@ -60,6 +60,53 @@ final class MysqliPickupRepository implements PickupRepositoryInterface
         ], 'sdiii');
     }
 
+    public function assign(int $requestId, int $workerId): bool
+    {
+        $sql = <<<'SQL'
+            UPDATE pickuprequests
+            SET
+                assigned_worker_id = ?,
+                status = 'Scheduled',
+                updated_at = NOW()
+            WHERE request_id = ?
+              AND status = 'Pending'
+              AND assigned_worker_id IS NULL
+        SQL;
+
+        return $this->db->execute($sql, [$workerId, $requestId], 'ii');
+    }
+
+    public function create(
+        int $residentId,
+        int $typeId,
+        float $weightKg,
+        ?int $quantityPcs,
+        string $preferredDate,
+        string $pickupType,
+        ?float $latitude,
+        ?float $longitude,
+        ?int $pointId,
+    ): int {
+        $sql = <<<'SQL'
+            INSERT INTO pickuprequests
+                (resident_id, type_id, weight_kg, quantity_pcs, preferred_date, pickup_type, latitude, longitude, point_id, status, created_at, updated_at)
+            VALUES
+                (?, ?, ?, ?, ?, ?, ?, ?, ?, 'Pending', NOW(), NOW())
+        SQL;
+
+        return $this->db->insert($sql, [
+            $residentId,
+            $typeId,
+            $weightKg,
+            $quantityPcs,
+            $preferredDate,
+            $pickupType,
+            $latitude,
+            $longitude,
+            $pointId,
+        ], 'iidissdii');
+    }
+
     /**
      * @param array<string, mixed> $row
      */

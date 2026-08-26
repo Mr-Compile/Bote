@@ -90,9 +90,11 @@ function confirmCancel(requestId) {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest'
         },
         body: JSON.stringify({
-            request_id: requestId
+            request_id: requestId,
+            csrf_token: window.csrfToken || ''
         })
     })
     .then(response => response.json())

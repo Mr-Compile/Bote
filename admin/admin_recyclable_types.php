@@ -348,7 +348,7 @@ try {
             <div class="bg-white rounded-2xl shadow-lg p-6 card-hover border-l-4 border-purple-500">
                 <div class="flex items-center justify-between">
                     <div>
-                        <p class="text-lg font-bold text-gray-900"><?php echo $most_used ? $most_used['name'] : 'N/A'; ?></p>
+                        <p class="text-lg font-bold text-gray-900"><?php echo $most_used ? htmlspecialchars($most_used['name']) : 'N/A'; ?></p>
                         <p class="text-sm text-gray-600 mt-1">Most Used</p>
                     </div>
                     <div class="w-16 h-16 bg-gradient-to-br from-purple-100 to-purple-200 rounded-2xl flex items-center justify-center">
@@ -541,6 +541,7 @@ try {
             <!-- Modal Body -->
             <div class="p-8">
                 <form method="POST" enctype="multipart/form-data" class="space-y-6">
+                    <?php echo \App\Core\Csrf::field(); ?>
                     <input type="hidden" name="action" value="add_type">
                     
                     <!-- Image Upload Section -->
@@ -642,6 +643,7 @@ try {
             <!-- Modal Body -->
             <div class="p-8">
                 <form method="POST" enctype="multipart/form-data" class="space-y-6">
+                    <?php echo \App\Core\Csrf::field(); ?>
                     <input type="hidden" name="action" value="update_type">
                     <input type="hidden" name="type_id" id="edit_type_id">
                     <input type="hidden" name="current_image" id="edit_current_image">
@@ -754,6 +756,7 @@ try {
                 </p>
                 
                 <form method="POST" class="space-y-6">
+                    <?php echo \App\Core\Csrf::field(); ?>
                     <input type="hidden" name="action" value="delete_type">
                     <input type="hidden" name="type_id" id="delete_type_id">
                     

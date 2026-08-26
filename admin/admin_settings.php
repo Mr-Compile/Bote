@@ -256,6 +256,7 @@ if ($stmt->execute()) {
                         
                         <div class="p-8">
                             <form action="save_settings.php" method="POST" enctype="multipart/form-data" class="space-y-8">
+                                <?php echo \App\Core\Csrf::field(); ?>
                                 <input type="hidden" name="tab" value="barangay">
                                 
                                 <!-- Main Settings Card -->
@@ -538,6 +539,7 @@ if ($stmt->execute()) {
                         <div class="p-8">
                             <!-- Change Password -->
                             <form action="save_settings.php" method="POST" class="space-y-6">
+                                <?php echo \App\Core\Csrf::field(); ?>
                                 <input type="hidden" name="tab" value="password">
                                 
                                 <div class="bg-gradient-to-br from-red-50 to-pink-50 rounded-2xl p-6 border border-red-200">

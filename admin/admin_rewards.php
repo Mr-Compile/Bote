@@ -674,6 +674,7 @@ try {
         <!-- Modal Body -->
         <div class="p-8">
             <form method="POST" enctype="multipart/form-data" class="space-y-6">
+                <?php echo \App\Core\Csrf::field(); ?>
                 <input type="hidden" name="action" value="add_reward">
 
                 <!-- Two Column Grid -->
@@ -791,6 +792,7 @@ try {
         <!-- Modal Body -->
         <div class="p-8">
             <form method="POST" enctype="multipart/form-data" class="space-y-6">
+                <?php echo \App\Core\Csrf::field(); ?>
                 <input type="hidden" name="action" value="update_reward">
                 <input type="hidden" name="reward_id" id="edit_reward_id">
 
@@ -910,6 +912,7 @@ try {
                 <p class="text-gray-600 mb-6">Are you sure you want to delete this reward? This action cannot be undone.</p>
                 
                 <form method="POST">
+                    <?php echo \App\Core\Csrf::field(); ?>
                     <input type="hidden" name="action" value="delete_reward">
                     <input type="hidden" name="reward_id" id="delete_reward_id">
                     

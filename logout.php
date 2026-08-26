@@ -1,5 +1,8 @@
 <?php
-session_start();
+require_once 'includes/session.php';
+
+// Clear session data
+$_SESSION = [];
 
 // Destroy the session
 session_destroy();
@@ -12,4 +15,3 @@ if (isset($_COOKIE[session_name()])) {
 // Redirect to index page
 header("Location: index.php?logged_out=1");
 exit();
-?>

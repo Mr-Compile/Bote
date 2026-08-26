@@ -37,6 +37,8 @@ $requests = $stmt->get_result();
 
     <!-- Pass PHP data to JavaScript -->
     <script>
+        window.csrfToken = <?php echo json_encode(\App\Core\Csrf::token()); ?>;
+
         // Create an array to store request location data for the map
         const requestLocations = [
             <?php 
@@ -208,7 +210,7 @@ $requests = $stmt->get_result();
                     <?php while ($request = $requests->fetch_assoc()): ?>
                         <div class="request-card p-8 hover:bg-gradient-to-r hover:from-gray-50 hover:to-white transition-all duration-300 card-enter" 
                              style="animation-delay: <?php echo $card_index * 0.1; ?>s"
-                             data-status="<?php echo $request['status']; ?>"
+                             data-status="<?php echo htmlspecialchars($request['status']); ?>"
                              data-request-id="<?php echo $request['request_id']; ?>">
                             <div class="flex items-start justify-between">
                                 <div class="flex-1">
@@ -231,7 +233,7 @@ $requests = $stmt->get_result();
                                             ?>
                                             <div class="px-4 py-2 rounded-xl font-semibold text-sm border-2 flex items-center space-x-2 <?php echo $status_colors[$request['status']] ?? 'bg-gray-100 text-gray-800 border-gray-200'; ?>">
                                                 <i data-lucide="<?php echo $status_icons[$request['status']] ?? 'circle'; ?>" class="w-4 h-4"></i>
-                                                <span><?php echo $request['status']; ?></span>
+                                                <span><?php echo htmlspecialchars($request['status']); ?></span>
                                             </div>
                                             <div class="bg-gray-100 px-3 py-1 rounded-full text-sm font-medium text-gray-600">
                                                 ID: #<?php echo str_pad($request['request_id'], 4, '0', STR_PAD_LEFT); ?>
@@ -282,7 +284,7 @@ $requests = $stmt->get_result();
                                                         ?>
                                                     </p>
                                                     <p class="text-gray-500 text-sm">
-                                                        <?php echo $request['unit'] === 'kg' ? 'Weight collected' : 'Quantity collected'; ?>
+                                                        <?php echo htmlspecialchars($request['unit'] === 'kg' ? 'Weight collected' : 'Quantity collected'); ?>
                                                     </p>
                                                 </div>
                                                 

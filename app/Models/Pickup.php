@@ -55,6 +55,29 @@ final class Pickup
         );
     }
 
+    public function assignToWorker(int $workerId): self
+    {
+        return new self(
+            requestId: $this->requestId,
+            residentId: $this->residentId,
+            typeId: $this->typeId,
+            assignedWorkerId: $workerId,
+            recyclableType: $this->recyclableType,
+            weightKg: $this->weightKg,
+            quantityPcs: $this->quantityPcs,
+            preferredDate: $this->preferredDate,
+            status: PickupStatus::Scheduled,
+            pickupType: $this->pickupType,
+            pointId: $this->pointId,
+            actualWeight: $this->actualWeight,
+            pointsEarned: $this->pointsEarned,
+            latitude: $this->latitude,
+            longitude: $this->longitude,
+            createdAt: $this->createdAt,
+            updatedAt: $this->updatedAt,
+        );
+    }
+
     public function completed(float $actualWeight, ?int $quantityPcs, int $pointsEarned): self
     {
         if ($this->status === PickupStatus::Completed) {

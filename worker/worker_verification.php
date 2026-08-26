@@ -7,6 +7,13 @@ $user_role = $_SESSION['role'];
 
 // Handle verification action
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
+    try {
+        \App\Core\Csrf::validate($_POST['csrf_token'] ?? null);
+    } catch (\InvalidArgumentException $e) {
+        header('Location: worker_verification.php?error=' . urlencode('Invalid or expired session token.'));
+        exit();
+    }
+
     $dropoff_id = (int) $_POST['dropoff_id'];
     $action = $_POST['action'];
 
@@ -255,6 +262,7 @@ $recent_verified = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         <div class="bg-white rounded-lg max-w-md w-full p-6">
             <h3 class="text-lg font-semibold text-gray-900 mb-4">Verify Drop-off</h3>
             <form method="POST">
+                <?php echo \App\Core\Csrf::field(); ?>
                 <input type="hidden" name="action" value="verify">
                 <input type="hidden" name="dropoff_id" id="verify_dropoff_id">
                 
@@ -284,6 +292,7 @@ $recent_verified = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         <div class="bg-white rounded-lg max-w-md w-full p-6">
             <h3 class="text-lg font-semibold text-gray-900 mb-4">Reject Drop-off</h3>
             <form method="POST">
+                <?php echo \App\Core\Csrf::field(); ?>
                 <input type="hidden" name="action" value="reject">
                 <input type="hidden" name="dropoff_id" id="reject_dropoff_id">
                 
