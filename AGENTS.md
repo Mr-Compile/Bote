@@ -44,7 +44,7 @@
 - `worker_daily_reports.php` now persists to `daily_reports`.
 - `pointsledger.description` column exists and is used by `App\Repositories\MysqliPointsRepository`.
 - `rewards.image_url` removed; only `image` is used.
-- Sidebars are complete standalone HTML documents duplicated across roles.
+- Sidebars were consolidated into a single shared `resources/views/shared/sidebar.php`.
 - JS `onclick` handlers that interpolate strings now use `json_encode()` with JSON hex flags.
 - User-facing output in forms and tables should use `htmlspecialchars()` or `json_encode()`.
 
@@ -64,6 +64,7 @@
 - `smsnotifications` table and `daily_reports` table created.
 - SMS bridge test form (`sms/index.php`) no longer hardcodes credentials.
 - All 45 PHPUnit tests and PHPStan level 9 pass; login/role paths smoke-tested.
+- `index.php`, `login.php`, `login_handler.php`, `register.php`, and `logout.php` moved to MVC controllers under `App\Http\Controllers\Public\*`.
 
 ## Environment Constraints
 - The live database contains 6 user accounts (1 admin, 2 workers, 3 residents).
@@ -103,9 +104,9 @@
 
 The codebase is now split between thin web entry points, an `app/` controller layer, and shared `resources/views/` templates.
 
-- `index.php`, `login.php`, `register.php` — thin dispatchers that load `config/database.php` and instantiate `App\Http\Controllers\Public\{Index,Login,Register}Controller`.
+- `index.php`, `login.php`, `login_handler.php`, `register.php`, `logout.php` — thin dispatchers that load `config/database.php` and instantiate the matching `App\Http\Controllers\Public\*` controller.
 - `admin/*.php`, `worker/*.php`, `resident/*.php` — thin dispatchers that load `config/database.php`, require the right guard (`includes/auth_*.php`), instantiate the matching controller, and call `render()`.
-- `app/Http/Controllers/{Admin,Resident,Worker}/*Controller.php` — controllers extending `BaseController`; each defines `allowedRoles()` and a `render()` method.
+- `app/Http/Controllers/{Admin,Resident,Worker,Public}/*Controller.php` — controllers extending `BaseController`; each defines `allowedRoles()` and a `render()` method.
 - `app/Http/Controllers/BaseController.php` — shared helpers: `legacy()`, `view()`, `redirect()`, `json()`, `setting()`, `setSetting()`, `currentUserId()`, `validateCsrf()`.
 - `app/Http/Middleware/RequireRole.php` and `RequireStaff.php` — role guards used by dispatcher scripts.
 - `app/Core/{Database,Legacy,LegacyStatement,TypeCaster,View}.php` — database wrappers and view renderer.
