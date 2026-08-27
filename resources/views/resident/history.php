@@ -1,4 +1,4 @@
-    <link rel="stylesheet" href="assets/css/my_request.css">
+    <link rel="stylesheet" href="<?php echo $basePath; ?>assets/css/pages/resident-my-request.css">
 <!-- Main Content -->
 <div class="p-8 bg-gradient-to-br from-bote-stone-50 via-white to-bote-stone-50 min-h-screen">
     <div class="max-w-7xl mx-auto">

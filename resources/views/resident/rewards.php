@@ -1,4 +1,4 @@
-    <link rel="stylesheet" href="assets/css/rewards.css">
+    <link rel="stylesheet" href="<?php echo $basePath; ?>assets/css/pages/resident-rewards.css">
     <script type="application/json" id="rewards-data">
         <?php echo json_encode([
             'userPoints' => (int) $user_points,

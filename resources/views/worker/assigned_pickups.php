@@ -1,8 +1,6 @@
     <!-- Feather Icons -->
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-    <link rel="stylesheet" href="assets/css/assigned_pickups.css">
-    <!-- Custom JavaScript -->
-    <script type="module" src="assets/js/assigned_pickups.js"></script>
+    <link rel="stylesheet" href="<?php echo $basePath; ?>assets/css/pages/worker-assigned-pickups.css">
 <div class="main-content">
         <div class="page-container">
             <div class="page-header">

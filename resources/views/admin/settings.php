@@ -1,4 +1,4 @@
-    <link rel="stylesheet" href="assets/css/settings.css">
+    <link rel="stylesheet" href="<?php echo $basePath; ?>assets/css/pages/admin-settings.css">
 <div class="p-8">
             <!-- Enhanced Header -->
             <div class="gradient-bg shadow-xl rounded-3xl">

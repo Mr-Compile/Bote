@@ -65,8 +65,8 @@ if (empty($carousel_slides)) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($system_name); ?> - Tracking & Reward System</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script type="module" src="assets/js/theme.js"></script>
-    <script type="module" src="assets/js/index.js"></script>
+    <script type="module" src="assets/js/app/theme.js"></script>
+    <script type="module" src="assets/js/pages/public/index.js"></script>
     <style>
         .hero-bg {
             background: linear-gradient(rgba(49, 101, 43, 0.8), rgba(49, 101, 43, 0.8)), 

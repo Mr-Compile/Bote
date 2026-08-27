@@ -102,7 +102,7 @@ $purok_result = $conn->query("SELECT purok_id, name FROM puroks ORDER BY name AS
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BoteBank Registration</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script type="module" src="assets/js/theme.js"></script>
+  <script type="module" src="assets/js/app/theme.js"></script>
   <style>
     .input-group {
       position: relative;
@@ -384,6 +384,6 @@ $purok_result = $conn->query("SELECT purok_id, name FROM puroks ORDER BY name AS
     </div>
   </div>
 
-  <script type="module" src="assets/js/register.js"></script>
+  <script type="module" src="assets/js/pages/public/register.js"></script>
 </body>
 </html>

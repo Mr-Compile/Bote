@@ -1,7 +1,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <link rel="stylesheet" href="assets/css/new_request.css">
-    <link rel="stylesheet" href="assets/css/my_request.css">
+    <link rel="stylesheet" href="<?php echo $basePath; ?>assets/css/pages/resident-new-request.css">
+    <link rel="stylesheet" href="<?php echo $basePath; ?>assets/css/pages/resident-my-request.css">
     <style>
         .dropoff-card {
             background: linear-gradient(135deg, #10b981 0%, #059669 100%);

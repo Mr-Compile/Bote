@@ -3,7 +3,7 @@
           integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" 
             integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    <link rel="stylesheet" href="assets/css/profile.css">
+    <link rel="stylesheet" href="<?php echo $basePath; ?>assets/css/pages/resident-profile.css">
     <script type="application/json" id="profile-data">
         <?php echo $json_profile_data; ?>
     </script>

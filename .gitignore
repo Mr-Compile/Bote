@@ -5,7 +5,4 @@
 /.phpunit.cache
 /backups
 /node_modules
-/assets/js/*.map
-/admin/assets/js/*.map
-/resident/assets/js/*.map
-/worker/assets/js/*.map
+/assets/js/**/*.map

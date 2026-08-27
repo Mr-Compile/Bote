@@ -1,7 +1,7 @@
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <link rel="stylesheet" href="assets/css/new_request.css">
+    <link rel="stylesheet" href="<?php echo $basePath; ?>assets/css/pages/resident-new-request.css">
     
     <!-- JavaScript is handled internally -->
 <div class="p-8">

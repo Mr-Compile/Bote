@@ -1,6 +1,6 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <link rel="stylesheet" href="assets/css/my_request.css">
+    <link rel="stylesheet" href="<?php echo $basePath; ?>assets/css/pages/resident-my-request.css">
 
     <script type="application/json" id="my-requests-data">
         <?php echo $json_my_requests_data; ?>

@@ -1,4 +1,4 @@
-    <link rel="stylesheet" href="assets/css/purok.css" >
+    <link rel="stylesheet" href="<?php echo $basePath; ?>assets/css/pages/admin-puroks.css" >
 <div class="p-8">
         <div class="max-w-7xl mx-auto">
             <!-- Enhanced Header -->
