@@ -97,6 +97,21 @@
 - Build command: `npm run build` (or `build.bat` on Windows if the PATH is not yet loaded in the current shell).
 - `package-lock.json` and `node_modules` are created by the build; `node_modules` and `*.js.map` files are `.gitignore`d.
 
+## Project Structure (after MVC refactor)
+
+The codebase is now split between thin web entry points, an `app/` controller layer, and shared `resources/views/` templates.
+
+- `admin/*.php`, `worker/*.php`, `resident/*.php` — thin dispatchers that load `config/database.php`, require the right guard (`includes/auth_*.php`), instantiate the matching controller, and call `render()`.
+- `app/Http/Controllers/{Admin,Resident,Worker}/*Controller.php` — controllers extending `BaseController`; each defines `allowedRoles()` and a `render()` method.
+- `app/Http/Controllers/BaseController.php` — shared helpers: `legacy()`, `view()`, `redirect()`, `json()`, `setting()`, `setSetting()`, `currentUserId()`, `validateCsrf()`.
+- `app/Http/Middleware/RequireRole.php` and `RequireStaff.php` — role guards used by dispatcher scripts.
+- `app/Core/{Database,Legacy,LegacyStatement,TypeCaster,View}.php` — database wrappers and view renderer.
+- `resources/views/shared/{head,layout,sidebar,logout-modal}.php` — shared layout; per-role views are in `admin/`, `resident/`, `worker/` subdirectories.
+- `assets/ts/{app,pages,shared}/` — TypeScript source; compiled to `assets/js/{app,pages,shared}/` by `npm run build`.
+- `tools/` — one-off scripts used during the migration (`migrate.php`, `fix_runtime.php`, `clean_view_tops.php`, `restore_sources.php`).
+
+Legacy role sidebars (`admin/admin_sidebar.php`, `worker/worker_sidebar.php`, `resident/resident_sidebar.php`) and `resident/resident_staff_verification.php` now redirect to the new dispatcher pages.
+
 ## Agent Workflow Rules
 - Do not auto-commit changes. Pause and ask the user for explicit confirmation before creating a commit.
 - Do not push to the remote repository unless the user explicitly requests it.
