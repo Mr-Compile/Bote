@@ -33,4 +33,6 @@ interface ConnectionInterface
     public function commit(): bool;
 
     public function rollback(): bool;
+
+    public function connection(): \mysqli;
 }

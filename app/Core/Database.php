@@ -6,7 +6,12 @@ namespace App\Core;
 
 final class Database implements ConnectionInterface
 {
-    public function __construct(private readonly \mysqli $connection) {}
+    public function __construct(private readonly \mysqli $mysqli) {}
+
+    public function connection(): \mysqli
+    {
+        return $this->mysqli;
+    }
 
     /**
      * @param array<int, mixed> $params
@@ -58,7 +63,7 @@ final class Database implements ConnectionInterface
     {
         $stmt = $this->prepare($sql, $params, $types);
         $stmt->execute();
-        $id = (int) $this->connection->insert_id;
+        $id = (int) $this->mysqli->insert_id;
         $stmt->close();
 
         return $id;
@@ -66,17 +71,17 @@ final class Database implements ConnectionInterface
 
     public function beginTransaction(): bool
     {
-        return $this->connection->begin_transaction();
+        return $this->mysqli->begin_transaction();
     }
 
     public function commit(): bool
     {
-        return $this->connection->commit();
+        return $this->mysqli->commit();
     }
 
     public function rollback(): bool
     {
-        return $this->connection->rollback();
+        return $this->mysqli->rollback();
     }
 
     /**
@@ -84,10 +89,10 @@ final class Database implements ConnectionInterface
      */
     private function prepare(string $sql, array $params, string $types): \mysqli_stmt
     {
-        $stmt = $this->connection->prepare($sql);
+        $stmt = $this->mysqli->prepare($sql);
 
         if ($stmt === false) {
-            throw new \RuntimeException('Failed to prepare statement: ' . $this->connection->error);
+            throw new \RuntimeException('Failed to prepare statement: ' . $this->mysqli->error);
         }
 
         if ($params !== [] && $types !== '') {

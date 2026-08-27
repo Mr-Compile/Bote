@@ -4,9 +4,9 @@
   "private": true,
   "description": "BoteBank TypeScript UI build",
   "scripts": {
-    "build": "tsc -p admin/tsconfig.json && tsc -p resident/tsconfig.json && tsc -p worker/tsconfig.json && tsc -p assets/tsconfig.json",
-    "watch": "tsc -p admin/tsconfig.json --watch & tsc -p resident/tsconfig.json --watch & tsc -p worker/tsconfig.json --watch & tsc -p assets/tsconfig.json --watch",
-    "clean": "tsc -p admin/tsconfig.json --clean && tsc -p resident/tsconfig.json --clean && tsc -p worker/tsconfig.json --clean && tsc -p assets/tsconfig.json --clean"
+    "build": "tsc -p tsconfig.json",
+    "watch": "tsc -p tsconfig.json --watch",
+    "clean": "tsc -p tsconfig.json --clean"
   },
   "devDependencies": {
     "@types/chart.js": "^2.9.41",

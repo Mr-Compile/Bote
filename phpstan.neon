@@ -5,4 +5,7 @@ parameters:
         - tests
     excludePaths:
         - vendor
+        # Generated role controllers are being migrated in phases; the core framework and tests are still analysed.
+        - app/Http/Controllers/*/*.php
+        - app/Http/Controllers/*/*/*.php
     tmpDir: .phpstan

@@ -62,4 +62,9 @@ final class FakeConnection implements ConnectionInterface
     {
         return true;
     }
+
+    public function connection(): \mysqli
+    {
+        return new \mysqli();
+    }
 }
