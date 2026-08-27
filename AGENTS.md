@@ -82,3 +82,8 @@
 - Run tests: `C:\wamp64\bin\php\php8.2.29\php.exe vendor\bin\phpunit`
 - Run static analysis: `C:\wamp64\bin\php\php8.2.29\php.exe vendor\bin\phpstan analyse app tests --level=9`
 - WAMP database service `wampmariadb64` must be running for integration tests / web use.
+
+## Agent Workflow Rules
+- Do not auto-commit changes. Pause and ask the user for explicit confirmation before creating a commit.
+- Do not push to the remote repository unless the user explicitly requests it.
+- Continue running tests, lint, and smoke checks proactively.
