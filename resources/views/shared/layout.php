@@ -27,12 +27,9 @@ declare(strict_types=1);
 
     <?php include __DIR__ . '/logout-modal.php'; ?>
 
-    <script>
-        if (typeof lucide !== 'undefined') {
-            lucide.createIcons();
-        }
-    </script>
     <script type="module" src="<?php echo $basePath; ?>assets/js/app/theme.js"></script>
+    <script type="module" src="<?php echo $basePath; ?>assets/js/app/icons.js"></script>
+    <script type="module" src="<?php echo $basePath; ?>assets/js/app/logout.js"></script>
     <script type="module" src="<?php echo $basePath; ?>assets/js/app/sidebar.js"></script>
     <?php if (!empty($pageScript)): ?>
         <script type="module" src="<?php echo $basePath . $pageScript; ?>"></script>

@@ -2,9 +2,10 @@ import { selectElement } from '../shared/dom';
 
 export {};
 
-export interface LogoutModal {
+interface LogoutModal {
     show: () => void;
     hide: () => void;
+    confirm: () => void;
 }
 
 class LogoutController implements LogoutModal {
@@ -27,17 +28,11 @@ class LogoutController implements LogoutModal {
         this.modal.classList.remove('flex');
     }
 
+    confirm(): void {
+        window.location.href = '../logout.php';
+    }
+
     private bindEvents(): void {
-        const logoutBtn = selectElement<HTMLButtonElement>('logoutBtn');
-        const cancelBtn = selectElement<HTMLButtonElement>('cancelLogout');
-        const confirmBtn = selectElement<HTMLButtonElement>('confirmLogout');
-
-        logoutBtn?.addEventListener('click', () => this.show());
-        cancelBtn?.addEventListener('click', () => this.hide());
-        confirmBtn?.addEventListener('click', () => {
-            window.location.href = '../logout.php';
-        });
-
         this.modal?.addEventListener('click', (e: MouseEvent) => {
             if (e.target === this.modal) this.hide();
         });
@@ -51,5 +46,11 @@ class LogoutController implements LogoutModal {
 }
 
 const logout = new LogoutController();
+
+window.BoteApp = Object.assign(window.BoteApp ?? {}, {
+    showLogoutModal: () => logout.show(),
+    hideLogoutModal: () => logout.hide(),
+    confirmLogout: () => logout.confirm(),
+});
 
 export { logout };

@@ -103,13 +103,14 @@
 
 The codebase is now split between thin web entry points, an `app/` controller layer, and shared `resources/views/` templates.
 
+- `index.php`, `login.php`, `register.php` — thin dispatchers that load `config/database.php` and instantiate `App\Http\Controllers\Public\{Index,Login,Register}Controller`.
 - `admin/*.php`, `worker/*.php`, `resident/*.php` — thin dispatchers that load `config/database.php`, require the right guard (`includes/auth_*.php`), instantiate the matching controller, and call `render()`.
 - `app/Http/Controllers/{Admin,Resident,Worker}/*Controller.php` — controllers extending `BaseController`; each defines `allowedRoles()` and a `render()` method.
 - `app/Http/Controllers/BaseController.php` — shared helpers: `legacy()`, `view()`, `redirect()`, `json()`, `setting()`, `setSetting()`, `currentUserId()`, `validateCsrf()`.
 - `app/Http/Middleware/RequireRole.php` and `RequireStaff.php` — role guards used by dispatcher scripts.
 - `app/Core/{Database,Legacy,LegacyStatement,TypeCaster,View}.php` — database wrappers and view renderer.
 - `config/navigation.php` — declarative role-based nav definitions used by `App\View\Navigation`.
-- `resources/views/shared/{head,layout,sidebar,logout-modal}.php` — shared layout; per-role views are in `admin/`, `resident/`, `worker/` subdirectories.
+- `resources/views/shared/{head,layout,sidebar,logout-modal}.php` — shared layout; per-role views are in `admin/`, `resident/`, `worker/` subdirectories; public views are in `public/`.
 - `assets/ts/{app,pages,shared}/` — TypeScript source; compiled to `assets/js/{app,pages,shared}/` by `npm run build`.
 - `assets/css/app.css` — shared design tokens and common utilities; `assets/css/pages/*.css` — scoped page styles.
 - `tools/` — one-off scripts used during the migration (`migrate.php`, `fix_runtime.php`, `clean_view_tops.php`, `restore_sources.php`).

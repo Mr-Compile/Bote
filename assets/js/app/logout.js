@@ -17,15 +17,10 @@ class LogoutController {
         this.modal.classList.add('hidden');
         this.modal.classList.remove('flex');
     }
+    confirm() {
+        window.location.href = '../logout.php';
+    }
     bindEvents() {
-        const logoutBtn = selectElement('logoutBtn');
-        const cancelBtn = selectElement('cancelLogout');
-        const confirmBtn = selectElement('confirmLogout');
-        logoutBtn?.addEventListener('click', () => this.show());
-        cancelBtn?.addEventListener('click', () => this.hide());
-        confirmBtn?.addEventListener('click', () => {
-            window.location.href = '../logout.php';
-        });
         this.modal?.addEventListener('click', (e) => {
             if (e.target === this.modal)
                 this.hide();
@@ -38,5 +33,10 @@ class LogoutController {
     }
 }
 const logout = new LogoutController();
+window.BoteApp = Object.assign(window.BoteApp ?? {}, {
+    showLogoutModal: () => logout.show(),
+    hideLogoutModal: () => logout.hide(),
+    confirmLogout: () => logout.confirm(),
+});
 export { logout };
 //# sourceMappingURL=logout.js.map

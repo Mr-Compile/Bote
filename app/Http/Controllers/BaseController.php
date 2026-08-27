@@ -45,7 +45,10 @@ abstract class BaseController
         require_once __DIR__ . '/../../../includes/session.php';
         require_once __DIR__ . '/../../../includes/system_functions.php';
 
-        RequireRole::assert(...$this->allowedRoles());
+        $allowed = $this->allowedRoles();
+        if ($allowed !== []) {
+            RequireRole::assert(...$allowed);
+        }
     }
 
     protected function currentUserId(): int

@@ -6,4 +6,7 @@ export function createIcons() {
 document.addEventListener('DOMContentLoaded', () => {
     createIcons();
 });
+window.BoteApp = Object.assign(window.BoteApp ?? {}, {
+    refreshIcons: createIcons,
+});
 //# sourceMappingURL=icons.js.map
