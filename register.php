@@ -102,6 +102,7 @@ $purok_result = $conn->query("SELECT purok_id, name FROM puroks ORDER BY name AS
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BoteBank Registration</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script type="module" src="assets/js/theme.js"></script>
   <style>
     .input-group {
       position: relative;
@@ -123,7 +124,7 @@ $purok_result = $conn->query("SELECT purok_id, name FROM puroks ORDER BY name AS
     }
   </style>
 </head>
-<body class="bg-gray-50 font-sans">
+<body class="bg-bote-stone-50 font-sans">
   <div class="min-h-screen flex">
     <!-- Left Side -->
     <div class="hidden lg:flex lg:w-1/2 relative overflow-hidden">
@@ -134,7 +135,7 @@ $purok_result = $conn->query("SELECT purok_id, name FROM puroks ORDER BY name AS
         </div>
       <?php else: ?>
         <!-- Default gradient background -->
-        <div class="absolute inset-0 bg-gradient-to-br from-blue-600 to-purple-700"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-bote-info-600 to-bote-green-700"></div>
       <?php endif; ?>
       
       <div class="absolute inset-0 bg-black bg-opacity-20"></div>
@@ -143,7 +144,7 @@ $purok_result = $conn->query("SELECT purok_id, name FROM puroks ORDER BY name AS
           <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
         </svg>
         <h1 class="text-4xl font-bold mb-4">BoteBank</h1>
-        <p class="text-lg text-blue-100 text-center">Join our community and start earning points by recycling!</p>
+        <p class="text-lg text-bote-info-100 text-center">Join our community and start earning points by recycling!</p>
       </div>
     </div>
 
@@ -151,8 +152,8 @@ $purok_result = $conn->query("SELECT purok_id, name FROM puroks ORDER BY name AS
     <div class="w-full lg:w-1/2 flex items-center justify-center p-4 lg:p-6">
       <div class="max-w-xl w-full space-y-6 bg-white p-6 lg:p-8 rounded-xl shadow">
         <div class="text-center">
-          <h2 class="text-3xl font-bold text-gray-900 mb-2">Create an Account</h2>
-          <p class="text-gray-600">Register to start your recycling journey</p>
+          <h2 class="text-3xl font-bold text-bote-stone-900 mb-2">Create an Account</h2>
+          <p class="text-bote-stone-600">Register to start your recycling journey</p>
         </div>
 
         <?php if (isset($error)): ?>
@@ -171,59 +172,59 @@ $purok_result = $conn->query("SELECT purok_id, name FROM puroks ORDER BY name AS
           <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
             <!-- First Name -->
             <div class="form-group">
-              <label class="block mb-2 text-sm font-semibold text-gray-700">
+              <label class="block mb-2 text-sm font-semibold text-bote-stone-700">
                 First Name <span class="text-red-500">*</span>
               </label>
               <div class="input-group">
                 <div class="input-icon">
-                  <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg class="w-5 h-5 text-bote-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                   </svg>
                 </div>
                 <input type="text" name="first_name" required 
-                  class="w-full input-with-icon py-3 text-base border-2 border-gray-200 rounded-lg focus:border-green-500 focus:ring-0 transition-colors"
+                  class="w-full input-with-icon py-3 text-base border-2 border-bote-stone-200 rounded-lg focus:border-bote-green-500 focus:ring-0 transition-colors"
                   placeholder="Juan">
               </div>
             </div>
             <!-- Last Name -->
             <div class="form-group">
-              <label class="block mb-2 text-sm font-semibold text-gray-700">
+              <label class="block mb-2 text-sm font-semibold text-bote-stone-700">
                 Last Name <span class="text-red-500">*</span>
               </label>
               <div class="input-group">
                 <div class="input-icon">
-                  <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg class="w-5 h-5 text-bote-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                   </svg>
                 </div>
                 <input type="text" name="last_name" required 
-                  class="w-full input-with-icon py-3 text-base border-2 border-gray-200 rounded-lg focus:border-green-500 focus:ring-0 transition-colors"
+                  class="w-full input-with-icon py-3 text-base border-2 border-bote-stone-200 rounded-lg focus:border-bote-green-500 focus:ring-0 transition-colors"
                   placeholder="Dela Cruz">
               </div>
             </div>
             <!-- Email -->
             <div class="form-group">
-              <label class="block mb-2 text-sm font-semibold text-gray-700">
+              <label class="block mb-2 text-sm font-semibold text-bote-stone-700">
                 Email Address <span class="text-red-500">*</span>
               </label>
               <div class="input-group">
                 <div class="input-icon">
-                  <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg class="w-5 h-5 text-bote-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                   </svg>
                 </div>
                 <input type="email" name="email" required 
-                  class="w-full input-with-icon py-3 text-base border-2 border-gray-200 rounded-lg focus:border-green-500 focus:ring-0 transition-colors"
+                  class="w-full input-with-icon py-3 text-base border-2 border-bote-stone-200 rounded-lg focus:border-bote-green-500 focus:ring-0 transition-colors"
                   placeholder="juan.delacruz@example.com">
               </div>
             </div>
             <!-- Phone -->
             <div class="form-group">
-              <label class="block mb-2 text-sm font-semibold text-gray-700">
+              <label class="block mb-2 text-sm font-semibold text-bote-stone-700">
                 Phone Number <span class="text-red-500">*</span>
               </label>
               <div class="flex items-center gap-2">
-                <div class="flex items-center gap-2 px-3 py-3 border-2 border-gray-200 bg-gray-50 rounded-lg">
+                <div class="flex items-center gap-2 px-3 py-3 border-2 border-bote-stone-200 bg-bote-stone-50 rounded-lg">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" class="w-7 h-5 flex-shrink-0">
                     <path fill="#fff" d="M0 0h213.3v480H0z"/>
                     <path fill="#0038a8" d="M213.3 0H640v240H213.3z"/>
@@ -233,21 +234,21 @@ $purok_result = $conn->query("SELECT purok_id, name FROM puroks ORDER BY name AS
                       <circle r="12" fill="#fcd116"/>
                     </g>
                   </svg>
-                  <span class="text-gray-700 font-medium">+63</span>
+                  <span class="text-bote-stone-700 font-medium">+63</span>
                 </div>
                 <div class="flex-1 input-group">
                   <div class="input-icon">
-                    <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-5 h-5 text-bote-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
                     </svg>
                   </div>
                   <input type="tel" name="phone" id="phoneInput" required pattern="9\d{9}" maxlength="10" 
-                    class="w-full input-with-icon py-3 text-base border-2 border-gray-200 rounded-lg focus:border-green-500 focus:ring-0 transition-colors"
+                    class="w-full input-with-icon py-3 text-base border-2 border-bote-stone-200 rounded-lg focus:border-bote-green-500 focus:ring-0 transition-colors"
                     placeholder="9123456789">
                 </div>
               </div>
-              <p class="mt-2 text-xs text-gray-500 flex items-center gap-1">
-                <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+              <p class="mt-2 text-xs text-bote-stone-500 flex items-center gap-1">
+                <svg class="w-4 h-4 text-bote-green-600" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
                 </svg>
                 <span>Stored as: <strong>+639XXXXXXXXX</strong> (13 characters)</span>
@@ -256,41 +257,41 @@ $purok_result = $conn->query("SELECT purok_id, name FROM puroks ORDER BY name AS
 
             <!-- Address -->
             <div class="md:col-span-1">
-              <label class="block mb-2 text-sm font-semibold text-gray-700">
+              <label class="block mb-2 text-sm font-semibold text-bote-stone-700">
                 Street Address <span class="text-red-500">*</span>
               </label>
               <div class="input-group">
                 <div class="input-icon">
-                  <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg class="w-5 h-5 text-bote-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                   </svg>
                 </div>
                 <input type="text" name="address" required
-                  class="w-full input-with-icon py-3 text-base border-2 border-gray-200 rounded-lg focus:border-green-500 focus:ring-0 transition-colors"
+                  class="w-full input-with-icon py-3 text-base border-2 border-bote-stone-200 rounded-lg focus:border-bote-green-500 focus:ring-0 transition-colors"
                   placeholder="123 Mabini Street">
               </div>
             </div>
             <!-- Purok -->
             <div class="md:col-span-1">
-              <label class="block mb-2 text-sm font-semibold text-gray-700">
+              <label class="block mb-2 text-sm font-semibold text-bote-stone-700">
                 Purok <span class="text-red-500">*</span>
               </label>
               <div class="input-group">
                 <div class="input-icon">
-                  <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg class="w-5 h-5 text-bote-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
                   </svg>
                 </div>
                 <select name="purok_id" required 
-                  class="w-full input-with-icon py-3 text-base border-2 border-gray-200 rounded-lg focus:border-green-500 focus:ring-0 transition-colors appearance-none bg-white cursor-pointer">
+                  class="w-full input-with-icon py-3 text-base border-2 border-bote-stone-200 rounded-lg focus:border-bote-green-500 focus:ring-0 transition-colors appearance-none bg-white cursor-pointer">
                   <option value="">-- Select Your Purok --</option>
                   <?php while ($row = $purok_result->fetch_assoc()): ?>
-                    <option value="<?= $row['purok_id'] ?>"><?= htmlspecialchars($row['name']) ?></option>
+                    <option value="<?= e($row['purok_id']) ?>"><?= htmlspecialchars($row['name']) ?></option>
                   <?php endwhile; ?>
                 </select>
                 <div class="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
-                  <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg class="w-5 h-5 text-bote-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                   </svg>
                 </div>
@@ -298,19 +299,19 @@ $purok_result = $conn->query("SELECT purok_id, name FROM puroks ORDER BY name AS
             </div>
             <!-- Password -->
             <div class="form-group">
-              <label class="block mb-2 text-sm font-semibold text-gray-700">
+              <label class="block mb-2 text-sm font-semibold text-bote-stone-700">
                 Password <span class="text-red-500">*</span>
               </label>
               <div class="input-group relative">
                 <div class="input-icon">
-                  <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg class="w-5 h-5 text-bote-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
                   </svg>
                 </div>
                 <input type="password" name="password" id="password" required minlength="8"
-                  class="w-full input-with-icon py-3 pr-10 text-base border-2 border-gray-200 rounded-lg focus:border-green-500 focus:ring-0 transition-colors"
+                  class="w-full input-with-icon py-3 pr-10 text-base border-2 border-bote-stone-200 rounded-lg focus:border-bote-green-500 focus:ring-0 transition-colors"
                   placeholder="Minimum 8 characters">
-                <button type="button" onclick="togglePassword('password', 'eyeIcon1')" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600">
+                <button type="button" onclick="togglePassword('password', 'eyeIcon1')" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-bote-stone-400 hover:text-bote-stone-600">
                   <svg id="eyeIcon1" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
@@ -318,32 +319,32 @@ $purok_result = $conn->query("SELECT purok_id, name FROM puroks ORDER BY name AS
                 </button>
               </div>
               <div id="passwordStrength" class="mt-2">
-                <div class="strength-meter bg-gray-200 w-full"></div>
-                <p class="text-xs text-gray-500 mt-1">Must be at least 8 characters long</p>
+                <div class="strength-meter bg-bote-stone-200 w-full"></div>
+                <p class="text-xs text-bote-stone-500 mt-1">Must be at least 8 characters long</p>
               </div>
             </div>
             <!-- Confirm Password -->
             <div class="form-group">
-              <label class="block mb-2 text-sm font-semibold text-gray-700">
+              <label class="block mb-2 text-sm font-semibold text-bote-stone-700">
                 Confirm Password <span class="text-red-500">*</span>
               </label>
               <div class="input-group relative">
                 <div class="input-icon">
-                  <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg class="w-5 h-5 text-bote-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                   </svg>
                 </div>
                 <input type="password" name="confirm_password" id="confirm_password" required minlength="8"
-                  class="w-full input-with-icon py-3 pr-10 text-base border-2 border-gray-200 rounded-lg focus:border-green-500 focus:ring-0 transition-colors"
+                  class="w-full input-with-icon py-3 pr-10 text-base border-2 border-bote-stone-200 rounded-lg focus:border-bote-green-500 focus:ring-0 transition-colors"
                   placeholder="Re-enter password">
-                <button type="button" onclick="togglePassword('confirm_password', 'eyeIcon2')" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600">
+                <button type="button" onclick="togglePassword('confirm_password', 'eyeIcon2')" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-bote-stone-400 hover:text-bote-stone-600">
                   <svg id="eyeIcon2" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
                   </svg>
                 </button>
               </div>
-              <p id="passwordMatch" class="mt-2 text-xs text-gray-500"></p>
+              <p id="passwordMatch" class="mt-2 text-xs text-bote-stone-500"></p>
             </div>
 
           </div>
@@ -352,17 +353,17 @@ $purok_result = $conn->query("SELECT purok_id, name FROM puroks ORDER BY name AS
           <div class="flex items-start pt-2">
             <div class="flex items-center h-5">
               <input type="checkbox" id="agree_terms" name="agree_terms" required 
-                class="w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500">
+                class="w-4 h-4 text-bote-green-600 border-bote-stone-300 rounded focus:ring-bote-green-500">
             </div>
-            <label for="agree_terms" class="ml-3 text-sm text-gray-700">
-              I agree to the <a href="#" class="text-green-600 hover:text-green-700 font-semibold">Terms and Conditions</a> 
-              and <a href="#" class="text-green-600 hover:text-green-700 font-semibold">Privacy Policy</a>
+            <label for="agree_terms" class="ml-3 text-sm text-bote-stone-700">
+              I agree to the <a href="#" class="text-bote-green-600 hover:text-bote-green-700 font-semibold">Terms and Conditions</a> 
+              and <a href="#" class="text-bote-green-600 hover:text-bote-green-700 font-semibold">Privacy Policy</a>
             </label>
           </div>
 
           <!-- Submit -->
           <button type="submit" id="submitBtn" 
-            class="w-full py-3 px-4 text-base font-semibold text-white rounded-lg shadow-md bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 transition-all transform hover:scale-[1.01] flex items-center justify-center gap-2">
+            class="w-full py-3 px-4 text-base font-semibold text-white rounded-lg shadow-md bg-gradient-to-r from-bote-green-600 to-bote-green-700 hover:from-bote-green-700 hover:to-bote-green-800 transition-all transform hover:scale-[1.01] flex items-center justify-center gap-2">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
             </svg>
@@ -371,11 +372,11 @@ $purok_result = $conn->query("SELECT purok_id, name FROM puroks ORDER BY name AS
 
           <!-- Already Registered / Back to Home Links -->
           <div class="grid grid-cols-2 gap-4 pt-2">
-            <p class="text-center text-sm text-gray-600">
-              <a href="login.php" class="font-semibold text-blue-600 hover:text-blue-500">Already have an account?</a>
+            <p class="text-center text-sm text-bote-stone-600">
+              <a href="login.php" class="font-semibold text-bote-info-600 hover:text-bote-info-500">Already have an account?</a>
             </p>
-            <p class="text-center text-sm text-gray-600">
-              <a href="index.php" class="font-semibold text-blue-600 hover:text-blue-500">← Back to Home</a>
+            <p class="text-center text-sm text-bote-stone-600">
+              <a href="index.php" class="font-semibold text-bote-info-600 hover:text-bote-info-500">← Back to Home</a>
             </p>
           </div>
         </form>
@@ -383,186 +384,6 @@ $purok_result = $conn->query("SELECT purok_id, name FROM puroks ORDER BY name AS
     </div>
   </div>
 
-  <script>
-    // Toggle password visibility
-    function togglePassword(inputId, iconId) {
-      const input = document.getElementById(inputId);
-      const icon = document.getElementById(iconId);
-      
-      if (input.type === 'password') {
-        input.type = 'text';
-        icon.innerHTML = `
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"/>
-        `;
-      } else {
-        input.type = 'password';
-        icon.innerHTML = `
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-        `;
-      }
-    }
-
-    // Password strength checker
-    const passwordInput = document.getElementById('password');
-    const strengthMeter = document.querySelector('.strength-meter');
-    const strengthText = document.querySelector('#passwordStrength p');
-
-    passwordInput.addEventListener('input', function() {
-      const password = this.value;
-      let strength = 0;
-      let strengthLabel = '';
-      let color = '';
-
-      if (password.length >= 8) strength++;
-      if (password.match(/[a-z]/)) strength++;
-      if (password.match(/[A-Z]/)) strength++;
-      if (password.match(/[0-9]/)) strength++;
-      if (password.match(/[^a-zA-Z0-9]/)) strength++;
-
-      switch(strength) {
-        case 0:
-        case 1:
-          strengthLabel = 'Weak password';
-          color = 'bg-red-500';
-          strengthMeter.style.width = '25%';
-          break;
-        case 2:
-        case 3:
-          strengthLabel = 'Medium password';
-          color = 'bg-yellow-500';
-          strengthMeter.style.width = '60%';
-          break;
-        case 4:
-        case 5:
-          strengthLabel = 'Strong password';
-          color = 'bg-green-500';
-          strengthMeter.style.width = '100%';
-          break;
-      }
-
-      strengthMeter.className = `strength-meter ${color}`;
-      strengthText.textContent = strengthLabel;
-      strengthText.className = `text-xs mt-1 ${strength <= 1 ? 'text-red-600' : strength <= 3 ? 'text-yellow-600' : 'text-green-600'}`;
-    });
-
-    // Password match checker
-    const confirmPasswordInput = document.getElementById('confirm_password');
-    const passwordMatchText = document.getElementById('passwordMatch');
-
-    function checkPasswordMatch() {
-      const password = passwordInput.value;
-      const confirmPassword = confirmPasswordInput.value;
-
-      if (confirmPassword.length === 0) {
-        passwordMatchText.textContent = '';
-        confirmPasswordInput.classList.remove('border-red-500', 'border-green-500');
-        return;
-      }
-
-      if (password === confirmPassword) {
-        passwordMatchText.innerHTML = `
-          <span class="flex items-center gap-1 text-green-600">
-            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-            </svg>
-            Passwords match!
-          </span>
-        `;
-        confirmPasswordInput.classList.remove('border-red-500');
-        confirmPasswordInput.classList.add('border-green-500');
-      } else {
-        passwordMatchText.innerHTML = `
-          <span class="flex items-center gap-1 text-red-600">
-            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
-            </svg>
-            Passwords do not match
-          </span>
-        `;
-        confirmPasswordInput.classList.remove('border-green-500');
-        confirmPasswordInput.classList.add('border-red-500');
-      }
-    }
-
-    passwordInput.addEventListener('input', checkPasswordMatch);
-    confirmPasswordInput.addEventListener('input', checkPasswordMatch);
-
-    // Phone number validation - ensure only numbers
-    const phoneInput = document.getElementById('phoneInput');
-    phoneInput.addEventListener('input', function(e) {
-      // Remove any non-digit characters
-      this.value = this.value.replace(/\D/g, '');
-      
-      // Ensure it starts with 9
-      if (this.value.length > 0 && this.value[0] !== '9') {
-        this.value = '9' + this.value.slice(1);
-      }
-      
-      // Limit to 10 digits
-      if (this.value.length > 10) {
-        this.value = this.value.slice(0, 10);
-      }
-
-      // Visual feedback for valid phone number
-      if (this.value.length === 10 && this.value[0] === '9') {
-        this.classList.remove('border-red-500');
-        this.classList.add('border-green-500');
-      } else if (this.value.length > 0) {
-        this.classList.remove('border-green-500');
-        this.classList.add('border-red-500');
-      } else {
-        this.classList.remove('border-red-500', 'border-green-500');
-      }
-    });
-
-    // Form submission handler
-    const form = document.getElementById('registrationForm');
-    const submitBtn = document.getElementById('submitBtn');
-
-    form.addEventListener('submit', function(e) {
-      // Final validation before submit
-      const phone = phoneInput.value;
-      if (phone.length !== 10 || phone[0] !== '9') {
-        e.preventDefault();
-        alert('Please enter a valid 10-digit phone number starting with 9');
-        phoneInput.focus();
-        return false;
-      }
-
-      const password = passwordInput.value;
-      const confirmPassword = confirmPasswordInput.value;
-      if (password !== confirmPassword) {
-        e.preventDefault();
-        alert('Passwords do not match!');
-        confirmPasswordInput.focus();
-        return false;
-      }
-
-      // Show loading state
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = `
-        <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-        </svg>
-        <span>Creating Account...</span>
-      `;
-    });
-
-    // Real-time email validation
-    const emailInput = document.querySelector('input[name="email"]');
-    emailInput.addEventListener('blur', function() {
-      const email = this.value;
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      
-      if (email && !emailRegex.test(email)) {
-        this.classList.add('border-red-500');
-      } else if (email) {
-        this.classList.remove('border-red-500');
-        this.classList.add('border-green-500');
-      }
-    });
-  </script>
+  <script type="module" src="assets/js/register.js"></script>
 </body>
 </html>

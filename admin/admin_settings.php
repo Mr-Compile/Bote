@@ -171,10 +171,11 @@ if ($stmt->execute()) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>System Settings - BoteBank Admin</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="../assets/js/theme.js"></script>
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <link rel="stylesheet" href="assets/css/settings.css">
 </head>
-<body class="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
+<body class="bg-gradient-to-br from-bote-stone-50 to-bote-stone-100 min-h-screen">
     <?php include 'admin_sidebar.php'; ?>
     
     <div class="flex">
@@ -204,8 +205,8 @@ if ($stmt->execute()) {
             <div class="max-w-7xl mx-auto mt-8">
                 <!-- Enhanced Alert Messages -->
                 <?php if ($success_message): ?>
-                    <div class="bg-gradient-to-r from-green-50 to-green-100 border border-green-200 text-green-800 px-6 py-4 rounded-2xl mb-8 flex items-center shadow-lg alert-auto-hide">
-                        <i data-lucide="check-circle" class="w-6 h-6 mr-3 text-green-600"></i>
+                    <div class="bg-gradient-to-r from-bote-green-50 to-bote-green-100 border border-bote-green-200 text-bote-green-800 px-6 py-4 rounded-2xl mb-8 flex items-center shadow-lg alert-auto-hide">
+                        <i data-lucide="check-circle" class="w-6 h-6 mr-3 text-bote-green-600"></i>
                         <div>
                             <h4 class="font-semibold">Success!</h4>
                             <p><?php echo htmlspecialchars($success_message); ?></p>
@@ -224,17 +225,17 @@ if ($stmt->execute()) {
                 <?php endif; ?>
 
                 <!-- Enhanced Tab Navigation -->
-                <div class="bg-white rounded-3xl shadow-lg p-8 mb-8 border border-gray-100">
-                    <div class="flex space-x-3 bg-gray-100 p-3 rounded-2xl">
+                <div class="bg-white rounded-3xl shadow-lg p-8 mb-8 border border-bote-stone-100">
+                    <div class="flex space-x-3 bg-bote-stone-100 p-3 rounded-2xl">
                         <button onclick="showTab('barangay')" id="tab-barangay" class="flex-1 flex items-center justify-center space-x-3 py-4 px-6 rounded-xl font-semibold transition-all duration-300 tab-active">
                             <i data-lucide="map-pin" class="w-5 h-5"></i>
                             <span>Barangay Info</span>
                         </button>
-                        <button onclick="showTab('carousel')" id="tab-carousel" class="flex-1 flex items-center justify-center space-x-3 py-4 px-6 rounded-xl font-semibold transition-all duration-300 text-gray-600 hover:text-gray-800 hover:bg-gray-200">
+                        <button onclick="showTab('carousel')" id="tab-carousel" class="flex-1 flex items-center justify-center space-x-3 py-4 px-6 rounded-xl font-semibold transition-all duration-300 text-bote-stone-600 hover:text-bote-stone-800 hover:bg-bote-stone-200">
                             <i data-lucide="images" class="w-5 h-5"></i>
                             <span>Carousel</span>
                         </button>
-                        <button onclick="showTab('security')" id="tab-security" class="flex-1 flex items-center justify-center space-x-3 py-4 px-6 rounded-xl font-semibold transition-all duration-300 text-gray-600 hover:text-gray-800 hover:bg-gray-200">
+                        <button onclick="showTab('security')" id="tab-security" class="flex-1 flex items-center justify-center space-x-3 py-4 px-6 rounded-xl font-semibold transition-all duration-300 text-bote-stone-600 hover:text-bote-stone-800 hover:bg-bote-stone-200">
                             <i data-lucide="shield" class="w-5 h-5"></i>
                             <span>Security</span>
                         </button>
@@ -245,13 +246,13 @@ if ($stmt->execute()) {
             <div class="space-y-8">
                 <!-- Barangay Info Tab -->
                 <div id="content-barangay" class="tab-content active">
-                    <div class="bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden">
-                        <div class="bg-gradient-to-r from-blue-600 to-blue-700 px-8 py-6">
+                    <div class="bg-white rounded-3xl shadow-lg border border-bote-stone-100 overflow-hidden">
+                        <div class="bg-gradient-to-r from-bote-info-600 to-bote-info-700 px-8 py-6">
                             <h2 class="text-2xl font-bold text-white flex items-center">
                                 <i data-lucide="map-pin" class="w-6 h-6 mr-3"></i>
                                 Barangay Information
                             </h2>
-                            <p class="text-blue-100 mt-2">Configure your barangay's basic information and branding</p>
+                            <p class="text-bote-info-100 mt-2">Configure your barangay's basic information and branding</p>
                         </div>
                         
                         <div class="p-8">
@@ -260,14 +261,14 @@ if ($stmt->execute()) {
                                 <input type="hidden" name="tab" value="barangay">
                                 
                                 <!-- Main Settings Card -->
-                                <div class="bg-blue-50 rounded-2xl p-6 border border-blue-100 transition-all duration-300 hover:shadow-md">
+                                <div class="bg-bote-info-50 rounded-2xl p-6 border border-bote-info-100 transition-all duration-300 hover:shadow-md">
                                     <div class="flex items-center space-x-3 mb-6">
-                                        <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
+                                        <div class="w-12 h-12 bg-gradient-to-br from-bote-info-500 to-bote-info-600 rounded-xl flex items-center justify-center shadow-lg">
                                             <i data-lucide="info" class="w-6 h-6 text-white"></i>
                                         </div>
                                         <div>
-                                            <h3 class="text-xl font-bold text-gray-900">Basic Information</h3>
-                                            <p class="text-gray-600">Enter your barangay's official details</p>
+                                            <h3 class="text-xl font-bold text-bote-stone-900">Basic Information</h3>
+                                            <p class="text-bote-stone-600">Enter your barangay's official details</p>
                                         </div>
                                     </div>
                                     
@@ -275,24 +276,24 @@ if ($stmt->execute()) {
                                         <!-- Basic Information - Left Column -->
                                         <div class="space-y-5">
                                             <div class="transform transition-all duration-300 hover:scale-[1.02]">
-                                                <label class="block text-sm font-semibold text-gray-700 mb-3">Barangay Name</label>
+                                                <label class="block text-sm font-semibold text-bote-stone-700 mb-3">Barangay Name</label>
                                                 <div class="relative">
                                                     <input type="text" name="barangay_name" 
                                                            value="<?php echo htmlspecialchars($settings['barangay_name']); ?>"
-                                                           class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 pl-12"
+                                                           class="w-full px-4 py-3 border border-bote-stone-300 rounded-xl focus:ring-2 focus:ring-bote-green-500 focus:border-bote-green-500 transition-all duration-200 pl-12"
                                                            placeholder="Enter barangay name">
-                                                    <i data-lucide="map-pin" class="w-5 h-5 text-gray-400 absolute left-4 top-1/2 transform -translate-y-1/2"></i>
+                                                    <i data-lucide="map-pin" class="w-5 h-5 text-bote-stone-400 absolute left-4 top-1/2 transform -translate-y-1/2"></i>
                                                 </div>
                                             </div>
     
                                             <div class="transform transition-all duration-300 hover:scale-[1.02]">
-                                                <label class="block text-sm font-semibold text-gray-700 mb-3">Contact Number</label>
+                                                <label class="block text-sm font-semibold text-bote-stone-700 mb-3">Contact Number</label>
                                                 <div class="relative">
                                                     <input type="text" name="barangay_contact" 
                                                            value="<?php echo htmlspecialchars($settings['barangay_contact']); ?>"
-                                                           class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 pl-12"
+                                                           class="w-full px-4 py-3 border border-bote-stone-300 rounded-xl focus:ring-2 focus:ring-bote-green-500 focus:border-bote-green-500 transition-all duration-200 pl-12"
                                                            placeholder="e.g., +63 912 345 6789">
-                                                    <i data-lucide="phone" class="w-5 h-5 text-gray-400 absolute left-4 top-1/2 transform -translate-y-1/2"></i>
+                                                    <i data-lucide="phone" class="w-5 h-5 text-bote-stone-400 absolute left-4 top-1/2 transform -translate-y-1/2"></i>
                                                 </div>
                                             </div>
                                         </div>
@@ -300,23 +301,23 @@ if ($stmt->execute()) {
                                         <!-- Basic Information - Right Column -->
                                         <div class="space-y-5">
                                             <div class="transform transition-all duration-300 hover:scale-[1.02]">
-                                                <label class="block text-sm font-semibold text-gray-700 mb-3">Email Address</label>
+                                                <label class="block text-sm font-semibold text-bote-stone-700 mb-3">Email Address</label>
                                                 <div class="relative">
                                                     <input type="email" name="barangay_email" 
                                                            value="<?php echo htmlspecialchars($settings['barangay_email']); ?>"
-                                                           class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 pl-12"
+                                                           class="w-full px-4 py-3 border border-bote-stone-300 rounded-xl focus:ring-2 focus:ring-bote-green-500 focus:border-bote-green-500 transition-all duration-200 pl-12"
                                                            placeholder="barangay@example.com">
-                                                    <i data-lucide="mail" class="w-5 h-5 text-gray-400 absolute left-4 top-1/2 transform -translate-y-1/2"></i>
+                                                    <i data-lucide="mail" class="w-5 h-5 text-bote-stone-400 absolute left-4 top-1/2 transform -translate-y-1/2"></i>
                                                 </div>
                                             </div>
     
                                             <div class="transform transition-all duration-300 hover:scale-[1.02]">
-                                                <label class="block text-sm font-semibold text-gray-700 mb-3">Address</label>
+                                                <label class="block text-sm font-semibold text-bote-stone-700 mb-3">Address</label>
                                                 <div class="relative">
                                                     <textarea name="barangay_address" rows="3" 
-                                                              class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 pl-12"
+                                                              class="w-full px-4 py-3 border border-bote-stone-300 rounded-xl focus:ring-2 focus:ring-bote-green-500 focus:border-bote-green-500 transition-all duration-200 pl-12"
                                                               placeholder="Enter complete address"><?php echo htmlspecialchars($settings['barangay_address']); ?></textarea>
-                                                    <i data-lucide="map" class="w-5 h-5 text-gray-400 absolute left-4 top-4"></i>
+                                                    <i data-lucide="map" class="w-5 h-5 text-bote-stone-400 absolute left-4 top-4"></i>
                                                 </div>
                                             </div>
                                         </div>
@@ -326,83 +327,83 @@ if ($stmt->execute()) {
                                 <!-- Branding Section -->
                                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                                     <!-- Logo Upload Card -->
-                                    <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 border border-blue-100 shadow-sm hover:shadow-md transition-all duration-300">
+                                    <div class="bg-gradient-to-br from-bote-info-50 to-bote-info-50 rounded-2xl p-6 border border-bote-info-100 shadow-sm hover:shadow-md transition-all duration-300">
                                         <div class="flex items-center space-x-3 mb-4">
-                                            <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                                                <i data-lucide="image" class="w-5 h-5 text-blue-600"></i>
+                                            <div class="w-10 h-10 bg-bote-info-100 rounded-lg flex items-center justify-center">
+                                                <i data-lucide="image" class="w-5 h-5 text-bote-info-600"></i>
                                             </div>
-                                            <h4 class="text-lg font-semibold text-gray-800">Barangay Logo</h4>
+                                            <h4 class="text-lg font-semibold text-bote-stone-800">Barangay Logo</h4>
                                         </div>
                                         
-                                        <div class="border-2 border-dashed border-blue-200 rounded-xl p-6 text-center file-drop-area hover:border-blue-500 hover:bg-blue-50 transition-all duration-200">
+                                        <div class="border-2 border-dashed border-bote-info-200 rounded-xl p-6 text-center file-drop-area hover:border-bote-info-500 hover:bg-bote-info-50 transition-all duration-200">
                                             <div id="logo-preview" class="mb-4">
                                                 <?php if ($settings['barangay_logo']): ?>
                                                     <img src="../uploads/system/logos/<?php echo htmlspecialchars($settings['barangay_logo']); ?>" 
                                                          alt="Current Logo" class="mx-auto h-24 w-24 object-cover rounded-lg shadow-md">
-                                                    <p class="text-sm text-gray-600 mt-2">Current Logo</p>
+                                                    <p class="text-sm text-bote-stone-600 mt-2">Current Logo</p>
                                                 <?php else: ?>
-                                                    <i data-lucide="image" class="w-16 h-16 text-gray-400 mx-auto mb-3"></i>
-                                                    <p class="text-gray-600">No logo uploaded</p>
+                                                    <i data-lucide="image" class="w-16 h-16 text-bote-stone-400 mx-auto mb-3"></i>
+                                                    <p class="text-bote-stone-600">No logo uploaded</p>
                                                 <?php endif; ?>
                                             </div>
                                             <input type="file" name="barangay_logo" id="logoInput" 
                                                    class="hidden" accept="image/*" onchange="previewImage(this, 'logo-preview')">
-                                            <button type="button" onclick="document.getElementById('logoInput').click()" 
-                                                    class="bg-blue-600 text-white px-6 py-3 rounded-xl hover:bg-blue-700 transition-all duration-200 flex items-center mx-auto transform hover:scale-105">
+                                            <button type="button" onclick="triggerFileInput('logoInput')" 
+                                                    class="bg-bote-green-600 text-white px-6 py-3 rounded-xl hover:bg-bote-green-700 transition-all duration-200 flex items-center mx-auto transform hover:scale-105">
                                                 <i data-lucide="upload" class="w-5 h-5 mr-2"></i>
                                                 Upload Logo
                                             </button>
-                                            <p class="text-xs text-gray-500 mt-3">PNG, JPG up to 5MB</p>
+                                            <p class="text-xs text-bote-stone-500 mt-3">PNG, JPG up to 5MB</p>
                                         </div>
                                     </div>
 
                                     <!-- Banner Settings Card -->
-                                    <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-6 border border-purple-100 shadow-sm hover:shadow-md transition-all duration-300">
+                                    <div class="bg-gradient-to-br from-bote-green-50 to-bote-green-50 rounded-2xl p-6 border border-bote-green-100 shadow-sm hover:shadow-md transition-all duration-300">
                                         <div class="flex items-center space-x-3 mb-4">
-                                            <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
-                                                <i data-lucide="layout" class="w-5 h-5 text-purple-600"></i>
+                                            <div class="w-10 h-10 bg-bote-green-100 rounded-lg flex items-center justify-center">
+                                                <i data-lucide="layout" class="w-5 h-5 text-bote-green-600"></i>
                                             </div>
-                                            <h4 class="text-lg font-semibold text-gray-800">Banner Settings</h4>
+                                            <h4 class="text-lg font-semibold text-bote-stone-800">Banner Settings</h4>
                                         </div>
                                         
                                         <div class="space-y-4">
                                             <div class="transform transition-all duration-300 hover:scale-[1.02]">
-                                                <label class="block text-sm font-medium text-gray-700 mb-2">Banner Title</label>
+                                                <label class="block text-sm font-medium text-bote-stone-700 mb-2">Banner Title</label>
                                                 <input type="text" name="banner_title" value="<?php echo htmlspecialchars($settings['banner_title']); ?>" 
-                                                       class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all">
+                                                       class="w-full px-4 py-3 border border-bote-stone-300 rounded-xl focus:ring-2 focus:ring-bote-green-500 focus:border-bote-green-500 transition-all">
                                             </div>
                                             
                                             <div class="transform transition-all duration-300 hover:scale-[1.02]">
-                                                <label class="block text-sm font-medium text-gray-700 mb-2">Banner Subtitle</label>
+                                                <label class="block text-sm font-medium text-bote-stone-700 mb-2">Banner Subtitle</label>
                                                 <textarea name="banner_subtitle" rows="2" 
-                                                          class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all"><?php echo htmlspecialchars($settings['banner_subtitle']); ?></textarea>
+                                                          class="w-full px-4 py-3 border border-bote-stone-300 rounded-xl focus:ring-2 focus:ring-bote-green-500 focus:border-bote-green-500 transition-all"><?php echo htmlspecialchars($settings['banner_subtitle']); ?></textarea>
                                             </div>
                                             
-                                            <div class="flex items-center justify-between p-4 bg-purple-50 rounded-xl border border-purple-100">
+                                            <div class="flex items-center justify-between p-4 bg-bote-green-50 rounded-xl border border-bote-green-100">
                                                 <div>
-                                                    <label class="font-medium text-gray-700">Enable Banner</label>
-                                                    <p class="text-sm text-gray-500">Show banner on homepage</p>
+                                                    <label class="font-medium text-bote-stone-700">Enable Banner</label>
+                                                    <p class="text-sm text-bote-stone-500">Show banner on homepage</p>
                                                 </div>
                                                 <label class="toggle-switch">
-                                                    <input type="checkbox" name="banner_enabled" value="1" <?php echo $settings['banner_enabled'] == '1' ? 'checked' : ''; ?>>
+                                                    <input type="checkbox" name="banner_enabled" value="1" <?php echo e($settings['banner_enabled'] == '1' ? 'checked' : ''); ?>>
                                                     <span class="slider"></span>
                                                 </label>
                                             </div>
                                             
                                             <div>
-                                                <label class="block text-sm font-medium text-gray-700 mb-2">Banner Image</label>
-                                                <div class="border-2 border-dashed border-purple-200 rounded-xl p-4 text-center file-drop-area hover:border-purple-500 hover:bg-purple-50 transition-all duration-200">
+                                                <label class="block text-sm font-medium text-bote-stone-700 mb-2">Banner Image</label>
+                                                <div class="border-2 border-dashed border-bote-green-200 rounded-xl p-4 text-center file-drop-area hover:border-bote-green-500 hover:bg-bote-green-50 transition-all duration-200">
                                                     <?php if ($settings['system_banner']): ?>
                                                         <img src="../uploads/system/banners/<?php echo htmlspecialchars($settings['system_banner']); ?>" 
                                                              alt="Current Banner" class="w-full max-w-sm h-20 object-cover rounded-lg border mx-auto mb-2">
-                                                        <p class="text-sm text-gray-600">Current banner</p>
+                                                        <p class="text-sm text-bote-stone-600">Current banner</p>
                                                     <?php else: ?>
-                                                        <i data-lucide="image" class="w-12 h-12 text-gray-400 mx-auto mb-2"></i>
-                                                        <p class="text-gray-600">No banner uploaded</p>
+                                                        <i data-lucide="image" class="w-12 h-12 text-bote-stone-400 mx-auto mb-2"></i>
+                                                        <p class="text-bote-stone-600">No banner uploaded</p>
                                                     <?php endif; ?>
                                                     <input type="file" name="system_banner" accept="image/*" 
-                                                           class="mt-2 w-full px-3 py-2 border border-gray-300 rounded-lg text-sm">
-                                                    <p class="text-xs text-gray-500 mt-1">Recommended: 1920x1080px</p>
+                                                           class="mt-2 w-full px-3 py-2 border border-bote-stone-300 rounded-lg text-sm">
+                                                    <p class="text-xs text-bote-stone-500 mt-1">Recommended: 1920x1080px</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -410,40 +411,40 @@ if ($stmt->execute()) {
                                 </div>
 
                                 <!-- Login Image Card -->
-                                <div class="bg-gradient-to-br from-green-50 to-teal-50 rounded-2xl p-6 border border-green-100 shadow-sm hover:shadow-md transition-all duration-300">
+                                <div class="bg-gradient-to-br from-bote-green-50 to-bote-green-50 rounded-2xl p-6 border border-bote-green-100 shadow-sm hover:shadow-md transition-all duration-300">
                                     <div class="flex items-center space-x-3 mb-4">
-                                        <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-                                            <i data-lucide="log-in" class="w-5 h-5 text-green-600"></i>
+                                        <div class="w-10 h-10 bg-bote-green-100 rounded-lg flex items-center justify-center">
+                                            <i data-lucide="log-in" class="w-5 h-5 text-bote-green-600"></i>
                                         </div>
-                                        <h4 class="text-lg font-semibold text-gray-800">Login Page Image</h4>
+                                        <h4 class="text-lg font-semibold text-bote-stone-800">Login Page Image</h4>
                                     </div>
                                     
-                                    <p class="text-gray-600 mb-4">This image will be displayed on the left side of the login and registration pages.</p>
+                                    <p class="text-bote-stone-600 mb-4">This image will be displayed on the left side of the login and registration pages.</p>
                                     
-                                    <div class="border-2 border-dashed border-green-200 rounded-xl p-6 text-center file-drop-area hover:border-green-500 hover:bg-green-50 transition-all duration-200">
+                                    <div class="border-2 border-dashed border-bote-green-200 rounded-xl p-6 text-center file-drop-area hover:border-bote-green-500 hover:bg-bote-green-50 transition-all duration-200">
                                         <div id="login-image-preview" class="mb-4">
                                             <?php if (isset($settings['login_image']) && $settings['login_image']): ?>
                                                 <img src="../uploads/system/auth/<?php echo htmlspecialchars($settings['login_image']); ?>" 
                                                      alt="Current Login Image" class="mx-auto max-h-36 w-auto object-cover rounded-lg shadow-md">
-                                                <p class="text-sm text-gray-600 mt-2">Current Login Image</p>
+                                                <p class="text-sm text-bote-stone-600 mt-2">Current Login Image</p>
                                             <?php else: ?>
-                                                <i data-lucide="image" class="w-16 h-16 text-gray-400 mx-auto mb-3"></i>
-                                                <p class="text-gray-600">No login image uploaded</p>
+                                                <i data-lucide="image" class="w-16 h-16 text-bote-stone-400 mx-auto mb-3"></i>
+                                                <p class="text-bote-stone-600">No login image uploaded</p>
                                             <?php endif; ?>
                                         </div>
                                         <input type="file" name="login_image" id="loginImageInput" 
                                                class="hidden" accept="image/*" onchange="previewImage(this, 'login-image-preview')">
-                                        <button type="button" onclick="document.getElementById('loginImageInput').click()" 
-                                                class="bg-green-600 text-white px-6 py-3 rounded-xl hover:bg-green-700 transition-all duration-200 flex items-center mx-auto transform hover:scale-105">
+                                        <button type="button" onclick="triggerFileInput('loginImageInput')" 
+                                                class="bg-bote-green-600 text-white px-6 py-3 rounded-xl hover:bg-bote-green-700 transition-all duration-200 flex items-center mx-auto transform hover:scale-105">
                                             <i data-lucide="upload" class="w-5 h-5 mr-2"></i>
                                             Upload Login Image
                                         </button>
-                                        <p class="text-xs text-gray-500 mt-3">Recommended: 1200x1600px. PNG, JPG up to 5MB</p>
+                                        <p class="text-xs text-bote-stone-500 mt-3">Recommended: 1200x1600px. PNG, JPG up to 5MB</p>
                                     </div>
                                 </div>
 
-                                <div class="border-t border-gray-200 pt-6 text-center">
-                                    <button type="submit" class="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-8 py-4 rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-200 font-semibold shadow-lg flex items-center mx-auto transform hover:scale-105">
+                                <div class="border-t border-bote-stone-200 pt-6 text-center">
+                                    <button type="submit" class="bg-gradient-to-r from-bote-info-600 to-bote-info-700 text-white px-8 py-4 rounded-xl hover:from-bote-info-700 hover:to-bote-info-800 transition-all duration-200 font-semibold shadow-lg flex items-center mx-auto transform hover:scale-105">
                                         <i data-lucide="save" class="w-5 h-5 mr-2"></i>
                                         Save Barangay Information
                                     </button>
@@ -455,21 +456,21 @@ if ($stmt->execute()) {
 
                 <!-- Carousel Management Tab -->
                 <div id="content-carousel" class="tab-content">
-                    <div class="bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden">
-                        <div class="bg-gradient-to-r from-purple-600 to-indigo-700 px-8 py-6">
+                    <div class="bg-white rounded-3xl shadow-lg border border-bote-stone-100 overflow-hidden">
+                        <div class="bg-gradient-to-r from-bote-green-600 to-bote-info-700 px-8 py-6">
                             <h2 class="text-2xl font-bold text-white flex items-center">
                                 <i data-lucide="images" class="w-6 h-6 mr-3"></i>
                                 Homepage Carousel Management
                             </h2>
-                            <p class="text-purple-100 mt-2">Manage slides displayed on the homepage carousel</p>
+                            <p class="text-bote-green-100 mt-2">Manage slides displayed on the homepage carousel</p>
                         </div>
                         
                         <div class="p-8">
                             <!-- Carousel Slides -->
                             <div class="mb-8">
                                 <div class="flex justify-between items-center mb-6">
-                                    <h3 class="text-xl font-bold text-gray-900">Current Slides</h3>
-                                    <button type="button" onclick="openAddSlideModal()" class="bg-gradient-to-r from-purple-600 to-indigo-700 text-white px-6 py-3 rounded-xl hover:from-purple-700 hover:to-indigo-800 transition-all duration-200 font-semibold flex items-center">
+                                    <h3 class="text-xl font-bold text-bote-stone-900">Current Slides</h3>
+                                    <button type="button" onclick="openAddSlideModal()" class="bg-gradient-to-r from-bote-green-600 to-bote-info-700 text-white px-6 py-3 rounded-xl hover:from-bote-green-700 hover:to-bote-info-800 transition-all duration-200 font-semibold flex items-center">
                                         <i data-lucide="plus" class="w-5 h-5 mr-2"></i>
                                         Add New Slide
                                     </button>
@@ -477,14 +478,14 @@ if ($stmt->execute()) {
                                 
                                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="carouselSlidesList">
                                     <?php if (empty($carousel_slides)): ?>
-                                        <div class="col-span-full text-center py-12 bg-gray-50 rounded-xl">
-                                            <i data-lucide="image" class="w-16 h-16 text-gray-400 mx-auto mb-4"></i>
-                                            <p class="text-gray-600">No carousel slides yet. Add your first slide!</p>
+                                        <div class="col-span-full text-center py-12 bg-bote-stone-50 rounded-xl">
+                                            <i data-lucide="image" class="w-16 h-16 text-bote-stone-400 mx-auto mb-4"></i>
+                                            <p class="text-bote-stone-600">No carousel slides yet. Add your first slide!</p>
                                         </div>
                                     <?php else: ?>
                                         <?php foreach ($carousel_slides as $slide): ?>
-                                        <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-all duration-200" data-slide-id="<?php echo $slide['slide_id']; ?>">
-                                            <div class="relative h-48 bg-gradient-to-br from-purple-500 to-indigo-600">
+                                        <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-bote-stone-200 hover:shadow-xl transition-all duration-200" data-slide-id="<?php echo e($slide['slide_id']); ?>">
+                                            <div class="relative h-48 bg-gradient-to-br from-bote-green-500 to-bote-info-600">
                                                 <?php if ($slide['image']): ?>
                                                     <img src="../uploads/carousel/<?php echo htmlspecialchars($slide['image']); ?>" alt="Slide" class="w-full h-full object-cover">
                                                 <?php else: ?>
@@ -493,25 +494,25 @@ if ($stmt->execute()) {
                                                     </div>
                                                 <?php endif; ?>
                                                 <div class="absolute top-2 right-2 flex space-x-2">
-                                                    <span class="px-3 py-1 rounded-full text-xs font-semibold <?php echo $slide['is_active'] ? 'bg-green-500 text-white' : 'bg-gray-400 text-white'; ?>">
-                                                        <?php echo $slide['is_active'] ? 'Active' : 'Inactive'; ?>
+                                                    <span class="px-3 py-1 rounded-full text-xs font-semibold <?php echo e($slide['is_active'] ? 'bg-bote-green-500 text-white' : 'bg-bote-stone-400 text-white'); ?>">
+                                                        <?php echo e($slide['is_active'] ? 'Active' : 'Inactive'); ?>
                                                     </span>
-                                                    <span class="px-3 py-1 rounded-full text-xs font-semibold bg-white text-gray-700">
-                                                        Order: <?php echo $slide['display_order']; ?>
+                                                    <span class="px-3 py-1 rounded-full text-xs font-semibold bg-white text-bote-stone-700">
+                                                        Order: <?php echo e($slide['display_order']); ?>
                                                     </span>
                                                 </div>
                                             </div>
                                             <div class="p-4">
-                                                <h4 class="font-bold text-gray-900 mb-2 truncate"><?php echo htmlspecialchars($slide['title']); ?></h4>
-                                                <p class="text-sm text-gray-600 mb-4 line-clamp-2"><?php echo htmlspecialchars($slide['subtitle'] ?: 'No subtitle'); ?></p>
+                                                <h4 class="font-bold text-bote-stone-900 mb-2 truncate"><?php echo htmlspecialchars($slide['title']); ?></h4>
+                                                <p class="text-sm text-bote-stone-600 mb-4 line-clamp-2"><?php echo htmlspecialchars($slide['subtitle'] ?: 'No subtitle'); ?></p>
                                                 <div class="flex space-x-2">
-                                                    <button type="button" onclick="editSlide(<?php echo $slide['slide_id']; ?>)" class="flex-1 bg-blue-600 text-white px-3 py-2 rounded-lg hover:bg-blue-700 transition-all text-sm">
+                                                    <button type="button" onclick="editSlide(<?php echo e($slide['slide_id']); ?>)" class="flex-1 bg-bote-green-600 text-white px-3 py-2 rounded-lg hover:bg-bote-green-700 transition-all text-sm">
                                                         <i data-lucide="edit" class="w-4 h-4 inline mr-1"></i> Edit
                                                     </button>
-                                                    <button type="button" onclick="toggleSlide(<?php echo $slide['slide_id']; ?>)" class="flex-1 bg-gray-600 text-white px-3 py-2 rounded-lg hover:bg-gray-700 transition-all text-sm">
+                                                    <button type="button" onclick="toggleSlide(<?php echo e($slide['slide_id']); ?>)" class="flex-1 bg-bote-stone-600 text-white px-3 py-2 rounded-lg hover:bg-bote-stone-700 transition-all text-sm">
                                                         <i data-lucide="eye" class="w-4 h-4 inline mr-1"></i> Toggle
                                                     </button>
-                                                    <button type="button" onclick="deleteSlide(<?php echo $slide['slide_id']; ?>)" class="bg-red-600 text-white px-3 py-2 rounded-lg hover:bg-red-700 transition-all text-sm">
+                                                    <button type="button" onclick="deleteSlide(<?php echo e($slide['slide_id']); ?>)" class="bg-red-600 text-white px-3 py-2 rounded-lg hover:bg-red-700 transition-all text-sm">
                                                         <i data-lucide="trash-2" class="w-4 h-4 inline"></i>
                                                     </button>
                                                 </div>
@@ -527,8 +528,8 @@ if ($stmt->execute()) {
 
                 <!-- Security Tab -->
                 <div id="content-security" class="tab-content">
-                    <div class="bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden">
-                        <div class="bg-gradient-to-r from-red-600 to-pink-700 px-8 py-6">
+                    <div class="bg-white rounded-3xl shadow-lg border border-bote-stone-100 overflow-hidden">
+                        <div class="bg-gradient-to-r from-red-600 to-red-700 px-8 py-6">
                             <h2 class="text-2xl font-bold text-white flex items-center">
                                 <i data-lucide="shield" class="w-6 h-6 mr-3"></i>
                                 Security Settings
@@ -542,53 +543,53 @@ if ($stmt->execute()) {
                                 <?php echo \App\Core\Csrf::field(); ?>
                                 <input type="hidden" name="tab" value="password">
                                 
-                                <div class="bg-gradient-to-br from-red-50 to-pink-50 rounded-2xl p-6 border border-red-200">
+                                <div class="bg-gradient-to-br from-red-50 to-red-50 rounded-2xl p-6 border border-red-200">
                                     <div class="flex items-center space-x-3 mb-6">
-                                        <div class="w-12 h-12 bg-gradient-to-br from-red-500 to-pink-600 rounded-xl flex items-center justify-center shadow-lg">
+                                        <div class="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center shadow-lg">
                                             <i data-lucide="key" class="w-6 h-6 text-white"></i>
                                         </div>
                                         <div>
-                                            <h3 class="text-xl font-bold text-gray-900">Change Password</h3>
-                                            <p class="text-gray-600">Update your account password</p>
+                                            <h3 class="text-xl font-bold text-bote-stone-900">Change Password</h3>
+                                            <p class="text-bote-stone-600">Update your account password</p>
                                         </div>
                                     </div>
                                     
                                     <div class="space-y-4">
                                         <div>
-                                            <label class="block text-sm font-semibold text-gray-700 mb-3">Current Password</label>
+                                            <label class="block text-sm font-semibold text-bote-stone-700 mb-3">Current Password</label>
                                             <div class="relative">
                                                 <input type="password" name="current_password" required
-                                                       class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all pl-12"
+                                                       class="w-full px-4 py-3 border border-bote-stone-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all pl-12"
                                                        placeholder="Enter current password">
-                                                <i data-lucide="lock" class="w-5 h-5 text-gray-400 absolute left-4 top-1/2 transform -translate-y-1/2"></i>
+                                                <i data-lucide="lock" class="w-5 h-5 text-bote-stone-400 absolute left-4 top-1/2 transform -translate-y-1/2"></i>
                                             </div>
                                         </div>
                                         
                                         <div>
-                                            <label class="block text-sm font-semibold text-gray-700 mb-3">New Password</label>
+                                            <label class="block text-sm font-semibold text-bote-stone-700 mb-3">New Password</label>
                                             <div class="relative">
                                                 <input type="password" name="new_password" required
-                                                       class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all pl-12"
+                                                       class="w-full px-4 py-3 border border-bote-stone-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all pl-12"
                                                        placeholder="Enter new password">
-                                                <i data-lucide="key" class="w-5 h-5 text-gray-400 absolute left-4 top-1/2 transform -translate-y-1/2"></i>
+                                                <i data-lucide="key" class="w-5 h-5 text-bote-stone-400 absolute left-4 top-1/2 transform -translate-y-1/2"></i>
                                             </div>
-                                            <p class="text-xs text-gray-500 mt-2">Password must be at least 8 characters long</p>
+                                            <p class="text-xs text-bote-stone-500 mt-2">Password must be at least 8 characters long</p>
                                         </div>
                                         
                                         <div>
-                                            <label class="block text-sm font-semibold text-gray-700 mb-3">Confirm New Password</label>
+                                            <label class="block text-sm font-semibold text-bote-stone-700 mb-3">Confirm New Password</label>
                                             <div class="relative">
                                                 <input type="password" name="confirm_password" required
-                                                       class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all pl-12"
+                                                       class="w-full px-4 py-3 border border-bote-stone-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all pl-12"
                                                        placeholder="Confirm new password">
-                                                <i data-lucide="check-circle" class="w-5 h-5 text-gray-400 absolute left-4 top-1/2 transform -translate-y-1/2"></i>
+                                                <i data-lucide="check-circle" class="w-5 h-5 text-bote-stone-400 absolute left-4 top-1/2 transform -translate-y-1/2"></i>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 
-                                <div class="border-t border-gray-200 pt-6 text-center">
-                                    <button type="submit" class="bg-gradient-to-r from-red-600 to-pink-700 text-white px-8 py-4 rounded-xl hover:from-red-700 hover:to-pink-800 transition-all duration-200 font-semibold shadow-lg flex items-center mx-auto transform hover:scale-105">
+                                <div class="border-t border-bote-stone-200 pt-6 text-center">
+                                    <button type="submit" class="bg-gradient-to-r from-red-600 to-red-700 text-white px-8 py-4 rounded-xl hover:from-red-700 hover:to-red-800 transition-all duration-200 font-semibold shadow-lg flex items-center mx-auto transform hover:scale-105">
                                         <i data-lucide="save" class="w-5 h-5 mr-2"></i>
                                         Update Password
                                     </button>
@@ -603,99 +604,7 @@ if ($stmt->execute()) {
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="assets/js/settings.js"></script>
-    
-    <!-- Image Preview Function -->
-    <script>
-        // Function to preview uploaded images
-        function previewImage(input, previewId) {
-            const preview = document.getElementById(previewId);
-            if (input.files && input.files[0]) {
-                const reader = new FileReader();
-                
-                reader.onload = function(e) {
-                    // Clear existing preview content
-                    preview.innerHTML = '';
-                    
-                    // Create image element
-                    const img = document.createElement('img');
-                    img.src = e.target.result;
-                    img.alt = "Image Preview";
-                    img.className = "mx-auto max-h-36 w-auto object-cover rounded-lg shadow-md";
-                    preview.appendChild(img);
-                    
-                    // Add caption
-                    const caption = document.createElement('p');
-                    caption.className = "text-sm text-gray-600 mt-2";
-                    caption.textContent = "Preview (not saved yet)";
-                    preview.appendChild(caption);
-                }
-                
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-    </script>
-    
-    <!-- Carousel Management Scripts -->
-    <script>
-        function openAddSlideModal() {
-            // Redirect to a dedicated add slide page or implement a modal
-            window.location.href = 'carousel_editor.php';
-        }
-        
-        function editSlide(slideId) {
-            window.location.href = 'carousel_editor.php?id=' + slideId;
-        }
-        
-        async function toggleSlide(slideId) {
-            if (!confirm('Toggle this slide\'s visibility?')) return;
-            
-            const formData = new FormData();
-            formData.append('action', 'toggle');
-            formData.append('slide_id', slideId);
-            
-            try {
-                const response = await fetch('carousel_handler.php', {
-                    method: 'POST',
-                    body: formData
-                });
-                
-                const result = await response.json();
-                
-                if (result.success) {
-                    location.reload();
-                } else {
-                    alert('Error: ' + result.message);
-                }
-            } catch (error) {
-                alert('An error occurred: ' + error.message);
-            }
-        }
-        
-        async function deleteSlide(slideId) {
-            if (!confirm('Are you sure you want to delete this slide? This action cannot be undone.')) return;
-            
-            const formData = new FormData();
-            formData.append('action', 'delete');
-            formData.append('slide_id', slideId);
-            
-            try {
-                const response = await fetch('carousel_handler.php', {
-                    method: 'POST',
-                    body: formData
-                });
-                
-                const result = await response.json();
-                
-                if (result.success) {
-                    location.reload();
-                } else {
-                    alert('Error: ' + result.message);
-                }
-            } catch (error) {
-                alert('An error occurred: ' + error.message);
-            }
-        }
-    </script>
+    <script type="module" src="assets/js/settings.js"></script>
+    <script type="module" src="assets/js/admin_settings.js"></script>
 </body>
 </html>

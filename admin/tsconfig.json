@@ -1,0 +1,8 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "assets/ts",
+    "outDir": "assets/js"
+  },
+  "include": ["assets/ts/**/*.ts"]
+}

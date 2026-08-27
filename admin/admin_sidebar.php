@@ -45,6 +45,7 @@ $stats['total_rewards']   = getStat($conn, "SELECT COUNT(*) as total FROM reward
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - BoteBank</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="../assets/js/theme.js"></script>
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <style>
         .sidebar-active {
@@ -59,12 +60,12 @@ $stats['total_rewards']   = getStat($conn, "SELECT COUNT(*) as total FROM reward
         }
     </style>
 </head>
-<body class="bg-gray-50 font-sans">
+<body class="bg-bote-stone-50 font-sans">
 
     <!-- Sidebar -->
     <div class="fixed left-0 top-0 h-full w-64 bg-white shadow-xl flex flex-col z-50">
         <!-- Header Section -->
-        <div class="bg-gradient-to-br from-green-600 via-green-700 to-emerald-800 p-6 relative overflow-hidden">
+        <div class="bg-gradient-to-br from-bote-green-600 via-bote-green-700 to-bote-green-800 p-6 relative overflow-hidden">
             <div class="absolute inset-0 bg-black bg-opacity-10"></div>
             <div class="relative z-10">
                 <div class="flex items-center space-x-3 mb-2">
@@ -79,30 +80,30 @@ $stats['total_rewards']   = getStat($conn, "SELECT COUNT(*) as total FROM reward
                     <?php endif; ?>
                     <h1 class="text-xl font-bold text-white"><?php echo htmlspecialchars($system_name); ?></h1>
                 </div>
-                <p class="text-green-100 text-sm font-medium">Admin Panel</p>
+                <p class="text-bote-green-100 text-sm font-medium">Admin Panel</p>
             </div>
         </div>
 
         <!-- User Info -->
-        <div class="px-6 py-4 border-b border-gray-100 bg-gradient-to-r from-green-50 to-emerald-50">
+        <div class="px-6 py-4 border-b border-bote-stone-100 bg-gradient-to-r from-bote-green-50 to-bote-green-50">
             <div class="flex items-center space-x-3">
                 <?php if ($profile_display['type'] === 'photo'): ?>
                     <img src="../uploads/profiles/thumbs/<?php echo htmlspecialchars($profile_display['value']); ?>" 
                          alt="Profile Photo" 
-                         class="w-12 h-12 rounded-full object-cover ring-2 ring-green-200">
+                         class="w-12 h-12 rounded-full object-cover ring-2 ring-bote-green-200">
                 <?php else: ?>
-                    <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center ring-2 ring-green-200">
+                    <div class="w-12 h-12 bg-gradient-to-br from-bote-green-500 to-bote-green-600 rounded-full flex items-center justify-center ring-2 ring-bote-green-200">
                         <span class="text-white font-bold text-lg">
                             <?php echo htmlspecialchars($profile_display['value']); ?>
                         </span>
                     </div>
                 <?php endif; ?>
                 <div class="flex-1 min-w-0">
-                    <p class="font-semibold text-gray-800 truncate">
+                    <p class="font-semibold text-bote-stone-800 truncate">
                         <?php echo htmlspecialchars($user_data['first_name'] . ' ' . $user_data['last_name']); ?>
                     </p>
-                    <p class="text-sm text-green-600 font-medium">System Administrator</p>
-                    <p class="text-xs text-gray-500 truncate"><?php echo htmlspecialchars($user_data['email']); ?></p>
+                    <p class="text-sm text-bote-green-600 font-medium">System Administrator</p>
+                    <p class="text-xs text-bote-stone-500 truncate"><?php echo htmlspecialchars($user_data['email']); ?></p>
                 </div>
             </div>
         </div>
@@ -111,82 +112,82 @@ $stats['total_rewards']   = getStat($conn, "SELECT COUNT(*) as total FROM reward
         <!-- Navigation -->
 
 <nav class="flex-1 px-4 py-4 space-y-1 overflow-y-auto">
-    <a href="admin_dashboard.php" class="group flex items-center space-x-3 p-3 rounded-xl hover:bg-green-50 transition-all duration-200 text-gray-700 hover:text-green-700 <?php if(basename($_SERVER['PHP_SELF'])=='admin_dashboard.php') echo 'sidebar-active'; ?>">
-        <div class="w-8 h-8 rounded-lg bg-green-100 group-hover:bg-green-200 flex items-center justify-center transition-colors">
-            <i data-lucide="layout-dashboard" class="w-4 h-4 text-green-600"></i>
+    <a href="admin_dashboard.php" class="group flex items-center space-x-3 p-3 rounded-xl hover:bg-bote-green-50 transition-all duration-200 text-bote-stone-700 hover:text-bote-green-700 <?php if(basename($_SERVER['PHP_SELF'])=='admin_dashboard.php') echo 'sidebar-active'; ?>">
+        <div class="w-8 h-8 rounded-lg bg-bote-green-100 group-hover:bg-bote-green-200 flex items-center justify-center transition-colors">
+            <i data-lucide="layout-dashboard" class="w-4 h-4 text-bote-green-600"></i>
         </div>
         <span class="font-medium">Dashboard</span>
     </a>
 
 
-    <a href="admin_pickup_requests.php" class="group flex items-center space-x-3 p-3 rounded-xl hover:bg-green-50 transition-all duration-200 text-gray-700 hover:text-green-700 <?php if(basename($_SERVER['PHP_SELF'])=='admin_pickup_requests.php') echo 'sidebar-active'; ?>">
-        <div class="w-8 h-8 rounded-lg bg-blue-100 group-hover:bg-blue-200 flex items-center justify-center transition-colors">
-            <i data-lucide="plus-circle" class="w-4 h-4 text-blue-600"></i>
+    <a href="admin_pickup_requests.php" class="group flex items-center space-x-3 p-3 rounded-xl hover:bg-bote-green-50 transition-all duration-200 text-bote-stone-700 hover:text-bote-green-700 <?php if(basename($_SERVER['PHP_SELF'])=='admin_pickup_requests.php') echo 'sidebar-active'; ?>">
+        <div class="w-8 h-8 rounded-lg bg-bote-info-100 group-hover:bg-bote-info-200 flex items-center justify-center transition-colors">
+            <i data-lucide="plus-circle" class="w-4 h-4 text-bote-info-600"></i>
         </div>
         <span class="font-medium">Pickup Requests</span>
     </a>
 
-    <a href="admin_users.php" class="group flex items-center space-x-3 p-3 rounded-xl hover:bg-green-50 transition-all duration-200 text-gray-700 hover:text-green-700 <?php if(basename($_SERVER['PHP_SELF'])=='admin_users.php') echo 'sidebar-active'; ?>">
+    <a href="admin_users.php" class="group flex items-center space-x-3 p-3 rounded-xl hover:bg-bote-green-50 transition-all duration-200 text-bote-stone-700 hover:text-bote-green-700 <?php if(basename($_SERVER['PHP_SELF'])=='admin_users.php') echo 'sidebar-active'; ?>">
         <div class="w-8 h-8 rounded-lg bg-orange-100 group-hover:bg-orange-200 flex items-center justify-center transition-colors">
             <i data-lucide="list" class="w-4 h-4 text-orange-600"></i>
         </div>
         <span class="font-medium">Users</span>
     </a>
 
-    <a href="admin_rewards.php" class="group flex items-center space-x-3 p-3 rounded-xl hover:bg-green-50 transition-all duration-200 text-gray-700 hover:text-green-700 <?php if(basename($_SERVER['PHP_SELF'])=='admin_rewards.php') echo 'sidebar-active'; ?>">
-        <div class="w-8 h-8 rounded-lg bg-purple-100 group-hover:bg-purple-200 flex items-center justify-center transition-colors">
-            <i data-lucide="gift" class="w-4 h-4 text-purple-600"></i>
+    <a href="admin_rewards.php" class="group flex items-center space-x-3 p-3 rounded-xl hover:bg-bote-green-50 transition-all duration-200 text-bote-stone-700 hover:text-bote-green-700 <?php if(basename($_SERVER['PHP_SELF'])=='admin_rewards.php') echo 'sidebar-active'; ?>">
+        <div class="w-8 h-8 rounded-lg bg-bote-green-100 group-hover:bg-bote-green-200 flex items-center justify-center transition-colors">
+            <i data-lucide="gift" class="w-4 h-4 text-bote-green-600"></i>
         </div>
         <span class="font-medium">Rewards</span>
     </a>
 
-    <a href="admin_reports.php" class="group flex items-center space-x-3 p-3 rounded-xl hover:bg-green-50 transition-all duration-200 text-gray-700 hover:text-green-700 <?php if(basename($_SERVER['PHP_SELF'])=='admin_reports.php') echo 'sidebar-active'; ?>">
+    <a href="admin_reports.php" class="group flex items-center space-x-3 p-3 rounded-xl hover:bg-bote-green-50 transition-all duration-200 text-bote-stone-700 hover:text-bote-green-700 <?php if(basename($_SERVER['PHP_SELF'])=='admin_reports.php') echo 'sidebar-active'; ?>">
         <div class="w-8 h-8 rounded-lg bg-yellow-100 group-hover:bg-yellow-200 flex items-center justify-center transition-colors">
             <i data-lucide="file-text" class="w-4 h-4 text-yellow-600"></i>
         </div>
         <span class="font-medium">Reports</span>
     </a>
 
-    <a href="admin_puroks.php" class="group flex items-center space-x-3 p-3 rounded-xl hover:bg-green-50 transition-all duration-200 text-gray-700 hover:text-green-700 <?php if(basename($_SERVER['PHP_SELF'])=='admin_puroks.php') echo 'sidebar-active'; ?>">
-        <div class="w-8 h-8 rounded-lg bg-pink-100 group-hover:bg-pink-200 flex items-center justify-center transition-colors">
-            <i data-lucide="map-pin" class="w-4 h-4 text-pink-600"></i>
+    <a href="admin_puroks.php" class="group flex items-center space-x-3 p-3 rounded-xl hover:bg-bote-green-50 transition-all duration-200 text-bote-stone-700 hover:text-bote-green-700 <?php if(basename($_SERVER['PHP_SELF'])=='admin_puroks.php') echo 'sidebar-active'; ?>">
+        <div class="w-8 h-8 rounded-lg bg-bote-green-100 group-hover:bg-bote-green-200 flex items-center justify-center transition-colors">
+            <i data-lucide="map-pin" class="w-4 h-4 text-bote-green-600"></i>
         </div>
         <span class="font-medium">Puroks</span>
     </a>
 
-    <a href="admin_recyclable_types.php" class="group flex items-center space-x-3 p-3 rounded-xl hover:bg-green-50 transition-all duration-200 text-gray-700 hover:text-green-700 <?php if(basename($_SERVER['PHP_SELF'])=='admin_recyclable_types.php') echo 'sidebar-active'; ?>">
-        <div class="w-8 h-8 rounded-lg bg-indigo-100 group-hover:bg-indigo-200 flex items-center justify-center transition-colors">
-            <i data-lucide="recycle" class="w-4 h-4 text-indigo-600"></i>
+    <a href="admin_recyclable_types.php" class="group flex items-center space-x-3 p-3 rounded-xl hover:bg-bote-green-50 transition-all duration-200 text-bote-stone-700 hover:text-bote-green-700 <?php if(basename($_SERVER['PHP_SELF'])=='admin_recyclable_types.php') echo 'sidebar-active'; ?>">
+        <div class="w-8 h-8 rounded-lg bg-bote-info-100 group-hover:bg-bote-info-200 flex items-center justify-center transition-colors">
+            <i data-lucide="recycle" class="w-4 h-4 text-bote-info-600"></i>
         </div>
         <span class="font-medium">Recyclable Types</span>
     </a>
 
-<a href="admin_collection_points.php" class="group flex items-center space-x-3 p-3 rounded-xl hover:bg-green-50 transition-all duration-200 text-gray-700 hover:text-green-700 <?php if(basename($_SERVER['PHP_SELF'])=='admin_collection_points.php') echo 'sidebar-active'; ?>">
-    <div class="w-8 h-8 rounded-lg bg-green-100 group-hover:bg-green-200 flex items-center justify-center transition-colors">
-        <i data-lucide="map-pin" class="w-4 h-4 text-green-600"></i>
+<a href="admin_collection_points.php" class="group flex items-center space-x-3 p-3 rounded-xl hover:bg-bote-green-50 transition-all duration-200 text-bote-stone-700 hover:text-bote-green-700 <?php if(basename($_SERVER['PHP_SELF'])=='admin_collection_points.php') echo 'sidebar-active'; ?>">
+    <div class="w-8 h-8 rounded-lg bg-bote-green-100 group-hover:bg-bote-green-200 flex items-center justify-center transition-colors">
+        <i data-lucide="map-pin" class="w-4 h-4 text-bote-green-600"></i>
     </div>
     <span class="font-medium">Collection Points</span>
 </a>
 
 
-    <a href="admin_profile.php" class="group flex items-center space-x-3 p-3 rounded-xl hover:bg-green-50 transition-all duration-200 text-gray-700 hover:text-green-700 <?php if(basename($_SERVER['PHP_SELF'])=='admin_profile.php') echo 'sidebar-active'; ?>">
-        <div class="w-8 h-8 rounded-lg bg-purple-100 group-hover:bg-purple-200 flex items-center justify-center transition-colors">
-            <i data-lucide="user-circle" class="w-4 h-4 text-purple-600"></i>
+    <a href="admin_profile.php" class="group flex items-center space-x-3 p-3 rounded-xl hover:bg-bote-green-50 transition-all duration-200 text-bote-stone-700 hover:text-bote-green-700 <?php if(basename($_SERVER['PHP_SELF'])=='admin_profile.php') echo 'sidebar-active'; ?>">
+        <div class="w-8 h-8 rounded-lg bg-bote-green-100 group-hover:bg-bote-green-200 flex items-center justify-center transition-colors">
+            <i data-lucide="user-circle" class="w-4 h-4 text-bote-green-600"></i>
         </div>
         <span class="font-medium">My Profile</span>
     </a>
 
 
-    <a href="admin_settings.php" class="group flex items-center space-x-3 p-3 rounded-xl hover:bg-green-50 transition-all duration-200 text-gray-700 hover:text-green-700 <?php if(basename($_SERVER['PHP_SELF'])=='admin_settings.php') echo 'sidebar-active'; ?>">
-        <div class="w-8 h-8 rounded-lg bg-gray-100 group-hover:bg-gray-200 flex items-center justify-center transition-colors">
-            <i data-lucide="settings" class="w-4 h-4 text-gray-600"></i>
+    <a href="admin_settings.php" class="group flex items-center space-x-3 p-3 rounded-xl hover:bg-bote-green-50 transition-all duration-200 text-bote-stone-700 hover:text-bote-green-700 <?php if(basename($_SERVER['PHP_SELF'])=='admin_settings.php') echo 'sidebar-active'; ?>">
+        <div class="w-8 h-8 rounded-lg bg-bote-stone-100 group-hover:bg-bote-stone-200 flex items-center justify-center transition-colors">
+            <i data-lucide="settings" class="w-4 h-4 text-bote-stone-600"></i>
         </div>
         <span class="font-medium">Settings</span>
     </a>
 
-    <a href="admin_help.php" class="group flex items-center space-x-3 p-3 rounded-xl hover:bg-green-50 transition-all duration-200 text-gray-700 hover:text-green-700 <?php if(basename($_SERVER['PHP_SELF'])=='admin_help.php') echo 'sidebar-active'; ?>">
-        <div class="w-8 h-8 rounded-lg bg-indigo-100 group-hover:bg-indigo-200 flex items-center justify-center transition-colors">
-            <i data-lucide="help-circle" class="w-4 h-4 text-indigo-600"></i>
+    <a href="admin_help.php" class="group flex items-center space-x-3 p-3 rounded-xl hover:bg-bote-green-50 transition-all duration-200 text-bote-stone-700 hover:text-bote-green-700 <?php if(basename($_SERVER['PHP_SELF'])=='admin_help.php') echo 'sidebar-active'; ?>">
+        <div class="w-8 h-8 rounded-lg bg-bote-info-100 group-hover:bg-bote-info-200 flex items-center justify-center transition-colors">
+            <i data-lucide="help-circle" class="w-4 h-4 text-bote-info-600"></i>
         </div>
         <span class="font-medium">Help & Support</span>
     </a>
@@ -194,7 +195,7 @@ $stats['total_rewards']   = getStat($conn, "SELECT COUNT(*) as total FROM reward
 
 
         <!-- Logout Button -->
-        <div class="p-4 border-t border-gray-100">
+        <div class="p-4 border-t border-bote-stone-100">
             <button onclick="AdminSidebar.showLogoutModal()" class="w-full flex items-center justify-center space-x-2 p-3 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 rounded-xl text-white transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105">
                 <i data-lucide="log-out" class="w-4 h-4"></i>
                 <span class="font-medium">Logout</span>
@@ -209,10 +210,10 @@ $stats['total_rewards']   = getStat($conn, "SELECT COUNT(*) as total FROM reward
                 <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <i data-lucide="log-out" class="w-8 h-8 text-red-600"></i>
                 </div>
-                <h3 class="text-xl font-bold text-gray-900 mb-2">Confirm Logout</h3>
-                <p class="text-gray-600 mb-6">Are you sure you want to log out of your admin account?</p>
+                <h3 class="text-xl font-bold text-bote-stone-900 mb-2">Confirm Logout</h3>
+                <p class="text-bote-stone-600 mb-6">Are you sure you want to log out of your admin account?</p>
                 <div class="flex space-x-4">
-                    <button onclick="AdminSidebar.hideLogoutModal()" class="flex-1 px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 rounded-xl font-medium transition-colors">
+                    <button onclick="AdminSidebar.hideLogoutModal()" class="flex-1 px-4 py-2 bg-bote-stone-100 hover:bg-bote-stone-200 text-bote-stone-800 rounded-xl font-medium transition-colors">
                         Cancel
                     </button>
                     <button onclick="AdminSidebar.confirmLogout()" class="flex-1 px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-xl font-medium transition-colors">
@@ -223,71 +224,7 @@ $stats['total_rewards']   = getStat($conn, "SELECT COUNT(*) as total FROM reward
         </div>
     </div>
 
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        if (typeof lucide !== 'undefined') lucide.createIcons();
-
-        window.AdminSidebar = {
-            modal: document.getElementById('adminLogoutModal'),
-
-            showLogoutModal() {
-                if (!this.modal) return;
-                this.modal.classList.remove('hidden');
-                this.modal.classList.add('flex');
-                setTimeout(() => {
-                    const innerDiv = this.modal.querySelector('div > div');
-                    if (innerDiv) {
-                        innerDiv.classList.replace('scale-95', 'scale-100');
-                    }
-                }, 10);
-            },
-
-            hideLogoutModal() {
-                if (!this.modal) return;
-                const innerDiv = this.modal.querySelector('div > div');
-                if (innerDiv) {
-                    innerDiv.classList.replace('scale-100', 'scale-95');
-                }
-                setTimeout(() => {
-                    this.modal.classList.add('hidden');
-                    this.modal.classList.remove('flex');
-                }, 300);
-            },
-
-            confirmLogout() {
-                window.location.href = '../logout.php';
-            },
-
-            highlightCurrentPage() {
-                const currentPage = window.location.pathname.split('/').pop();
-                document.querySelectorAll('.nav-link').forEach(link => {
-                    if (link.getAttribute('href') === currentPage) {
-                        link.classList.add('sidebar-active');
-                    }
-                });
-            },
-
-            bindEvents() {
-                if (this.modal) {
-                    this.modal.addEventListener('click', (e) => {
-                        if (e.target === this.modal) this.hideLogoutModal();
-                    });
-                }
-                document.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape' && this.modal && !this.modal.classList.contains('hidden')) {
-                        this.hideLogoutModal();
-                    }
-                });
-            },
-
-            init() {
-                this.bindEvents();
-                this.highlightCurrentPage();
-            }
-        };
-
-        AdminSidebar.init();
-    });
-    </script>
+    
+<script type="module" src="assets/js/admin_sidebar.js"></script>
 </body>
 </html>

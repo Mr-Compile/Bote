@@ -1,0 +1,10 @@
+# Disable PHP execution inside the uploads directory tree
+php_flag engine off
+
+# Fallback: deny common script extensions
+<FilesMatch "\.(php|php3|php4|php5|phtml|pl|py|jsp|asp|sh|cgi|phar)$">
+    Require all denied
+</FilesMatch>
+
+# Disable directory listings
+Options -Indexes

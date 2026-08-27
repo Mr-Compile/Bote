@@ -1,190 +1,191 @@
-
-        lucide.createIcons();
-
-        // Enhanced Modal Functions
-        function showAddTypeModal() {
-            document.getElementById('addTypeModal').classList.remove('hidden');
-            document.getElementById('addTypeModal').classList.add('flex');
-            resetImagePreview('add');
-        }
-
-        function hideAddTypeModal() {
-            document.getElementById('addTypeModal').classList.add('hidden');
-            document.getElementById('addTypeModal').classList.remove('flex');
-            document.querySelector('#addTypeModal form').reset();
-            resetImagePreview('add');
-        }
-
-        function showEditTypeModal(type) {
-            document.getElementById('edit_type_id').value = type.type_id;
-            document.getElementById('edit_name').value = type.name;
-            document.getElementById('edit_unit').value = type.unit;
-            
-            // Handle unit-specific fields
-            if (type.unit === 'kg') {
-                document.getElementById('edit_points_kg_field').classList.remove('hidden');
-                document.getElementById('edit_points_unit_field').classList.add('hidden');
-                document.getElementById('edit_points_per_kg').value = type.points_per_kg || '';
-            } else {
-                document.getElementById('edit_points_kg_field').classList.add('hidden');
-                document.getElementById('edit_points_unit_field').classList.remove('hidden');
-                document.getElementById('edit_points_per_unit').value = type.points_per_unit || '';
+import { getEl, getInput, getSelect } from './shared.js';
+function showAddTypeModal() {
+    const modal = getEl('addTypeModal');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    resetImagePreview('add');
+}
+function hideAddTypeModal() {
+    const modal = getEl('addTypeModal');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    const form = modal.querySelector('form');
+    if (form) {
+        form.reset();
+    }
+    resetImagePreview('add');
+}
+function showEditTypeModal(type) {
+    getInput('edit_type_id').value = String(type.type_id ?? '');
+    getInput('edit_name').value = String(type.name ?? '');
+    getSelect('edit_unit').value = String(type.unit ?? '');
+    const kgField = getEl('edit_points_kg_field');
+    const unitField = getEl('edit_points_unit_field');
+    const kgInput = getInput('edit_points_per_kg');
+    const unitInput = getInput('edit_points_per_unit');
+    if (String(type.unit ?? '') === 'kg') {
+        kgField.classList.remove('hidden');
+        unitField.classList.add('hidden');
+        kgInput.value = String(type.points_per_kg ?? '');
+        unitInput.value = '';
+    }
+    else {
+        kgField.classList.add('hidden');
+        unitField.classList.remove('hidden');
+        kgInput.value = '';
+        unitInput.value = String(type.points_per_unit ?? '');
+    }
+    const modal = getEl('editTypeModal');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+}
+function hideEditTypeModal() {
+    const modal = getEl('editTypeModal');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+}
+function confirmDeleteType(typeId) {
+    getInput('delete_type_id').value = String(typeId);
+    const modal = getEl('deleteTypeModal');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+}
+function hideDeleteTypeModal() {
+    const modal = getEl('deleteTypeModal');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+}
+function previewAddImage(input) {
+    const file = input.files?.item(0);
+    if (!file)
+        return;
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+        if (!ev.target?.result)
+            return;
+        getEl('add_preview_img').src = String(ev.target.result);
+        getEl('add_image_preview').classList.remove('hidden');
+        getEl('add_image_placeholder').classList.add('hidden');
+    };
+    reader.readAsDataURL(file);
+}
+function previewEditImage(input) {
+    const file = input.files?.item(0);
+    if (!file)
+        return;
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+        if (!ev.target?.result)
+            return;
+        getEl('edit_preview_img').src = String(ev.target.result);
+        getEl('edit_image_preview').classList.remove('hidden');
+        getEl('edit_image_placeholder').classList.add('hidden');
+    };
+    reader.readAsDataURL(file);
+}
+function resetImagePreview(prefix) {
+    getEl(prefix + '_image_preview').classList.add('hidden');
+    getEl(prefix + '_image_placeholder').classList.remove('hidden');
+    const input = document.getElementById(prefix + '_image');
+    if (input) {
+        input.value = '';
+    }
+}
+function updateUnitFields(select, kgFieldId, unitFieldId, kgInputId, unitInputId) {
+    const kgField = getEl(kgFieldId);
+    const unitField = getEl(unitFieldId);
+    const kgInput = getInput(kgInputId);
+    const unitInput = getInput(unitInputId);
+    if (select.value === 'kg') {
+        kgField.classList.remove('hidden');
+        unitField.classList.add('hidden');
+        kgInput.required = true;
+        unitInput.required = false;
+        unitInput.value = '';
+    }
+    else {
+        kgField.classList.add('hidden');
+        unitField.classList.remove('hidden');
+        kgInput.required = false;
+        unitInput.required = true;
+        kgInput.value = '';
+    }
+}
+function setupDragDrop() {
+    const dropAreas = document.querySelectorAll('.file-drop-area');
+    dropAreas.forEach(dropArea => {
+        const preventDefaults = (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+        };
+        const highlight = () => {
+            dropArea.classList.add('border-bote-green-500', 'bg-bote-green-50');
+        };
+        const unhighlight = () => {
+            dropArea.classList.remove('border-bote-green-500', 'bg-bote-green-50');
+        };
+        const handleDrop = (e) => {
+            const files = e.dataTransfer?.files;
+            if (!files || files.length === 0)
+                return;
+            const input = dropArea.parentElement?.querySelector('input[type="file"]');
+            if (input) {
+                input.files = files;
+                input.dispatchEvent(new Event('change', { bubbles: true }));
             }
-            
-            document.getElementById('editTypeModal').classList.remove('hidden');
-            document.getElementById('editTypeModal').classList.add('flex');
-        }
-
-        function hideEditTypeModal() {
-            document.getElementById('editTypeModal').classList.add('hidden');
-            document.getElementById('editTypeModal').classList.remove('flex');
-        }
-
-        function confirmDeleteType(typeId) {
-            document.getElementById('delete_type_id').value = typeId;
-            document.getElementById('deleteTypeModal').classList.remove('hidden');
-            document.getElementById('deleteTypeModal').classList.add('flex');
-        }
-
-        function hideDeleteTypeModal() {
-            document.getElementById('deleteTypeModal').classList.add('hidden');
-            document.getElementById('deleteTypeModal').classList.remove('flex');
-        }
-
-        // Close modals when clicking outside
-        ['addTypeModal', 'editTypeModal', 'deleteTypeModal'].forEach(modalId => {
-            document.getElementById(modalId).addEventListener('click', function(e) {
+        };
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, preventDefaults, false);
+        });
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropArea.addEventListener(eventName, highlight, false);
+        });
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, unhighlight, false);
+        });
+        dropArea.addEventListener('drop', handleDrop, false);
+    });
+}
+document.addEventListener('DOMContentLoaded', () => {
+    const addUnit = document.getElementById('unit');
+    if (addUnit) {
+        addUnit.addEventListener('change', () => updateUnitFields(addUnit, 'points_kg_field', 'points_unit_field', 'points_per_kg', 'points_per_unit'));
+    }
+    const editUnit = document.getElementById('edit_unit');
+    if (editUnit) {
+        editUnit.addEventListener('change', () => updateUnitFields(editUnit, 'edit_points_kg_field', 'edit_points_unit_field', 'edit_points_per_kg', 'edit_points_per_unit'));
+    }
+    ['addTypeModal', 'editTypeModal', 'deleteTypeModal'].forEach(modalId => {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.addEventListener('click', function (e) {
                 if (e.target === this) {
                     this.classList.add('hidden');
                     this.classList.remove('flex');
                 }
             });
-        });
-
-        // Handle unit changes in add modal
-        document.getElementById('unit').addEventListener('change', function () {
-            if (this.value === 'kg') {
-                document.getElementById('points_kg_field').classList.remove('hidden');
-                document.getElementById('points_unit_field').classList.add('hidden');
-                document.querySelector('#points_unit_field input').required = false;
-                document.querySelector('#points_kg_field input').required = true;
-                document.querySelector('#points_unit_field input').value = ''; // Clear value when hidden
-            } else {
-                document.getElementById('points_kg_field').classList.add('hidden');
-                document.getElementById('points_unit_field').classList.remove('hidden');
-                document.querySelector('#points_kg_field input').required = false;
-                document.querySelector('#points_unit_field input').required = true;
-                document.querySelector('#points_kg_field input').value = ''; // Clear value when hidden
-            }
-        });
-
-        // Handle unit changes in edit modal
-        document.getElementById('edit_unit').addEventListener('change', function () {
-            if (this.value === 'kg') {
-                document.getElementById('edit_points_kg_field').classList.remove('hidden');
-                document.getElementById('edit_points_unit_field').classList.add('hidden');
-                document.querySelector('#edit_points_unit_field input').required = false;
-                document.querySelector('#edit_points_kg_field input').required = true;
-                document.querySelector('#edit_points_unit_field input').value = ''; // Clear value when hidden
-            } else {
-                document.getElementById('edit_points_kg_field').classList.add('hidden');
-                document.getElementById('edit_points_unit_field').classList.remove('hidden');
-                document.querySelector('#edit_points_kg_field input').required = false;
-                document.querySelector('#edit_points_unit_field input').required = true;
-                document.querySelector('#edit_points_kg_field input').value = ''; // Clear value when hidden
-            }
-        });
-
-        // Image Preview Functions
-        function previewAddImage(input) {
-            if (input.files && input.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById('add_preview_img').src = e.target.result;
-                    document.getElementById('add_image_preview').classList.remove('hidden');
-                    document.getElementById('add_image_placeholder').classList.add('hidden');
-                };
-                reader.readAsDataURL(input.files[0]);
-            }
         }
-
-        function previewEditImage(input) {
-            if (input.files && input.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById('edit_preview_img').src = e.target.result;
-                    document.getElementById('edit_image_preview').classList.remove('hidden');
-                    document.getElementById('edit_image_placeholder').classList.add('hidden');
-                };
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-        function resetImagePreview(prefix) {
-            document.getElementById(prefix + '_image_preview').classList.add('hidden');
-            document.getElementById(prefix + '_image_placeholder').classList.remove('hidden');
-            document.getElementById(prefix + '_image').value = '';
-        }
-
-        // Drag and Drop functionality
-        function setupDragDrop() {
-            const dropAreas = document.querySelectorAll('.file-drop-area');
-            
-            dropAreas.forEach(dropArea => {
-                ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-                    dropArea.addEventListener(eventName, preventDefaults, false);
-                });
-
-                function preventDefaults(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                }
-
-                ['dragenter', 'dragover'].forEach(eventName => {
-                    dropArea.addEventListener(eventName, highlight, false);
-                });
-
-                ['dragleave', 'drop'].forEach(eventName => {
-                    dropArea.addEventListener(eventName, unhighlight, false);
-                });
-
-                function highlight(e) {
-                    dropArea.classList.add('border-green-500', 'bg-green-50');
-                }
-
-                function unhighlight(e) {
-                    dropArea.classList.remove('border-green-500', 'bg-green-50');
-                }
-
-                dropArea.addEventListener('drop', handleDrop, false);
-
-                function handleDrop(e) {
-                    const files = e.dataTransfer.files;
-                    if (files.length > 0) {
-                        const input = dropArea.parentElement.querySelector('input[type="file"]');
-                        input.files = files;
-                        
-                        // Trigger change event
-                        const event = new Event('change', { bubbles: true });
-                        input.dispatchEvent(event);
-                    }
-                }
-            });
-        }
-
-        // Initialize when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            setupDragDrop();
-        });
-
-        // Auto-hide success/error messages
-        document.addEventListener('DOMContentLoaded', function() {
-            const alerts = document.querySelectorAll('.alert-auto-hide');
-            alerts.forEach(alert => {
-                setTimeout(() => {
-                    alert.style.transition = 'opacity 0.5s ease-in-out';
-                    alert.style.opacity = '0';
-                    setTimeout(() => alert.remove(), 500);
-                }, 5000);
-            });
-        });
+    });
+    setupDragDrop();
+    lucide.createIcons();
+    const alerts = document.querySelectorAll('.alert-auto-hide');
+    alerts.forEach(alert => {
+        setTimeout(() => {
+            alert.style.transition = 'opacity 0.5s ease-in-out';
+            alert.style.opacity = '0';
+            setTimeout(() => alert.remove(), 500);
+        }, 5000);
+    });
+});
+Object.assign(window, {
+    showAddTypeModal,
+    hideAddTypeModal,
+    showEditTypeModal,
+    hideEditTypeModal,
+    confirmDeleteType,
+    hideDeleteTypeModal,
+    previewAddImage,
+    previewEditImage,
+    resetImagePreview
+});
+//# sourceMappingURL=recyclable_types.js.map

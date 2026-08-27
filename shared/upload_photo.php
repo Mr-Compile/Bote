@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once '../includes/session.php';
 require_once '../config/database.php';
 require_once '../includes/system_functions.php';
 
@@ -64,9 +64,19 @@ try {
     // Generate unique filename
     $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
     $filename = 'profile_' . $user_id . '_' . time() . '.' . strtolower($extension);
-    $upload_path = '../uploads/profiles/' . $filename;
-    $thumb_path = '../uploads/profiles/thumbs/' . $filename;
-    
+    $upload_dir = '../uploads/profiles/';
+    $thumb_dir = '../uploads/profiles/thumbs/';
+
+    if (!is_dir($upload_dir) && !mkdir($upload_dir, 0755, true)) {
+        throw new Exception('Failed to create upload directory');
+    }
+    if (!is_dir($thumb_dir) && !mkdir($thumb_dir, 0755, true)) {
+        throw new Exception('Failed to create thumbnail directory');
+    }
+
+    $upload_path = $upload_dir . $filename;
+    $thumb_path = $thumb_dir . $filename;
+
     // Move uploaded file
     if (!move_uploaded_file($file['tmp_name'], $upload_path)) {
         throw new Exception('Failed to move uploaded file');

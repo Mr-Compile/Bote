@@ -13,6 +13,7 @@ $login_image = getSystemSetting($conn, 'login_image', '');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>System Login</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="assets/js/theme.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         body {
@@ -20,7 +21,7 @@ $login_image = getSystemSetting($conn, 'login_image', '');
         }
     </style>
 </head>
-<body class="min-h-screen bg-gray-50">
+<body class="min-h-screen bg-bote-stone-50">
     <div class="flex min-h-screen">
         <!-- Left Side - System Image -->
         <div class="hidden lg:flex lg:w-1/2 relative overflow-hidden">
@@ -31,7 +32,7 @@ $login_image = getSystemSetting($conn, 'login_image', '');
                 </div>
             <?php else: ?>
                 <!-- Default gradient background with elements -->
-                <div class="absolute inset-0 bg-gradient-to-br from-blue-600 to-purple-700"></div>
+                <div class="absolute inset-0 bg-gradient-to-br from-bote-info-600 to-bote-green-700"></div>
             <?php endif; ?>
             
             <div class="absolute inset-0 bg-black bg-opacity-20"></div>
@@ -45,7 +46,7 @@ $login_image = getSystemSetting($conn, 'login_image', '');
                 
                 <!-- System Info -->
                 <h1 class="text-4xl font-bold mb-4 text-center">BoteBank System</h1>
-                <p class="text-xl text-center text-blue-100 max-w-md">
+                <p class="text-xl text-center text-bote-info-100 max-w-md">
                     Barangay Cruz Recycling & Reward Management Platform - Secure login for residents, workers, and administrators.
                 </p>
                 
@@ -61,8 +62,8 @@ $login_image = getSystemSetting($conn, 'login_image', '');
             <div class="max-w-md w-full space-y-8">
                 <!-- Header -->
                 <div class="text-center">
-                    <h2 class="text-3xl font-bold text-gray-900 mb-2">Sign In to BoteBank</h2>
-                    <p class="text-gray-600">Welcome back! Please sign in to your account.</p>
+                    <h2 class="text-3xl font-bold text-bote-stone-900 mb-2">Sign In to BoteBank</h2>
+                    <p class="text-bote-stone-600">Welcome back! Please sign in to your account.</p>
                 </div>
 
                 <!-- Login Form -->
@@ -74,14 +75,14 @@ $login_image = getSystemSetting($conn, 'login_image', '');
                         </div>
                     <?php endif; ?>
                     <?php if (isset($_GET['registration']) && $_GET['registration'] == 'success'): ?>
-                        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
+                        <div class="bg-bote-green-100 border border-bote-green-400 text-bote-green-700 px-4 py-3 rounded relative mb-4" role="alert">
                             <span class="block sm:inline">Registration successful! Please login.</span>
                         </div>
                     <?php endif; ?>
                     <div class="space-y-4">
                         <!-- Email Field -->
                         <div>
-                            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+                            <label for="email" class="block text-sm font-medium text-bote-stone-700 mb-2">
                                 Email Address
                             </label>
                             <input 
@@ -89,14 +90,14 @@ $login_image = getSystemSetting($conn, 'login_image', '');
                                 name="email" 
                                 type="email" 
                                 required 
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200 text-gray-900 placeholder-gray-500"
+                                class="w-full px-4 py-3 border border-bote-stone-300 rounded-lg focus:ring-2 focus:ring-bote-green-500 focus:border-bote-green-500 transition duration-200 text-bote-stone-900 placeholder-bote-stone-500"
                                 placeholder="Enter your email"
                             >
                         </div>
 
                         <!-- Password Field -->
                         <div>
-                            <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
+                            <label for="password" class="block text-sm font-medium text-bote-stone-700 mb-2">
                                 Password
                             </label>
                             <input 
@@ -104,7 +105,7 @@ $login_image = getSystemSetting($conn, 'login_image', '');
                                 name="password" 
                                 type="password" 
                                 required 
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200 text-gray-900 placeholder-gray-500"
+                                class="w-full px-4 py-3 border border-bote-stone-300 rounded-lg focus:ring-2 focus:ring-bote-green-500 focus:border-bote-green-500 transition duration-200 text-bote-stone-900 placeholder-bote-stone-500"
                                 placeholder="Enter your password"
                             >
                         </div>
@@ -117,14 +118,14 @@ $login_image = getSystemSetting($conn, 'login_image', '');
                                 id="remember-me" 
                                 name="remember-me" 
                                 type="checkbox" 
-                                class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                                class="h-4 w-4 text-bote-info-600 focus:ring-bote-green-500 border-bote-stone-300 rounded"
                             >
-                            <label for="remember-me" class="ml-2 block text-sm text-gray-700">
+                            <label for="remember-me" class="ml-2 block text-sm text-bote-stone-700">
                                 Remember me
                             </label>
                         </div>
                         <div class="text-sm">
-                            <a href="#" class="font-medium text-blue-600 hover:text-blue-500 transition duration-200">
+                            <a href="#" class="font-medium text-bote-info-600 hover:text-bote-info-500 transition duration-200">
                                 Forgot your password?
                             </a>
                         </div>
@@ -134,7 +135,7 @@ $login_image = getSystemSetting($conn, 'login_image', '');
                     <div>
                         <button 
                             type="submit" 
-                            class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-200"
+                            class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-bote-green-600 hover:bg-bote-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-bote-green-500 transition duration-200"
                         >
                             Login
                         </button>
@@ -142,14 +143,14 @@ $login_image = getSystemSetting($conn, 'login_image', '');
 
 
                     <div class="text-center">
-                        <p class="text-sm text-gray-600">
+                        <p class="text-sm text-bote-stone-600">
                             Don't have an account? 
-                            <a href="register.php" class="font-medium text-blue-600 hover:text-blue-500 transition duration-200">
+                            <a href="register.php" class="font-medium text-bote-info-600 hover:text-bote-info-500 transition duration-200">
                                 Sign up here
                             </a>
                         </p>
-                        <p class="text-sm text-gray-600 mt-2">
-                            <a href="index.php" class="font-medium text-blue-600 hover:text-blue-500 transition duration-200">
+                        <p class="text-sm text-bote-stone-600 mt-2">
+                            <a href="index.php" class="font-medium text-bote-info-600 hover:text-bote-info-500 transition duration-200">
                                 ← Back to Home
                             </a>
                         </p>
@@ -158,5 +159,5 @@ $login_image = getSystemSetting($conn, 'login_image', '');
             </div>
         </div>
     </div>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9764425c869d90b2',t:'MTc1NjM4ODgzMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>

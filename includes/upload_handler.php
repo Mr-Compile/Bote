@@ -240,10 +240,11 @@ class BoteBankUploadHandler {
     }
     
     /**
-     * Get relative path from admin directory
+     * Get relative path from the project uploads directory
      */
     private function getRelativePath($fullPath) {
-        $adminDir = dirname(__DIR__) . '/uploads/';
+        $adminDir = str_replace('\\', '/', dirname(__DIR__) . '/uploads/');
+        $fullPath = str_replace('\\', '/', $fullPath);
         return str_replace($adminDir, '', $fullPath);
     }
     

@@ -44,49 +44,49 @@ $stops = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 ob_start();
 ?>
 <div class="space-y-4">
-	<div class="text-sm text-gray-600">Generated: <?php echo date('M j, Y g:i A', strtotime($route['generated_on'])); ?></div>
+	<div class="text-sm text-bote-stone-600">Generated: <?php echo date('M j, Y g:i A', strtotime($route['generated_on'])); ?></div>
 	<ol class="space-y-3 list-decimal list-inside">
 		<?php foreach ($stops as $stop): ?>
-			<li class="p-3 rounded-lg border border-gray-200">
+			<li class="p-3 rounded-lg border border-bote-stone-200">
 				<div class="flex items-start justify-between">
 					<div class="w-full">
 						<?php if ($stop['request_id']): ?>
 							<!-- Home Pickup -->
 							<div class="flex items-center space-x-2 mb-2">
-								<i class="fas fa-home text-blue-600"></i>
-								<span class="font-semibold text-gray-900">Home Pickup</span>
+								<i class="fas fa-home text-bote-info-600"></i>
+								<span class="font-semibold text-bote-stone-900">Home Pickup</span>
 							</div>
-							<div class="font-medium text-gray-900">
+							<div class="font-medium text-bote-stone-900">
 								<?php echo htmlspecialchars(($stop['first_name'] ?? '') . ' ' . ($stop['last_name'] ?? '')); ?>
 							</div>
-							<div class="text-sm text-gray-600">
-								<?php echo htmlspecialchars($stop['material_type'] ?? ''); ?> • <?php echo htmlspecialchars($stop['address'] ?? ''); ?>
+							<div class="text-sm text-bote-stone-600">
+								<?php echo htmlspecialchars($stop['material_type'] ?? ''); ?> � <?php echo htmlspecialchars($stop['address'] ?? ''); ?>
 							</div>
-							<div class="text-xs text-gray-500">Status: <?php echo htmlspecialchars($stop['status'] ?? 'Scheduled'); ?></div>
+							<div class="text-xs text-bote-stone-500">Status: <?php echo htmlspecialchars($stop['status'] ?? 'Scheduled'); ?></div>
 						<?php elseif ($stop['point_id']): ?>
 							<!-- Collection Point -->
 							<div class="flex items-center space-x-2 mb-2">
-								<i class="fas fa-recycle text-green-600"></i>
-								<span class="font-semibold text-gray-900">Collection Point</span>
+								<i class="fas fa-recycle text-bote-green-600"></i>
+								<span class="font-semibold text-bote-stone-900">Collection Point</span>
 							</div>
-							<div class="font-medium text-gray-900">
+							<div class="font-medium text-bote-stone-900">
 								<?php echo htmlspecialchars($stop['collection_point_name'] ?? 'Collection Point'); ?>
 							</div>
-							<div class="text-sm text-gray-600">
+							<div class="text-sm text-bote-stone-600">
 								<?php echo htmlspecialchars($stop['collection_description'] ?? 'Collection Point for recyclables'); ?>
 							</div>
-							<div class="text-xs text-gray-500">Type: Collection Point</div>
+							<div class="text-xs text-bote-stone-500">Type: Collection Point</div>
 						<?php else: ?>
 							<!-- Starting Point -->
 							<div class="flex items-center space-x-2 mb-2">
 								<i class="fas fa-flag-checkered text-red-600"></i>
-								<span class="font-semibold text-gray-900">Starting Point</span>
+								<span class="font-semibold text-bote-stone-900">Starting Point</span>
 							</div>
-							<div class="text-sm text-gray-600">Lat: <?php echo $stop['latitude']; ?>, Lng: <?php echo $stop['longitude']; ?></div>
+							<div class="text-sm text-bote-stone-600">Lat: <?php echo e($stop['latitude']); ?>, Lng: <?php echo e($stop['longitude']); ?></div>
 						<?php endif; ?>
 						
-						<div class="mt-2 text-xs text-gray-400">
-							Coordinates: <?php echo $stop['latitude']; ?>, <?php echo $stop['longitude']; ?>
+						<div class="mt-2 text-xs text-bote-stone-400">
+							Coordinates: <?php echo e($stop['latitude']); ?>, <?php echo e($stop['longitude']); ?>
 						</div>
 					</div>
 				</div>

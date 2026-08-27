@@ -2,6 +2,26 @@
 // System Functions - Helper functions for system settings and common operations
 
 /**
+ * Escape a string for safe HTML output.
+ *
+ * @param string|null $text
+ * @return string
+ */
+function e(?string $text): string {
+    return htmlspecialchars((string) $text, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+}
+
+/**
+ * Encode a value for safe JavaScript insertion.
+ *
+ * @param mixed $value
+ * @return string
+ */
+function js($value): string {
+    return json_encode($value, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_SLASHES);
+}
+
+/**
  * Get system setting value from database
  * @param mysqli $conn Database connection
  * @param string $key Setting key

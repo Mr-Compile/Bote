@@ -2,7 +2,8 @@
 
 ## Stack
 - PHP (WAMP / Apache)
-- MariaDB 10.4.x (dumped schema in `bote (1).sql`)
+- MySQL 8.4.7 on 127.0.0.1:3306 (this is the server the app actually connects to)
+- MariaDB 11.4.9 on 127.0.0.1:3307 (also installed; migrations must target the MySQL instance)
 - MySQLi with prepared statements (most queries)
 - Tailwind CSS CDN, Lucide icons, Chart.js, Leaflet, Feather Icons
 - Composer only under `sms/` for `capcom6/android-sms-gateway`
@@ -81,7 +82,20 @@
 - Composer: `C:\wamp64\bin\php\php8.2.29\php.exe C:\wamp64\bin\php\php8.2.29\composer`
 - Run tests: `C:\wamp64\bin\php\php8.2.29\php.exe vendor\bin\phpunit`
 - Run static analysis: `C:\wamp64\bin\php\php8.2.29\php.exe vendor\bin\phpstan analyse app tests --level=9`
-- WAMP database service `wampmariadb64` must be running for integration tests / web use.
+- WAMP MySQL service must be running for integration tests / web use (PHP connects to `localhost` -> 127.0.0.1:3306).
+- MySQL CLI: `C:\wamp64\bin\mysql\mysql8.4.7\bin\mysql.exe -u root -h 127.0.0.1 -P 3306` (use this for schema changes, not the MariaDB client on 3307).
+- Live DB backup created at `backups/bote_backup_mysql_2026_08_27.sql`.
+
+## TypeScript UI Build
+- Node.js is installed at `C:\wamp64\bin\nodejs\v20.20.2` and the user PATH was updated to include it.
+- Source TypeScript files live in `{admin,resident,worker}/assets/ts/` and `assets/ts/` for shared/public pages.
+- Compiled output goes to the matching `assets/js/` directory.
+- Per-role `tsconfig.json` files extend `tsconfig.base.json` and output `module: ES2022` scripts that are loaded with `<script type="module" src="...">`.
+- Shared helpers are in `admin/assets/ts/shared.ts`, `resident/assets/ts/shared.ts`, `worker/assets/ts/shared.ts`, and `assets/ts/shared.ts`.
+- Page data should be passed through `<script type="application/json" id="<page>-data">` and read with `getPageData<T>()` from `./shared.js`; avoid inline executable JavaScript.
+- Public functions used by `onclick` attributes are attached to `window` at the end of each module (`Object.assign(window, { ... })`) with matching `declare global` blocks.
+- Build command: `npm run build` (or `build.bat` on Windows if the PATH is not yet loaded in the current shell).
+- `package-lock.json` and `node_modules` are created by the build; `node_modules` and `*.js.map` files are `.gitignore`d.
 
 ## Agent Workflow Rules
 - Do not auto-commit changes. Pause and ask the user for explicit confirmation before creating a commit.

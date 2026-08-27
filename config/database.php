@@ -1,6 +1,7 @@
 <?php
 // Database configuration
 require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../includes/system_functions.php';
 require_once __DIR__ . '/env_loader.php';
 
 $requiredEnv = [

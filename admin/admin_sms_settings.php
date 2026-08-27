@@ -190,11 +190,11 @@ $today_sms = $stmt->get_result()->fetch_assoc()['today_sms'];
             <!-- SMS Statistics -->
             <div class="sms-stats">
                 <div class="stat-card">
-                    <div class="stat-number"><?php echo $total_sms; ?></div>
+                    <div class="stat-number"><?php echo e($total_sms); ?></div>
                     <div>Total SMS Sent</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number"><?php echo $today_sms; ?></div>
+                    <div class="stat-number"><?php echo e($today_sms); ?></div>
                     <div>SMS Sent Today</div>
                 </div>
             </div>
@@ -211,7 +211,7 @@ $today_sms = $stmt->get_result()->fetch_assoc()['today_sms'];
                         <select name="test_user_id" id="test_user_id" required>
                             <option value="">Choose a user...</option>
                             <?php foreach ($users as $user): ?>
-                                <option value="<?php echo $user['user_id']; ?>">
+                                <option value="<?php echo e($user['user_id']); ?>">
                                     <?php echo htmlspecialchars($user['first_name'] . ' ' . $user['last_name'] . ' (' . $user['phone'] . ') - ' . ucfirst($user['role'])); ?>
                                 </option>
                             <?php endforeach; ?>
@@ -239,7 +239,7 @@ $today_sms = $stmt->get_result()->fetch_assoc()['today_sms'];
                         <div style="max-height: 200px; overflow-y: auto; border: 1px solid #ddd; padding: 10px;">
                             <?php foreach ($users as $user): ?>
                                 <label style="display: block; margin-bottom: 5px;">
-                                    <input type="checkbox" name="user_ids[]" value="<?php echo $user['user_id']; ?>">
+                                    <input type="checkbox" name="user_ids[]" value="<?php echo e($user['user_id']); ?>">
                                     <?php echo htmlspecialchars($user['first_name'] . ' ' . $user['last_name'] . ' (' . $user['phone'] . ') - ' . ucfirst($user['role'])); ?>
                                 </label>
                             <?php endforeach; ?>
@@ -272,7 +272,7 @@ $today_sms = $stmt->get_result()->fetch_assoc()['today_sms'];
                         <tbody>
                             <?php foreach ($recent_sms as $sms): ?>
                                 <tr>
-                                    <td><?php echo $sms['sms_id']; ?></td>
+                                    <td><?php echo e($sms['sms_id']); ?></td>
                                     <td><?php echo htmlspecialchars($sms['first_name'] . ' ' . $sms['last_name']); ?></td>
                                     <td><?php echo htmlspecialchars(substr($sms['message'], 0, 50)) . (strlen($sms['message']) > 50 ? '...' : ''); ?></td>
                                     <td><?php echo htmlspecialchars($sms['type']); ?></td>

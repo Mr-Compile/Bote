@@ -22,49 +22,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->execute();
         $result = $stmt->get_result();
 
-        if ($result->num_rows === 1) {
-            $user = $result->fetch_assoc();
+        $user = $result->fetch_assoc();
 
-            // Verify password
-            if (password_verify($password, $user['password'])) {
-                // Set session variables
-                $_SESSION['user_id'] = $user['user_id'];
-                $_SESSION['first_name'] = $user['first_name'];
-                $_SESSION['last_name'] = $user['last_name'];
-                $_SESSION['email'] = $user['email'];
-                $_SESSION['role'] = $user['role'];
+        // Verify password
+        if ($user !== null && password_verify($password, $user['password'])) {
+            // Set session variables
+            $_SESSION['user_id'] = $user['user_id'];
+            $_SESSION['first_name'] = $user['first_name'];
+            $_SESSION['last_name'] = $user['last_name'];
+            $_SESSION['email'] = $user['email'];
+            $_SESSION['role'] = $user['role'];
 
-                // Prevent session fixation by rotating the session ID
-                session_regenerate_id(true);
+            // Prevent session fixation by rotating the session ID
+            session_regenerate_id(true);
 
-                // Redirect based on role
-                switch ($user['role']) {
-                    case 'admin':
-                        header("Location: admin/admin_dashboard.php");
-                        break;
-                    case 'worker':
-                        header("Location: worker/worker_dashboard.php");
-                        break;
-                    case 'resident':
-                        header("Location: resident/resident_dashboard.php");
-                        break;
-                    default:
-                        throw new Exception("Invalid user role");
-                }
-                exit();
-            } else {
-                $error = "Invalid password";
+            // Redirect based on role
+            switch ($user['role']) {
+                case 'admin':
+                    header("Location: admin/admin_dashboard.php");
+                    break;
+                case 'worker':
+                    header("Location: worker/worker_dashboard.php");
+                    break;
+                case 'resident':
+                    header("Location: resident/resident_dashboard.php");
+                    break;
+                default:
+                    throw new Exception("Invalid user role");
             }
-        } else {
-            $error = "User not found";
+            exit();
         }
 
         $stmt->close();
 
-        if (!empty($error)) {
-            header("Location: login.php?error=" . urlencode($error));
-            exit();
-        }
+        // Generic error to prevent email enumeration
+        header("Location: login.php?error=" . urlencode("Invalid email or password"));
+        exit();
 
     } catch (Exception $e) {
         error_log("Login error: " . $e->getMessage());

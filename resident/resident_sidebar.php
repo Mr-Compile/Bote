@@ -66,6 +66,7 @@ if (!$stats) {
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Resident Dashboard - <?php echo htmlspecialchars($system_name); ?></title>
 <script src="https://cdn.tailwindcss.com"></script>
+<script type="module" src="../assets/js/theme.js"></script>
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 <script>
     // Fallback for CDN failures
@@ -81,12 +82,12 @@ if (!$stats) {
     .points-glow { box-shadow: 0 0 20px rgba(16, 185, 129, 0.3); }
 </style>
 </head>
-<body class="bg-gray-50 font-sans">
+<body class="bg-bote-stone-50 font-sans">
 
 <!-- Sidebar -->
 <div class="fixed left-0 top-0 h-full w-64 bg-white shadow-xl flex flex-col z-50">
     <!-- Header -->
-    <div class="bg-gradient-to-br from-green-500 via-green-600 to-emerald-700 p-6 relative overflow-hidden">
+    <div class="bg-gradient-to-br from-bote-green-500 via-bote-green-600 to-bote-green-700 p-6 relative overflow-hidden">
         <div class="absolute inset-0 bg-black bg-opacity-10"></div>
         <div class="relative z-10 flex items-center space-x-3 mb-2">
             <?php if (file_exists("../uploads/$system_logo")): ?>
@@ -98,22 +99,22 @@ if (!$stats) {
             <?php endif; ?>
             <h1 class="text-xl font-bold text-white"><?php echo htmlspecialchars($system_name); ?></h1>
         </div>
-        <p class="text-green-100 text-sm font-medium">Resident Portal</p>
+        <p class="text-bote-green-100 text-sm font-medium">Resident Portal</p>
     </div>
 
     <!-- User Info -->
-    <div class="px-6 py-4 border-b border-gray-100 bg-gradient-to-r from-green-50 to-emerald-50 flex items-center space-x-3">
+    <div class="px-6 py-4 border-b border-bote-stone-100 bg-gradient-to-r from-bote-green-50 to-bote-green-50 flex items-center space-x-3">
         <?php if ($profile_display['type'] === 'photo'): ?>
-            <img src="../uploads/profiles/thumbs/<?php echo htmlspecialchars($profile_display['value']); ?>" class="w-12 h-12 rounded-full object-cover ring-2 ring-green-200">
+            <img src="../uploads/profiles/thumbs/<?php echo htmlspecialchars($profile_display['value']); ?>" class="w-12 h-12 rounded-full object-cover ring-2 ring-bote-green-200">
         <?php else: ?>
-            <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center ring-2 ring-green-200">
+            <div class="w-12 h-12 bg-gradient-to-br from-bote-green-500 to-bote-green-600 rounded-full flex items-center justify-center ring-2 ring-bote-green-200">
                 <span class="text-white font-bold text-lg"><?php echo htmlspecialchars($profile_display['value']); ?></span>
             </div>
         <?php endif; ?>
         <div class="flex-1 min-w-0">
-            <p class="font-semibold text-gray-800 truncate"><?php echo htmlspecialchars($user_data['first_name'].' '.$user_data['last_name']); ?></p>
-            <p class="text-sm text-green-600 font-medium">Eco Resident</p>
-            <p class="text-xs text-gray-500 truncate"><?php echo htmlspecialchars($user_data['email']); ?></p>
+            <p class="font-semibold text-bote-stone-800 truncate"><?php echo htmlspecialchars($user_data['first_name'].' '.$user_data['last_name']); ?></p>
+            <p class="text-sm text-bote-green-600 font-medium">Eco Resident</p>
+            <p class="text-xs text-bote-stone-500 truncate"><?php echo htmlspecialchars($user_data['email']); ?></p>
         </div>
     </div>
 
@@ -123,33 +124,33 @@ if (!$stats) {
     <nav class="flex-1 px-4 py-4 space-y-1 overflow-y-auto">
         <?php
         $links = [
-            ['href'=>'resident_dashboard.php','icon'=>'layout-dashboard','label'=>'Dashboard','color'=>'green','badge'=>0],
-            ['href'=>'resident_new_request.php','icon'=>'plus-circle','label'=>'Schedule Pickup','color'=>'blue','badge'=>0],
-            ['href'=>'resident_direct_dropoff.php','icon'=>'map-pin','label'=>'Direct Drop-off','color'=>'indigo','badge'=>0],
+            ['href'=>'resident_dashboard.php','icon'=>'layout-dashboard','label'=>'Dashboard','color'=>'bote-green','badge'=>0],
+            ['href'=>'resident_new_request.php','icon'=>'plus-circle','label'=>'Schedule Pickup','color'=>'bote-info','badge'=>0],
+            ['href'=>'resident_direct_dropoff.php','icon'=>'map-pin','label'=>'Direct Drop-off','color'=>'bote-info','badge'=>0],
             ['href'=>'resident_my_requests.php','icon'=>'list','label'=>'My Requests','color'=>'orange','badge'=>$stats['pending_requests']],
             ['href'=>'resident_history.php','icon'=>'coins','label'=>'History','color'=>'yellow','badge'=>0],
             ['href'=>'resident_rewards.php','icon'=>'gift','label'=>'Redeem Rewards','color'=>'purple','badge'=>0],
             ['href'=>'resident_leaderboard.php','icon'=>'trophy','label'=>'Leaderboard','color'=>'yellow','badge'=>0],
             ['divider'=>true],
-            ['href'=>'resident_profile.php','icon'=>'user','label'=>'My Profile','color'=>'gray','badge'=>0],
-            ['href'=>'resident_help.php','icon'=>'help-circle','label'=>'Help & Support','color'=>'indigo','badge'=>0]
+            ['href'=>'resident_profile.php','icon'=>'user','label'=>'My Profile','color'=>'bote-stone','badge'=>0],
+            ['href'=>'resident_help.php','icon'=>'help-circle','label'=>'Help & Support','color'=>'bote-info','badge'=>0]
         ];
 
         $currentPage = basename($_SERVER['PHP_SELF']);
         foreach($links as $link):
             if(isset($link['divider'])): ?>
-                <div class="border-t border-gray-200 my-4"></div>
+                <div class="border-t border-bote-stone-200 my-4"></div>
             <?php else: 
                 $active = $link['href'] === $currentPage ? 'sidebar-active' : '';
         ?>
-        <a href="<?php echo $link['href']; ?>" class="group flex items-center space-x-3 p-3 rounded-xl hover:bg-green-50 transition-all duration-200 text-gray-700 hover:text-green-700 <?php echo $active; ?>">
-            <div class="w-8 h-8 rounded-lg bg-<?php echo $link['color']; ?>-100 group-hover:bg-<?php echo $link['color']; ?>-200 flex items-center justify-center transition-colors">
-                <i data-lucide="<?php echo $link['icon']; ?>" class="w-4 h-4 text-<?php echo $link['color']; ?>-600"></i>
+        <a href="<?php echo e($link['href']); ?>" class="group flex items-center space-x-3 p-3 rounded-xl hover:bg-bote-green-50 transition-all duration-200 text-bote-stone-700 hover:text-bote-green-700 <?php echo e($active); ?>">
+            <div class="w-8 h-8 rounded-lg bg-<?php echo e($link['color']); ?>-100 group-hover:bg-<?php echo e($link['color']); ?>-200 flex items-center justify-center transition-colors">
+                <i data-lucide="<?php echo e($link['icon']); ?>" class="w-4 h-4 text-<?php echo e($link['color']); ?>-600"></i>
             </div>
-            <span class="font-medium"><?php echo $link['label']; ?></span>
+            <span class="font-medium"><?php echo e($link['label']); ?></span>
             <?php if(!empty($link['badge'])): ?>
-                <span class="ml-auto bg-<?php echo $link['color']; ?>-100 text-<?php echo $link['color']; ?>-700 text-xs px-2 py-1 rounded-full notification-badge">
-                    <?php echo $link['badge']; ?>
+                <span class="ml-auto bg-<?php echo e($link['color']); ?>-100 text-<?php echo e($link['color']); ?>-700 text-xs px-2 py-1 rounded-full notification-badge">
+                    <?php echo e($link['badge']); ?>
                 </span>
             <?php endif; ?>
         </a>
@@ -157,7 +158,7 @@ if (!$stats) {
     </nav>
 
     <!-- Logout Button -->
-    <div class="p-4 border-t border-gray-100">
+    <div class="p-4 border-t border-bote-stone-100">
         <button onclick="ResidentSidebar.showLogoutModal()" class="w-full flex items-center justify-center space-x-2 p-3 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 rounded-xl text-white transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105">
             <i data-lucide="log-out" class="w-4 h-4"></i>
             <span class="font-medium">Logout</span>
@@ -172,46 +173,16 @@ if (!$stats) {
             <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <i data-lucide="log-out" class="w-8 h-8 text-red-600"></i>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Confirm Logout</h3>
-            <p class="text-gray-600 mb-6">Are you sure you want to log out? Your recycling progress will be saved.</p>
+            <h3 class="text-xl font-bold text-bote-stone-900 mb-2">Confirm Logout</h3>
+            <p class="text-bote-stone-600 mb-6">Are you sure you want to log out? Your recycling progress will be saved.</p>
             <div class="flex space-x-4">
-                <button onclick="ResidentSidebar.hideLogoutModal()" class="flex-1 px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 rounded-xl font-medium transition-colors">Cancel</button>
+                <button onclick="ResidentSidebar.hideLogoutModal()" class="flex-1 px-4 py-2 bg-bote-stone-100 hover:bg-bote-stone-200 text-bote-stone-800 rounded-xl font-medium transition-colors">Cancel</button>
                 <button onclick="ResidentSidebar.confirmLogout()" class="flex-1 px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-xl font-medium transition-colors">Logout</button>
             </div>
         </div>
     </div>
 </div>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    if(typeof lucide !== 'undefined') lucide.createIcons();
-
-    window.ResidentSidebar = {
-        modal: document.getElementById('residentLogoutModal'),
-
-        showLogoutModal() { this.modal?.classList.replace('hidden','flex'); setTimeout(()=>{ this.modal.querySelector('div > div')?.classList.replace('scale-95','scale-100'); },10); },
-        hideLogoutModal() { 
-            const inner = this.modal.querySelector('div > div'); 
-            inner?.classList.replace('scale-100','scale-95'); 
-            setTimeout(()=>{ this.modal?.classList.replace('flex','hidden'); },300);
-        },
-        confirmLogout() { window.location.href='../logout.php'; },
-
-        init() {
-            this.modal.addEventListener('click', e => { if(e.target === this.modal) this.hideLogoutModal(); });
-            document.addEventListener('keydown', e => { if(e.key==='Escape' && !this.modal.classList.contains('hidden')) this.hideLogoutModal(); });
-        }
-    };
-
-    ResidentSidebar.init();
-
-    // Animate points
-    const points = document.querySelector('.points-glow');
-    if(points){ points.style.transform='scale(1.05)'; setTimeout(()=>{ points.style.transform='scale(1)'; },300); }
-
-    // Highlight active page
-    document.querySelectorAll('nav a').forEach(link => { if(link.href.endsWith(window.location.pathname.split('/').pop())) link.classList.add('sidebar-active'); });
-});
-</script>
+<script type="module" src="assets/js/resident_sidebar.js"></script>
 </body>
 </html>

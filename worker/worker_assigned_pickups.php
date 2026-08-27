@@ -134,7 +134,7 @@ $pending_count = count(array_filter($assigned_pickups, function($pickup) { retur
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <link rel="stylesheet" href="assets/css/assigned_pickups.css">
     <!-- Custom JavaScript -->
-    <script src="assets/js/assigned_pickups.js"></script>
+    <script type="module" src="assets/js/assigned_pickups.js"></script>
 </head>
 <body>
     <?php include 'worker_sidebar.php'; ?>
@@ -173,7 +173,7 @@ $pending_count = count(array_filter($assigned_pickups, function($pickup) { retur
             <!-- Statistics Cards -->
             <div class="stats-grid">
                 <div class="stat-card available">
-                    <div class="stat-value"><?= $total_available ?></div>
+                    <div class="stat-value"><?= e($total_available) ?></div>
                     <div class="stat-label">
                         <i data-feather="inbox"></i>
                         Available Requests
@@ -184,7 +184,7 @@ $pending_count = count(array_filter($assigned_pickups, function($pickup) { retur
                 </div>
                 
                 <div class="stat-card assigned">
-                    <div class="stat-value"><?= $total_assigned ?></div>
+                    <div class="stat-value"><?= e($total_assigned) ?></div>
                     <div class="stat-label">
                         <i data-feather="clipboard"></i>
                         Assigned to You
@@ -195,7 +195,7 @@ $pending_count = count(array_filter($assigned_pickups, function($pickup) { retur
                 </div>
                 
                 <div class="stat-card today">
-                    <div class="stat-value"><?= $today_count ?></div>
+                    <div class="stat-value"><?= e($today_count) ?></div>
                     <div class="stat-label">
                         <i data-feather="calendar"></i>
                         Due Today
@@ -311,9 +311,9 @@ $pending_count = count(array_filter($assigned_pickups, function($pickup) { retur
                                             <div class="detail-content">
                                                 <div class="detail-label">Quantity/Weight</div>
                                                 <div class="detail-value">
-                                                    <?= $pickup['weight_kg'] ?> <?= htmlspecialchars($pickup['unit']) ?>
+                                                    <?= e($pickup['weight_kg']) ?> <?= htmlspecialchars($pickup['unit']) ?>
                                                     <?php if ($pickup['quantity_pcs']): ?>
-                                                        (<?= $pickup['quantity_pcs'] ?> pcs)
+                                                        (<?= e($pickup['quantity_pcs']) ?> pcs)
                                                     <?php endif; ?>
                                                 </div>
                                             </div>
@@ -377,7 +377,7 @@ $pending_count = count(array_filter($assigned_pickups, function($pickup) { retur
                         </div>
                         <h3 class="empty-title">No Assigned Pickup Requests</h3>
                         <p class="empty-message">You don't have any assigned pickup requests yet. Accept pickup requests from the available section above.</p>
-                        <button class="action-btn btn-secondary" onclick="document.querySelector('.available-section').scrollIntoView({ behavior: 'smooth' })">
+                        <button class="action-btn btn-secondary" onclick="scrollToAvailableSection()">
                             <i data-feather="arrow-up"></i> View Available Pickups
                         </button>
                     </div>
@@ -450,9 +450,9 @@ $pending_count = count(array_filter($assigned_pickups, function($pickup) { retur
                                                 <div class="detail-label">Expected Amount</div>
                                                 <div class="detail-value">
                                                     <?php if ($pickup['unit'] === 'kg'): ?>
-                                                        <?= $pickup['weight_kg'] ?> kg (estimated)
+                                                        <?= e($pickup['weight_kg']) ?> kg (estimated)
                                                     <?php else: ?>
-                                                        <?= $pickup['quantity_pcs'] ?> pcs (estimated)
+                                                        <?= e($pickup['quantity_pcs']) ?> pcs (estimated)
                                                     <?php endif; ?>
                                                 </div>
                                             </div>
@@ -499,7 +499,7 @@ $pending_count = count(array_filter($assigned_pickups, function($pickup) { retur
                                             <?php endif; ?>
                                             
                                             <?php if (!empty($pickup['latitude']) && !empty($pickup['longitude'])): ?>
-                                                <a href="https://maps.google.com/?q=<?= $pickup['latitude'] ?>,<?= $pickup['longitude'] ?>" target="_blank" class="icon-btn map" title="View Location">
+                                                <a href="https://maps.google.com/?q=<?= e($pickup['latitude']) ?>,<?= e($pickup['longitude']) ?>" target="_blank" class="icon-btn map" title="View Location">
                                                     <i data-feather="map"></i>
                                                 </a>
                                             <?php endif; ?>

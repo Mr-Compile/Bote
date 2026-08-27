@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once '../config/database.php';
 require_once '../includes/auth_admin.php';
 require_once '../includes/system_functions.php';
@@ -14,7 +13,7 @@ function sanitize_input($data) {
 // Function to validate coordinates
 function validate_coordinates($lat, $lng) {
     // Basic validation for Philippine coordinates
-    // Philippines: roughly 4째N to 21째N, 116째E to 127째E
+    // Philippines: roughly 4캮 to 21캮, 116캞 to 127캞
     if ($lat < 4 || $lat > 21 || $lng < 116 || $lng > 127) {
         return false;
     }

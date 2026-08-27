@@ -146,6 +146,7 @@ $recent_notifications = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($system_name); ?> - Worker Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="../assets/js/theme.js"></script>
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
@@ -210,14 +211,14 @@ $recent_notifications = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         }
     </style>
 </head>
-<body class="bg-gray-50 min-h-screen">
+<body class="bg-bote-stone-50 min-h-screen">
     <!-- Include Sidebar -->
     <?php include 'worker_sidebar.php'; ?>
     
     <!-- Main Content -->
     <div class="ml-64 min-h-screen">
         <!-- Header Section -->
-        <div class="bg-white border-b border-gray-200 px-6 py-6">
+        <div class="bg-white border-b border-bote-stone-200 px-6 py-6">
             <div class="max-w-7xl mx-auto">
                 <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
                     <!-- Profile Info -->
@@ -225,22 +226,22 @@ $recent_notifications = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                         <?php if ($profile_display['type'] === 'photo'): ?>
                             <img src="../uploads/profiles/thumbs/<?php echo htmlspecialchars($profile_display['value']); ?>" 
                                  alt="Profile Photo" 
-                                 class="w-16 h-16 rounded-full object-cover ring-4 ring-blue-200">
+                                 class="w-16 h-16 rounded-full object-cover ring-4 ring-bote-info-200">
                         <?php else: ?>
-                            <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-green-600 rounded-full flex items-center justify-center text-white text-xl font-semibold">
+                            <div class="w-16 h-16 bg-gradient-to-br from-bote-info-400 to-bote-green-600 rounded-full flex items-center justify-center text-white text-xl font-semibold">
                                 <?php echo htmlspecialchars($profile_display['value']); ?>
                             </div>
                         <?php endif; ?>
                         <div>
-                            <h1 class="text-2xl font-bold text-gray-900">
+                            <h1 class="text-2xl font-bold text-bote-stone-900">
                                 <?php echo htmlspecialchars($user_data['first_name'] . ' ' . $user_data['last_name']); ?>
                             </h1>
-                            <div class="text-sm text-gray-600 space-y-1">
+                            <div class="text-sm text-bote-stone-600 space-y-1">
                                 <p>📧 <?php echo htmlspecialchars($user_data['email']); ?></p>
                                 <p>📱 <?php echo htmlspecialchars($user_data['phone']); ?></p>
                                 <p class="flex items-center gap-2">
-                                    <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                                    <span class="text-green-600 font-medium">Active Status</span>
+                                    <span class="w-2 h-2 bg-bote-green-500 rounded-full animate-pulse"></span>
+                                    <span class="text-bote-green-600 font-medium">Active Status</span>
                                 </p>
                             </div>
                         </div>
@@ -248,9 +249,9 @@ $recent_notifications = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                     
                     <!-- Today's Performance -->
                     <div class="eco-gradient rounded-2xl p-6 text-white text-center lg:text-right">
-                        <p class="text-blue-100 text-sm font-medium">Today's Collection</p>
+                        <p class="text-bote-info-100 text-sm font-medium">Today's Collection</p>
                         <p class="text-4xl font-bold mt-1"><?php echo number_format($stats['today_weight'], 1); ?> kg</p>
-                        <p class="text-blue-100 text-xs mt-1">🚛 Keep up the great work!</p>
+                        <p class="text-bote-info-100 text-xs mt-1">🚛 Keep up the great work!</p>
                     </div>
                 </div>
             </div>
@@ -263,64 +264,64 @@ $recent_notifications = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                 <!-- Performance Summary -->
                 <div class="lg:col-span-2 bg-white rounded-xl card-shadow p-6 hover-lift">
                     <div class="flex items-center gap-3 mb-6">
-                        <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                            <span class="text-blue-600 text-xl">📊</span>
+                        <div class="w-10 h-10 bg-bote-info-100 rounded-lg flex items-center justify-center">
+                            <span class="text-bote-info-600 text-xl">📊</span>
                         </div>
-                        <h2 class="text-xl font-semibold text-gray-900">Performance Summary</h2>
+                        <h2 class="text-xl font-semibold text-bote-stone-900">Performance Summary</h2>
                     </div>
                     <div class="grid grid-cols-3 gap-4 mb-6">
-                        <div class="text-center p-4 bg-blue-50 rounded-lg">
-                            <p class="text-2xl font-bold text-blue-600"><?php echo $stats['assigned_pickups']; ?></p>
-                            <p class="text-sm text-gray-600">Total Assigned</p>
+                        <div class="text-center p-4 bg-bote-info-50 rounded-lg">
+                            <p class="text-2xl font-bold text-bote-info-600"><?php echo e($stats['assigned_pickups']); ?></p>
+                            <p class="text-sm text-bote-stone-600">Total Assigned</p>
                         </div>
-                        <div class="text-center p-4 bg-green-50 rounded-lg">
-                            <p class="text-2xl font-bold text-green-600"><?php echo $stats['completed_pickups']; ?></p>
-                            <p class="text-sm text-gray-600">Completed</p>
+                        <div class="text-center p-4 bg-bote-green-50 rounded-lg">
+                            <p class="text-2xl font-bold text-bote-green-600"><?php echo e($stats['completed_pickups']); ?></p>
+                            <p class="text-sm text-bote-stone-600">Completed</p>
                         </div>
                         <div class="text-center p-4 bg-orange-50 rounded-lg">
-                            <p class="text-2xl font-bold text-orange-600"><?php echo $stats['pending_pickups']; ?></p>
-                            <p class="text-sm text-gray-600">Pending</p>
+                            <p class="text-2xl font-bold text-orange-600"><?php echo e($stats['pending_pickups']); ?></p>
+                            <p class="text-sm text-bote-stone-600">Pending</p>
                         </div>
                     </div>
-                    <div class="relative w-full h-4 bg-gray-200 rounded-full">
+                    <div class="relative w-full h-4 bg-bote-stone-200 rounded-full">
                         <?php 
                         $completion_rate = $stats['assigned_pickups'] > 0 ? ($stats['completed_pickups'] / $stats['assigned_pickups']) * 100 : 0;
                         ?>
-                        <div class="absolute top-0 left-0 h-full bg-gradient-to-r from-blue-500 to-green-500 rounded-full" style="width: <?php echo $completion_rate; ?>%"></div>
+                        <div class="absolute top-0 left-0 h-full bg-gradient-to-r from-bote-info-500 to-bote-green-500 rounded-full" style="width: <?php echo e($completion_rate); ?>%"></div>
                     </div>
-                    <p class="text-center text-sm text-gray-600 mt-2"><?php echo number_format($completion_rate, 1); ?>% Completion Rate</p>
+                    <p class="text-center text-sm text-bote-stone-600 mt-2"><?php echo number_format($completion_rate, 1); ?>% Completion Rate</p>
                 </div>
 
                 <!-- Quick Actions -->
                 <div class="space-y-4">
-                    <div class="bg-gradient-to-br from-white to-gray-50 rounded-xl card-shadow p-6 hover-lift border border-gray-100">
+                    <div class="bg-gradient-to-br from-white to-bote-stone-50 rounded-xl card-shadow p-6 hover-lift border border-bote-stone-100">
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center shadow-md">
+                                <div class="w-10 h-10 bg-gradient-to-br from-bote-info-500 to-bote-green-600 rounded-lg flex items-center justify-center shadow-md">
                                     <i data-lucide="zap" class="w-5 h-5 text-white"></i>
                                 </div>
                                 <div>
-                                    <h3 class="text-lg font-bold text-gray-900">Quick Actions</h3>
-                                    <p class="text-sm text-gray-600">Your daily tasks</p>
+                                    <h3 class="text-lg font-bold text-bote-stone-900">Quick Actions</h3>
+                                    <p class="text-sm text-bote-stone-600">Your daily tasks</p>
                                 </div>
                             </div>
                             
-                            <div class="bg-blue-100 text-blue-700 px-2 py-1 rounded-md text-xs font-medium">
-                                Worker ID: <?php echo $user_id; ?>
+                            <div class="bg-bote-info-100 text-bote-info-700 px-2 py-1 rounded-md text-xs font-medium">
+                                Worker ID: <?php echo e($user_id); ?>
                             </div>
                         </div>
                         
-                        <div class="flex items-center justify-between p-3 bg-blue-50 rounded-lg border border-blue-100 mb-3">
+                        <div class="flex items-center justify-between p-3 bg-bote-info-50 rounded-lg border border-bote-info-100 mb-3">
                             <div class="flex items-center gap-2">
-                                <i data-lucide="calendar-check" class="w-5 h-5 text-blue-600"></i>
+                                <i data-lucide="calendar-check" class="w-5 h-5 text-bote-info-600"></i>
                                 <div>
-                                    <p class="text-sm font-medium text-gray-800">Today's Status</p>
-                                    <p class="text-xs text-gray-600"><?php echo date('l, F j, Y'); ?></p>
+                                    <p class="text-sm font-medium text-bote-stone-800">Today's Status</p>
+                                    <p class="text-xs text-bote-stone-600"><?php echo date('l, F j, Y'); ?></p>
                                 </div>
                             </div>
                             <div>
                                 <?php if ($stats['active_routes'] > 0): ?>
-                                    <span class="px-2 py-1 bg-green-100 text-green-700 rounded-md text-xs font-medium">Route Active</span>
+                                    <span class="px-2 py-1 bg-bote-green-100 text-bote-green-700 rounded-md text-xs font-medium">Route Active</span>
                                 <?php else: ?>
                                     <span class="px-2 py-1 bg-yellow-100 text-yellow-700 rounded-md text-xs font-medium">No Active Route</span>
                                 <?php endif; ?>
@@ -328,41 +329,41 @@ $recent_notifications = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                         </div>
                         
                         <div class="grid grid-cols-2 gap-3">
-                            <a href="worker_collection_routes.php" class="flex flex-col items-center p-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg hover:from-blue-600 hover:to-blue-700 transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105">
+                            <a href="worker_collection_routes.php" class="flex flex-col items-center p-3 bg-gradient-to-r from-bote-info-500 to-bote-info-600 text-white rounded-lg hover:from-bote-info-600 hover:to-bote-info-700 transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105">
                                 <i data-lucide="map" class="w-6 h-6 mb-2"></i>
                                 <span class="text-sm font-medium">View Routes</span>
                             </a>
                             
-                            <a href="worker_assigned_pickups.php" class="flex flex-col items-center p-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-lg hover:from-green-600 hover:to-emerald-700 transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105">
+                            <a href="worker_assigned_pickups.php" class="flex flex-col items-center p-3 bg-gradient-to-r from-bote-green-500 to-bote-green-600 text-white rounded-lg hover:from-bote-green-600 hover:to-bote-green-700 transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105">
                                 <i data-lucide="package-check" class="w-6 h-6 mb-2"></i>
                                 <span class="text-sm font-medium">Manage Pickups</span>
                             </a>
                         </div>
                     </div>
                     
-                    <div class="bg-white rounded-xl card-shadow p-5 hover-lift border border-gray-100">
+                    <div class="bg-white rounded-xl card-shadow p-5 hover-lift border border-bote-stone-100">
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center gap-2">
-                                <i data-lucide="bar-chart-2" class="w-5 h-5 text-purple-600"></i>
-                                <h3 class="text-base font-bold text-gray-900">Today's Activity</h3>
+                                <i data-lucide="bar-chart-2" class="w-5 h-5 text-bote-green-600"></i>
+                                <h3 class="text-base font-bold text-bote-stone-900">Today's Activity</h3>
                             </div>
-                            <span class="bg-purple-100 text-purple-700 px-2 py-1 rounded-md text-xs font-medium">
+                            <span class="bg-bote-green-100 text-bote-green-700 px-2 py-1 rounded-md text-xs font-medium">
                                 <?php echo date('M j'); ?>
                             </span>
                         </div>
                         
                         <div class="space-y-2">
                             <div class="flex justify-between items-center">
-                                <span class="text-sm text-gray-600">Completed Pickups</span>
-                                <span class="font-medium"><?php echo $stats['today_weight'] > 0 ? number_format($stats['completed_pickups']) : '0'; ?></span>
+                                <span class="text-sm text-bote-stone-600">Completed Pickups</span>
+                                <span class="font-medium"><?php echo e($stats['today_weight'] > 0 ? number_format($stats['completed_pickups']) : '0'); ?></span>
                             </div>
                             <div class="flex justify-between items-center">
-                                <span class="text-sm text-gray-600">Material Collected</span>
+                                <span class="text-sm text-bote-stone-600">Material Collected</span>
                                 <span class="font-medium"><?php echo number_format($stats['today_weight'], 1); ?> kg</span>
                             </div>
                             <div class="flex justify-between items-center">
-                                <span class="text-sm text-gray-600">Pending Pickups</span>
-                                <span class="font-medium"><?php echo $stats['pending_pickups']; ?></span>
+                                <span class="text-sm text-bote-stone-600">Pending Pickups</span>
+                                <span class="font-medium"><?php echo e($stats['pending_pickups']); ?></span>
                             </div>
                         </div>
                     </div>
@@ -381,15 +382,15 @@ $recent_notifications = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                             <div class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
                                 <i data-lucide="clipboard-list" class="w-5 h-5 text-orange-600"></i>
                             </div>
-                            <h2 class="text-xl font-semibold text-gray-900">Assigned Pickups</h2>
+                            <h2 class="text-xl font-semibold text-bote-stone-900">Assigned Pickups</h2>
                         </div>
-                        <span class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-sm font-medium"><?php echo $stats['pending_pickups']; ?> Pending</span>
+                        <span class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-sm font-medium"><?php echo e($stats['pending_pickups']); ?> Pending</span>
                     </div>
                     
                     <div class="space-y-4">
                         <?php if (!empty($pending_pickups)): ?>
                             <?php foreach ($pending_pickups as $index => $pickup): ?>
-                                <div class="relative bg-white rounded-xl hover:bg-blue-50/70 transition-all duration-300 border border-gray-200 shadow-sm hover:shadow-md group overflow-hidden pickup-card">
+                                <div class="relative bg-white rounded-xl hover:bg-bote-info-50/70 transition-all duration-300 border border-bote-stone-200 shadow-sm hover:shadow-md group overflow-hidden pickup-card">
                                     <!-- Top pickup tag -->
                                     <?php if ($index === 0): ?>
                                     <div class="absolute top-0 left-0 bg-gradient-to-r from-yellow-500 to-amber-600 text-white px-3 py-1 text-xs font-bold rounded-br-lg shadow-sm z-10">NEXT PICKUP</div>
@@ -404,26 +405,26 @@ $recent_notifications = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                                     <div class="flex items-start p-4 pt-8">
                                         <!-- Left: Icon Column -->
                                         <div class="mr-4 relative">
-                                            <div class="w-14 h-14 bg-gradient-to-br from-blue-100 to-blue-200 rounded-xl flex items-center justify-center group-hover:from-blue-200 group-hover:to-blue-300 transition-all duration-300 shadow-inner">
-                                                <i data-lucide="package" class="w-7 h-7 text-blue-600"></i>
+                                            <div class="w-14 h-14 bg-gradient-to-br from-bote-info-100 to-bote-info-200 rounded-xl flex items-center justify-center group-hover:from-bote-info-200 group-hover:to-bote-info-300 transition-all duration-300 shadow-inner">
+                                                <i data-lucide="package" class="w-7 h-7 text-bote-info-600"></i>
                                             </div>
-                                            <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs font-bold border-2 border-white"><?php echo $index + 1; ?></div>
+                                            <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-bote-green-500 rounded-full flex items-center justify-center text-white text-xs font-bold border-2 border-white"><?php echo e($index + 1); ?></div>
                                         </div>
                                         
                                         <!-- Middle: Details Column -->
                                         <div class="flex-grow">
-                                            <h3 class="font-semibold text-gray-900 group-hover:text-blue-700 transition-colors">
+                                            <h3 class="font-semibold text-bote-stone-900 group-hover:text-bote-info-700 transition-colors">
                                                 <?php echo htmlspecialchars($pickup['first_name'] . ' ' . $pickup['last_name']); ?>
                                             </h3>
                                             <div class="flex flex-wrap items-center gap-x-4 gap-y-2 mt-2">
-                                                <span class="inline-flex items-center text-sm text-gray-600">
-                                                    <i data-lucide="package-open" class="w-4 h-4 mr-1.5 text-blue-500"></i>
+                                                <span class="inline-flex items-center text-sm text-bote-stone-600">
+                                                    <i data-lucide="package-open" class="w-4 h-4 mr-1.5 text-bote-info-500"></i>
                                                     <span>
                                                         <?php echo htmlspecialchars($pickup['recyclable_type']); ?> 
                                                         <span class="font-medium"><?php echo number_format($pickup['weight_kg'], 1); ?> kg</span>
                                                     </span>
                                                 </span>
-                                                <span class="inline-flex items-center text-sm text-gray-600">
+                                                <span class="inline-flex items-center text-sm text-bote-stone-600">
                                                     <i data-lucide="calendar" class="w-4 h-4 mr-1.5 text-orange-500"></i>
                                                     <?php 
                                                         $pickup_date = new DateTime($pickup['preferred_date']);
@@ -434,15 +435,15 @@ $recent_notifications = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                                                         if ($pickup_date < $now) {
                                                             echo '<span class="text-red-600 font-medium">' . $date_formatted . ' (Overdue)</span>';
                                                         } elseif ($diff->days == 0) {
-                                                            echo '<span class="text-green-600 font-medium">' . $date_formatted . ' (Today)</span>';
+                                                            echo '<span class="text-bote-green-600 font-medium">' . $date_formatted . ' (Today)</span>';
                                                         } else {
                                                             echo $date_formatted;
                                                         }
                                                     ?>
                                                 </span>
                                                 <?php if (!empty($pickup['phone'])): ?>
-                                                <span class="inline-flex items-center text-sm text-gray-600">
-                                                    <i data-lucide="phone" class="w-4 h-4 mr-1.5 text-green-500"></i>
+                                                <span class="inline-flex items-center text-sm text-bote-stone-600">
+                                                    <i data-lucide="phone" class="w-4 h-4 mr-1.5 text-bote-green-500"></i>
                                                     <?php echo htmlspecialchars($pickup['phone']); ?>
                                                 </span>
                                                 <?php endif; ?>
@@ -451,8 +452,8 @@ $recent_notifications = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                                         
                                         <!-- Right: Action Button -->
                                         <div class="ml-2">
-                                            <a href="complete_pickup.php?id=<?php echo $pickup['request_id']; ?>" 
-                                               class="inline-flex items-center px-3 py-2 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white text-sm font-medium rounded-lg transition-all shadow-sm hover:shadow group-hover:scale-105">
+                                            <a href="complete_pickup.php?id=<?php echo e($pickup['request_id']); ?>" 
+                                               class="inline-flex items-center px-3 py-2 bg-gradient-to-r from-bote-green-500 to-bote-green-600 hover:from-bote-green-600 hover:to-bote-green-700 text-white text-sm font-medium rounded-lg transition-all shadow-sm hover:shadow group-hover:scale-105">
                                                 <i data-lucide="check-circle" class="w-4 h-4 mr-1.5"></i>
                                                 Complete Pickup
                                             </a>
@@ -460,12 +461,12 @@ $recent_notifications = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                                     </div>
                                     
                                     <!-- Bottom quick action bar -->
-                                    <div class="flex items-center justify-between border-t border-gray-200 bg-gray-50 px-4 py-2 text-sm">
-                                        <a href="tel:<?php echo htmlspecialchars($pickup['phone']); ?>" class="inline-flex items-center text-blue-600 hover:text-blue-800">
+                                    <div class="flex items-center justify-between border-t border-bote-stone-200 bg-bote-stone-50 px-4 py-2 text-sm">
+                                        <a href="tel:<?php echo htmlspecialchars($pickup['phone']); ?>" class="inline-flex items-center text-bote-info-600 hover:text-bote-info-800">
                                             <i data-lucide="phone-call" class="w-4 h-4 mr-1.5"></i>
                                             Call Resident
                                         </a>
-                                        <a href="https://maps.google.com/?q=<?php echo $pickup['latitude']; ?>,<?php echo $pickup['longitude']; ?>" target="_blank" class="inline-flex items-center text-blue-600 hover:text-blue-800">
+                                        <a href="https://maps.google.com/?q=<?php echo e($pickup['latitude']); ?>,<?php echo e($pickup['longitude']); ?>" target="_blank" class="inline-flex items-center text-bote-info-600 hover:text-bote-info-800">
                                             <i data-lucide="map-pin" class="w-4 h-4 mr-1.5"></i>
                                             View Location
                                         </a>
@@ -474,25 +475,25 @@ $recent_notifications = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                             <?php endforeach; ?>
                             
                             <?php if (count($pending_pickups) > 2): ?>
-                                <div class="text-center bg-blue-50 rounded-lg py-3 border border-blue-100">
-                                    <span class="text-blue-700 font-medium"><?php echo count($pending_pickups) - 2; ?> more pickups scheduled</span>
+                                <div class="text-center bg-bote-info-50 rounded-lg py-3 border border-bote-info-100">
+                                    <span class="text-bote-info-700 font-medium"><?php echo count($pending_pickups) - 2; ?> more pickups scheduled</span>
                                 </div>
                             <?php endif; ?>
                         <?php else: ?>
-                            <div class="text-center py-10 bg-gray-50/70 rounded-xl border border-gray-100">
-                                <div class="w-20 h-20 bg-gradient-to-br from-blue-50 to-green-50 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-inner border border-gray-100">
-                                    <i data-lucide="package-check" class="w-10 h-10 text-green-400"></i>
+                            <div class="text-center py-10 bg-bote-stone-50/70 rounded-xl border border-bote-stone-100">
+                                <div class="w-20 h-20 bg-gradient-to-br from-bote-info-50 to-bote-green-50 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-inner border border-bote-stone-100">
+                                    <i data-lucide="package-check" class="w-10 h-10 text-bote-green-400"></i>
                                 </div>
-                                <div class="bg-white w-max mx-auto px-5 py-2 rounded-full shadow-sm border border-gray-100 mb-3">
-                                    <span class="text-green-600 font-medium">All caught up for today!</span>
+                                <div class="bg-white w-max mx-auto px-5 py-2 rounded-full shadow-sm border border-bote-stone-100 mb-3">
+                                    <span class="text-bote-green-600 font-medium">All caught up for today!</span>
                                 </div>
-                                <p class="text-gray-600 mb-5">You have no pending pickups at the moment</p>
+                                <p class="text-bote-stone-600 mb-5">You have no pending pickups at the moment</p>
                                 <div class="flex flex-col sm:flex-row gap-3 justify-center">
-                                    <a href="worker_assigned_pickups.php" class="inline-flex items-center justify-center px-5 py-2.5 bg-blue-100 text-blue-700 hover:bg-blue-200 rounded-lg text-sm font-medium transition-all hover:scale-105">
+                                    <a href="worker_assigned_pickups.php" class="inline-flex items-center justify-center px-5 py-2.5 bg-bote-info-100 text-bote-info-700 hover:bg-bote-info-200 rounded-lg text-sm font-medium transition-all hover:scale-105">
                                         <i data-lucide="refresh-cw" class="w-4 h-4 mr-2"></i>
                                         Check for new pickups
                                     </a>
-                                    <a href="generate_route.php" class="inline-flex items-center justify-center px-5 py-2.5 bg-green-100 text-green-700 hover:bg-green-200 rounded-lg text-sm font-medium transition-all hover:scale-105">
+                                    <a href="generate_route.php" class="inline-flex items-center justify-center px-5 py-2.5 bg-bote-green-100 text-bote-green-700 hover:bg-bote-green-200 rounded-lg text-sm font-medium transition-all hover:scale-105">
                                         <i data-lucide="map" class="w-4 h-4 mr-2"></i>
                                         Generate collection route
                                     </a>
@@ -501,7 +502,7 @@ $recent_notifications = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                         <?php endif; ?>
                     </div>
                     
-                    <a href="worker_assigned_pickups.php" class="block w-full mt-5 py-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-lg text-blue-700 hover:text-blue-800 text-sm font-medium text-center transition-all duration-200 hover:shadow-md">
+                    <a href="worker_assigned_pickups.php" class="block w-full mt-5 py-3 bg-bote-info-50 hover:bg-bote-info-100 border border-bote-info-200 rounded-lg text-bote-info-700 hover:text-bote-info-800 text-sm font-medium text-center transition-all duration-200 hover:shadow-md">
                         <span class="inline-flex items-center">
                             <i data-lucide="list" class="w-4 h-4 mr-2"></i>
                             View All Assigned Pickups
@@ -513,26 +514,26 @@ $recent_notifications = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                 <!-- Today's Route Overview -->
                 <div class="bg-white rounded-xl card-shadow p-6 hover-lift">
                     <div class="flex items-center gap-3 mb-6">
-                        <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-                            <i data-lucide="map" class="w-5 h-5 text-green-600"></i>
+                        <div class="w-10 h-10 bg-bote-green-100 rounded-lg flex items-center justify-center">
+                            <i data-lucide="map" class="w-5 h-5 text-bote-green-600"></i>
                         </div>
-                        <h2 class="text-xl font-semibold text-gray-900">Today's Route</h2>
+                        <h2 class="text-xl font-semibold text-bote-stone-900">Today's Route</h2>
                     </div>
                     
                     <?php if ($today_route && !empty($route_stops)): ?>
                         <div class="mb-4">
                             <div class="flex justify-between items-center mb-2">
-                                <div class="text-sm text-gray-600">
-                                    <i data-lucide="map-pin" class="inline w-4 h-4 mr-1 text-blue-500"></i> 
+                                <div class="text-sm text-bote-stone-600">
+                                    <i data-lucide="map-pin" class="inline w-4 h-4 mr-1 text-bote-info-500"></i> 
                                     <?php echo count($route_stops); ?> stops
                                 </div>
-                                <div class="text-sm text-gray-600">
-                                    <i data-lucide="clock" class="inline w-4 h-4 mr-1 text-green-500"></i>
-                                    Estimated: <?php echo isset($stats['route_time']) ? $stats['route_time'] : 'N/A'; ?>
+                                <div class="text-sm text-bote-stone-600">
+                                    <i data-lucide="clock" class="inline w-4 h-4 mr-1 text-bote-green-500"></i>
+                                    Estimated: <?php echo e(isset($stats['route_time']) ? $stats['route_time'] : 'N/A'); ?>
                                 </div>
-                                <div class="text-sm text-gray-600">
+                                <div class="text-sm text-bote-stone-600">
                                     <i data-lucide="navigation" class="inline w-4 h-4 mr-1 text-orange-500"></i>
-                                    <?php echo isset($stats['route_distance']) ? number_format($stats['route_distance'], 1) : '0'; ?> km
+                                    <?php echo e(isset($stats['route_distance']) ? number_format($stats['route_distance'], 1) : '0'); ?> km
                                 </div>
                             </div>
                         </div>
@@ -550,62 +551,62 @@ $recent_notifications = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                                 if ($is_collection_point) {
                                     $name = $stop['point_name'] ?? 'Collection Point';
                                     $details = 'Drop-off Location';
-                                    $bg_class = 'bg-purple-50';
-                                    $border_class = 'border-purple-500';
-                                    $number_bg = 'bg-purple-500';
+                                    $bg_class = 'bg-bote-green-50';
+                                    $border_class = 'border-bote-green-500';
+                                    $number_bg = 'bg-bote-green-500';
                                 } else {
                                     $name = $stop['first_name'] . ' ' . $stop['last_name'];
                                     $details = 'Pickup Request • ' . number_format($stop['weight_kg'], 1) . ' kg';
                                     if ($completed) {
-                                        $bg_class = 'bg-green-50';
-                                        $border_class = 'border-green-500';
-                                        $number_bg = 'bg-green-500';
+                                        $bg_class = 'bg-bote-green-50';
+                                        $border_class = 'border-bote-green-500';
+                                        $number_bg = 'bg-bote-green-500';
                                     } else {
-                                        $bg_class = 'bg-blue-50';
-                                        $border_class = 'border-blue-500';
-                                        $number_bg = 'bg-blue-500';
+                                        $bg_class = 'bg-bote-info-50';
+                                        $border_class = 'border-bote-info-500';
+                                        $number_bg = 'bg-bote-info-500';
                                     }
                                 }
                                 $counter++;
                             ?>
-                                <div class="flex items-center p-3 <?php echo $bg_class; ?> rounded-lg border-l-4 <?php echo $border_class; ?>">
-                                    <div class="<?php echo $number_bg; ?> text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3">
-                                        <?php echo $counter; ?>
+                                <div class="flex items-center p-3 <?php echo e($bg_class); ?> rounded-lg border-l-4 <?php echo e($border_class); ?>">
+                                    <div class="<?php echo e($number_bg); ?> text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3">
+                                        <?php echo e($counter); ?>
                                     </div>
                                     <div class="flex-1">
-                                        <div class="font-medium text-gray-800"><?php echo htmlspecialchars($name); ?></div>
-                                        <div class="text-sm text-gray-600"><?php echo htmlspecialchars($details); ?></div>
+                                        <div class="font-medium text-bote-stone-800"><?php echo htmlspecialchars($name); ?></div>
+                                        <div class="text-sm text-bote-stone-600"><?php echo htmlspecialchars($details); ?></div>
                                     </div>
-                                    <div class="<?php echo $completed ? 'text-green-500' : 'text-gray-400'; ?>">
+                                    <div class="<?php echo e($completed ? 'text-bote-green-500' : 'text-bote-stone-400'); ?>">
                                         <?php echo $completed ? '<i data-lucide="check-circle" class="w-5 h-5"></i>' : '<i data-lucide="circle" class="w-5 h-5"></i>'; ?>
                                     </div>
                                 </div>
                             <?php endforeach; ?>
                             
                             <?php if (count($route_stops) > 3): ?>
-                                <div class="text-center text-gray-500 text-sm py-2">
+                                <div class="text-center text-bote-stone-500 text-sm py-2">
                                     + <?php echo count($route_stops) - 3; ?> more stops
                                 </div>
                             <?php endif; ?>
                         </div>
                         
                         <div class="mt-4 flex gap-2">
-                            <a href="worker_collection_routes.php" class="flex-1 text-center bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center gap-2">
+                            <a href="worker_collection_routes.php" class="flex-1 text-center bg-bote-green-600 text-white py-2 px-4 rounded-lg hover:bg-bote-green-700 transition-colors flex items-center justify-center gap-2">
                                 <i data-lucide="map" class="w-5 h-5"></i>
                                 <span>View Route</span>
                             </a>
-                            <a href="get_route_coordinates.php?route_id=<?php echo $today_route['route_id']; ?>" target="_blank" class="flex-1 text-center bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors flex items-center justify-center gap-2">
+                            <a href="get_route_coordinates.php?route_id=<?php echo e($today_route['route_id']); ?>" target="_blank" class="flex-1 text-center bg-bote-green-600 text-white py-2 px-4 rounded-lg hover:bg-bote-green-700 transition-colors flex items-center justify-center gap-2">
                                 <i data-lucide="navigation" class="w-5 h-5"></i>
                                 <span>Navigate</span>
                             </a>
                         </div>
                     <?php else: ?>
                         <div class="text-center py-8">
-                            <div class="w-16 h-16 bg-gray-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                                <i data-lucide="map-off" class="w-8 h-8 text-gray-400"></i>
+                            <div class="w-16 h-16 bg-bote-stone-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                                <i data-lucide="map-off" class="w-8 h-8 text-bote-stone-400"></i>
                             </div>
-                            <p class="text-gray-500 mb-4">No route generated for today</p>
-                            <a href="worker_collection_routes.php" class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-xl hover:from-blue-600 hover:to-blue-700 transition-all font-semibold shadow-lg">
+                            <p class="text-bote-stone-500 mb-4">No route generated for today</p>
+                            <a href="worker_collection_routes.php" class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-bote-info-500 to-bote-info-600 text-white rounded-xl hover:from-bote-info-600 hover:to-bote-info-700 transition-all font-semibold shadow-lg">
                                 <i data-lucide="map" class="w-4 h-4"></i>
                                 Generate Route
                             </a>
@@ -622,20 +623,20 @@ $recent_notifications = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                         <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
                             <i data-lucide="bell" class="w-5 h-5 text-yellow-600"></i>
                         </div>
-                        <h2 class="text-xl font-semibold text-gray-900">Recent Notifications</h2>
+                        <h2 class="text-xl font-semibold text-bote-stone-900">Recent Notifications</h2>
                     </div>
                     <div class="space-y-4">
                         <?php if (!empty($recent_notifications)): ?>
                             <?php foreach ($recent_notifications as $index => $notification): 
                                 // Determine notification type and message based on status
                                 if ($notification['status'] === 'Scheduled') {
-                                    $bg_class = 'bg-blue-50';
-                                    $dot_class = 'bg-blue-500';
+                                    $bg_class = 'bg-bote-info-50';
+                                    $dot_class = 'bg-bote-info-500';
                                     $message = "New pickup scheduled from " . htmlspecialchars($notification['first_name'] . ' ' . $notification['last_name']) . ". " . 
                                               htmlspecialchars($notification['recyclable_type']) . " (" . number_format($notification['weight_kg'], 1) . " kg)";
                                 } elseif ($notification['status'] === 'Completed') {
-                                    $bg_class = 'bg-green-50';
-                                    $dot_class = 'bg-green-500';
+                                    $bg_class = 'bg-bote-green-50';
+                                    $dot_class = 'bg-bote-green-500';
                                     $message = "Pickup completed for " . htmlspecialchars($notification['first_name'] . ' ' . $notification['last_name']) . ". " . 
                                               htmlspecialchars($notification['recyclable_type']) . " (" . number_format($notification['weight_kg'], 1) . " kg)";
                                 } else {
@@ -657,24 +658,24 @@ $recent_notifications = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                                     $time_ago = floor($diff / 86400) . " days ago";
                                 }
                             ?>
-                                <div class="flex gap-3 p-3 <?php echo $bg_class; ?> rounded-lg">
-                                    <div class="w-2 h-2 <?php echo $dot_class; ?> rounded-full mt-2 flex-shrink-0"></div>
+                                <div class="flex gap-3 p-3 <?php echo e($bg_class); ?> rounded-lg">
+                                    <div class="w-2 h-2 <?php echo e($dot_class); ?> rounded-full mt-2 flex-shrink-0"></div>
                                     <div>
-                                        <p class="text-sm text-gray-900"><?php echo htmlspecialchars($message); ?></p>
-                                        <p class="text-xs text-gray-500 mt-1"><?php echo $time_ago; ?></p>
+                                        <p class="text-sm text-bote-stone-900"><?php echo htmlspecialchars($message); ?></p>
+                                        <p class="text-xs text-bote-stone-500 mt-1"><?php echo e($time_ago); ?></p>
                                     </div>
                                 </div>
                             <?php endforeach; ?>
                         <?php else: ?>
                             <div class="text-center py-8">
-                                <div class="w-16 h-16 bg-gray-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                                    <i data-lucide="bell" class="w-8 h-8 text-gray-400"></i>
+                                <div class="w-16 h-16 bg-bote-stone-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                                    <i data-lucide="bell" class="w-8 h-8 text-bote-stone-400"></i>
                                 </div>
-                                <p class="text-gray-500">No notifications yet</p>
+                                <p class="text-bote-stone-500">No notifications yet</p>
                             </div>
                         <?php endif; ?>
                     </div>
-                        <a href="worker_dashboard.php" class="block w-full mt-4 text-blue-600 hover:text-blue-700 text-sm font-medium text-center" onclick="event.preventDefault(); alert('Notifications feature coming soon!');">
+                        <a href="worker_dashboard.php" class="block w-full mt-4 text-bote-info-600 hover:text-bote-info-700 text-sm font-medium text-center" onclick="showNotificationsComingSoon(event)">
                         View All Notifications
                     </a>
                 </div>
@@ -682,14 +683,14 @@ $recent_notifications = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                 <!-- Your Impact -->
                 <div class="bg-white rounded-xl card-shadow p-6 hover-lift">
                     <div class="flex items-center gap-3 mb-6">
-                        <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
-                            <i data-lucide="award" class="w-5 h-5 text-purple-600"></i>
+                        <div class="w-10 h-10 bg-bote-green-100 rounded-lg flex items-center justify-center">
+                            <i data-lucide="award" class="w-5 h-5 text-bote-green-600"></i>
                         </div>
-                        <h2 class="text-xl font-semibold text-gray-900">Your Impact</h2>
+                        <h2 class="text-xl font-semibold text-bote-stone-900">Your Impact</h2>
                     </div>
                     
                     <div class="space-y-4">
-                        <div class="text-center p-5 bg-gradient-to-r from-blue-500 to-green-500 rounded-xl text-white shadow-lg">
+                        <div class="text-center p-5 bg-gradient-to-r from-bote-info-500 to-bote-green-500 rounded-xl text-white shadow-lg">
                             <div class="flex items-center justify-center gap-3 mb-1">
                                 <i data-lucide="recycle" class="w-6 h-6 text-white opacity-75"></i>
                                 <div class="text-3xl font-bold"><?php echo number_format(isset($stats['total_weight']) ? $stats['total_weight'] : 0, 1); ?> kg</div>
@@ -698,25 +699,25 @@ $recent_notifications = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                         </div>
                         
                         <div class="grid grid-cols-2 gap-4">
-                            <div class="text-center p-4 bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg border border-blue-200">
-                                <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-2 text-white">
+                            <div class="text-center p-4 bg-gradient-to-br from-bote-info-50 to-bote-info-100 rounded-lg border border-bote-info-200">
+                                <div class="w-10 h-10 bg-bote-green-500 rounded-full flex items-center justify-center mx-auto mb-2 text-white">
                                     <i data-lucide="droplets" class="w-5 h-5"></i>
                                 </div>
-                                <div class="text-lg font-bold text-blue-700"><?php echo number_format(isset($plastic_saved) ? $plastic_saved : 0, 1); ?></div>
-                                <div class="text-xs text-blue-800">Plastic Saved (kg)</div>
+                                <div class="text-lg font-bold text-bote-info-700"><?php echo number_format(isset($plastic_saved) ? $plastic_saved : 0, 1); ?></div>
+                                <div class="text-xs text-bote-info-800">Plastic Saved (kg)</div>
                             </div>
-                            <div class="text-center p-4 bg-gradient-to-br from-green-50 to-green-100 rounded-lg border border-green-200">
-                                <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-2 text-white">
+                            <div class="text-center p-4 bg-gradient-to-br from-bote-green-50 to-bote-green-100 rounded-lg border border-bote-green-200">
+                                <div class="w-10 h-10 bg-bote-green-500 rounded-full flex items-center justify-center mx-auto mb-2 text-white">
                                     <i data-lucide="cloud" class="w-5 h-5"></i>
                                 </div>
-                                <div class="text-lg font-bold text-green-700"><?php echo number_format(isset($co2_reduced) ? $co2_reduced : 0, 1); ?></div>
-                                <div class="text-xs text-green-800">CO₂ Reduced (kg)</div>
+                                <div class="text-lg font-bold text-bote-green-700"><?php echo number_format(isset($co2_reduced) ? $co2_reduced : 0, 1); ?></div>
+                                <div class="text-xs text-bote-green-800">CO₂ Reduced (kg)</div>
                             </div>
                         </div>
                         
-                        <div class="p-5 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-100 rounded-xl border border-green-200 shadow-sm relative overflow-hidden">
+                        <div class="p-5 bg-gradient-to-br from-bote-green-50 via-bote-green-50 to-bote-green-100 rounded-xl border border-bote-green-200 shadow-sm relative overflow-hidden">
                             <div class="absolute right-0 bottom-0 opacity-10">
-                                <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="text-green-800">
+                                <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="text-bote-green-800">
                                     <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path>
                                     <path d="M2 12h20"></path>
                                     <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
@@ -724,36 +725,36 @@ $recent_notifications = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                             </div>
                             <div class="relative z-10">
                                 <div class="flex items-center gap-3 mb-3">
-                                    <div class="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg flex items-center justify-center shadow-md">
+                                    <div class="w-10 h-10 bg-gradient-to-br from-bote-green-500 to-bote-green-600 rounded-lg flex items-center justify-center shadow-md">
                                         <i data-lucide="tree" class="w-5 h-5 text-white"></i>
                                     </div>
-                                    <span class="text-base font-semibold text-green-800">Environmental Impact</span>
+                                    <span class="text-base font-semibold text-bote-green-800">Environmental Impact</span>
                                 </div>
                                 <div class="flex items-center justify-between mb-2">
                                     <div>
-                                        <div class="text-2xl font-bold text-green-700"><?php echo number_format(isset($trees_equivalent) ? $trees_equivalent : 0, 1); ?> <span class="text-xl">trees</span></div>
-                                        <p class="text-sm text-green-800">Annual CO₂ absorption equivalent</p>
+                                        <div class="text-2xl font-bold text-bote-green-700"><?php echo number_format(isset($trees_equivalent) ? $trees_equivalent : 0, 1); ?> <span class="text-xl">trees</span></div>
+                                        <p class="text-sm text-bote-green-800">Annual CO₂ absorption equivalent</p>
                                     </div>
                                     <div class="w-16 h-16 bg-white bg-opacity-50 rounded-full flex items-center justify-center">
-                                        <div class="w-12 h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center shadow-lg">
+                                        <div class="w-12 h-12 bg-gradient-to-br from-bote-green-400 to-bote-green-600 rounded-full flex items-center justify-center shadow-lg">
                                             <span class="text-lg font-bold text-white">+<?php echo number_format($stats['completed_pickups']); ?></span>
                                         </div>
                                     </div>
                                 </div>
                                 
                                 <div class="w-full bg-white bg-opacity-50 rounded-full h-3 mt-3">
-                                    <div class="bg-gradient-to-r from-green-500 to-emerald-600 h-3 rounded-full shadow-inner" 
-                                        style="width: <?php echo min(100, max(15, isset($trees_equivalent) ? $trees_equivalent * 2 : 15)); ?>%"></div>
+                                    <div class="bg-gradient-to-r from-bote-green-500 to-bote-green-600 h-3 rounded-full shadow-inner" 
+                                        style="width: <?php echo e(min(100, max(15, isset($trees_equivalent) ? $trees_equivalent * 2 : 15))); ?>%"></div>
                                 </div>
-                                <p class="text-xs text-green-800 text-center mt-2 font-medium">
-                                    <?php echo number_format($stats['completed_pickups']); ?> completed pickup<?php echo $stats['completed_pickups'] != 1 ? 's' : ''; ?> 
+                                <p class="text-xs text-bote-green-800 text-center mt-2 font-medium">
+                                    <?php echo number_format($stats['completed_pickups']); ?> completed pickup<?php echo e($stats['completed_pickups'] != 1 ? 's' : ''); ?> 
                                     = <?php echo number_format(isset($stats['total_weight']) ? $stats['total_weight'] : 0, 1); ?> kg material saved from landfill
                                 </p>
                             </div>
                         </div>
                         
-                        <div class="flex items-center justify-center gap-2 text-sm text-gray-600 bg-gray-50 py-3 px-4 rounded-lg border border-gray-100">
-                            <i data-lucide="info" class="w-4 h-4 text-blue-500"></i>
+                        <div class="flex items-center justify-center gap-2 text-sm text-bote-stone-600 bg-bote-stone-50 py-3 px-4 rounded-lg border border-bote-stone-100">
+                            <i data-lucide="info" class="w-4 h-4 text-bote-info-500"></i>
                             <span>Keep recycling! Every 100kg saves approximately <?php echo number_format(100 * 2.5 / 21, 1); ?> trees worth of CO₂</span>
                         </div>
                     </div>
@@ -762,90 +763,7 @@ $recent_notifications = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         </div>
     </div>
 
-    <script>
-        // Initialize Lucide icons
-        lucide.createIcons();
-
-        // Add interactive functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add hover effects to route items
-            const routeItems = document.querySelectorAll('.border-l-4');
-            routeItems.forEach(item => {
-                item.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateX(4px)';
-                    this.style.transition = 'transform 0.2s cubic-bezier(0.4, 0, 0.2, 1)';
-                    this.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
-                });
-                
-                item.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateX(0)';
-                    this.style.boxShadow = 'none';
-                });
-            });
-            
-            // Add hover effects to all cards with hover-lift class
-            const hoverCards = document.querySelectorAll('.hover-lift');
-            hoverCards.forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-5px)';
-                    this.style.boxShadow = '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)';
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0)';
-                    this.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';
-                });
-            });
-
-            // Add pickup card interactions
-            const pickupCards = document.querySelectorAll('.relative.bg-white.rounded-xl.hover\\:bg-blue-50\\/70');
-            pickupCards.forEach((card, index) => {
-                // Add pickup-card class for animations
-                card.classList.add('pickup-card');
-                
-                // Add visual highlight when clicking "Complete" button
-                const completeBtn = card.querySelector('a[href^="complete_pickup.php"]');
-                if (completeBtn) {
-                    completeBtn.addEventListener('click', function(e) {
-                        // Don't prevent default - we still want to navigate
-                        card.classList.add('bg-green-50', 'border-green-300');
-                        card.style.transform = 'scale(0.98)';
-                        setTimeout(() => {
-                            card.classList.add('opacity-60');
-                        }, 100);
-                    });
-                }
-                
-                // Add special class to first pickup tag for animation
-                if (index === 0) {
-                    const badge = card.querySelector('.bg-gradient-to-r.from-yellow-500');
-                    if (badge) {
-                        badge.classList.add('next-pickup-badge');
-                    }
-                }
-            });
-            
-            // Animate environmental impact bar on page load
-            const impactBar = document.querySelector('.bg-gradient-to-r.from-green-500.to-emerald-600.h-3');
-            if (impactBar) {
-                // Start with zero width
-                const finalWidth = impactBar.style.width;
-                impactBar.style.width = '0%';
-                
-                // Animate to final width
-                setTimeout(() => {
-                    impactBar.style.transition = 'width 1.5s cubic-bezier(0.4, 0, 0.2, 1)';
-                    impactBar.style.width = finalWidth;
-                }, 300);
-            }
-            
-            // Add eco-icon class for visual flair
-            const ecoIcons = document.querySelectorAll('.w-10.h-10.bg-purple-100, .w-10.h-10.bg-green-100, .w-10.h-10.bg-orange-100');
-            ecoIcons.forEach(icon => {
-                icon.classList.add('eco-icon');
-            });
-        });
-    </script>
+    <script type="module" src="assets/js/worker_dashboard.js"></script>
 </body>
 </html>
 

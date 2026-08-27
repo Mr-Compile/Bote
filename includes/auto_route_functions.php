@@ -164,7 +164,7 @@ function generateAutoRoute($conn, $worker_id, $starting_point) {
                 $longitude
             );
             $stop_stmt->execute();
-        }        echo "✓ Generated route with ID: $route_id\n";
+        }        echo "? Generated route with ID: $route_id\n";
         
     } catch (Exception $e) {
         error_log("Auto route generation error: " . $e->getMessage());

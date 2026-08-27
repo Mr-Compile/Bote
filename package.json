@@ -1,0 +1,17 @@
+{
+  "name": "botebank-ui",
+  "version": "1.0.0",
+  "private": true,
+  "description": "BoteBank TypeScript UI build",
+  "scripts": {
+    "build": "tsc -p admin/tsconfig.json && tsc -p resident/tsconfig.json && tsc -p worker/tsconfig.json && tsc -p assets/tsconfig.json",
+    "watch": "tsc -p admin/tsconfig.json --watch & tsc -p resident/tsconfig.json --watch & tsc -p worker/tsconfig.json --watch & tsc -p assets/tsconfig.json --watch",
+    "clean": "tsc -p admin/tsconfig.json --clean && tsc -p resident/tsconfig.json --clean && tsc -p worker/tsconfig.json --clean && tsc -p assets/tsconfig.json --clean"
+  },
+  "devDependencies": {
+    "@types/chart.js": "^2.9.41",
+    "@types/leaflet": "^1.9.22",
+    "js-to-ts-converter": "^0.18.2",
+    "typescript": "~5.5.4"
+  }
+}

@@ -1,55 +1,42 @@
-// Initialize icons
-lucide.createIcons();
-
-// Show Add Purok Modal
+import { getEl, getInput } from './shared.js';
 function showAddPurokModal() {
-    const modal = document.getElementById('addPurokModal');
+    const modal = getEl('addPurokModal');
     modal.classList.remove('hidden');
     modal.classList.add('flex');
 }
-
-// Hide Add Purok Modal
 function hideAddPurokModal() {
-    const modal = document.getElementById('addPurokModal');
+    const modal = getEl('addPurokModal');
     modal.classList.add('hidden');
     modal.classList.remove('flex');
-    // Reset form inside modal
-    modal.querySelector('form').reset();
+    const form = modal.querySelector('form');
+    if (form) {
+        form.reset();
+    }
 }
-
-// Show Edit Modal
 function showEditModal(purok) {
-    document.getElementById('edit_purok_id').value = purok.purok_id;
-    document.getElementById('edit_name').value = purok.name;
-    document.getElementById('edit_description').value = purok.description || '';
-    const modal = document.getElementById('editModal');
+    getInput('edit_purok_id').value = String(purok.purok_id ?? '');
+    getInput('edit_name').value = String(purok.name ?? '');
+    getInput('edit_description').value = String(purok.description ?? '');
+    const modal = getEl('editModal');
     modal.classList.remove('hidden');
     modal.classList.add('flex');
 }
-
-// Hide Edit Modal
 function hideEditModal() {
-    const modal = document.getElementById('editModal');
+    const modal = getEl('editModal');
     modal.classList.add('hidden');
     modal.classList.remove('flex');
 }
-
-// Show Delete Confirmation Modal
 function confirmDelete(purokId) {
-    document.getElementById('delete_purok_id').value = purokId;
-    const modal = document.getElementById('deleteModal');
+    getInput('delete_purok_id').value = String(purokId);
+    const modal = getEl('deleteModal');
     modal.classList.remove('hidden');
     modal.classList.add('flex');
 }
-
-// Hide Delete Confirmation Modal
 function hideDeleteModal() {
-    const modal = document.getElementById('deleteModal');
+    const modal = getEl('deleteModal');
     modal.classList.add('hidden');
     modal.classList.remove('flex');
 }
-
-// Close modals when clicking outside
 ['addPurokModal', 'editModal', 'deleteModal'].forEach(modalId => {
     const modal = document.getElementById(modalId);
     if (modal) {
@@ -61,3 +48,13 @@ function hideDeleteModal() {
         });
     }
 });
+lucide.createIcons();
+Object.assign(window, {
+    showAddPurokModal,
+    hideAddPurokModal,
+    showEditModal,
+    hideEditModal,
+    confirmDelete,
+    hideDeleteModal
+});
+//# sourceMappingURL=purok.js.map
