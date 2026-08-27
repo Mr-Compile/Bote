@@ -3,21 +3,31 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/env_loader.php';
 
-$requiredEnv = ['DB_HOST', 'DB_USER', 'DB_PASS', 'DB_NAME', 'DB_CHARSET'];
-foreach ($requiredEnv as $key) {
-    $value = env($key);
+$requiredEnv = [
+    'DB_HOST' => env('DB_HOST'),
+    'DB_USER' => env('DB_USER'),
+    'DB_PASS' => env('DB_PASS'),
+    'DB_NAME' => env('DB_NAME'),
+    'DB_CHARSET' => env('DB_CHARSET'),
+];
+foreach ($requiredEnv as $key => $value) {
     if ($value === null) {
         error_log("Missing required environment variable: {$key}");
         http_response_code(503);
         die('Service misconfigured. Please check the environment configuration.');
     }
-    define($key, $value);
 }
+
+define('DB_HOST', $requiredEnv['DB_HOST']);
+define('DB_USER', $requiredEnv['DB_USER']);
+define('DB_PASS', $requiredEnv['DB_PASS']);
+define('DB_NAME', $requiredEnv['DB_NAME']);
+define('DB_CHARSET', $requiredEnv['DB_CHARSET']);
 
 // Connection options for better security and performance
 $options = [
     MYSQLI_OPT_CONNECT_TIMEOUT => 30,
-    MYSQLI_INIT_COMMAND => "SET sql_mode='STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION'",
+    MYSQLI_INIT_COMMAND => "SET sql_mode='STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION'",
     MYSQLI_OPT_INT_AND_FLOAT_NATIVE => true,
 ];
 

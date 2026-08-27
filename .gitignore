@@ -1,2 +1,6 @@
 /.env
 /.htaccess
+/.phpstan/cache
+/.phpstan/resultCache.php
+/.phpunit.cache
+/backups

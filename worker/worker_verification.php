@@ -186,12 +186,12 @@ $recent_verified = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 
                                 <!-- Verification Actions -->
                                 <div class="flex flex-col justify-center space-y-4">
-                                    <button onclick="openRejectModal(<?php echo $dropoff['dropoff_id']; ?>)" 
+                                    <button onclick="openRejectModal(<?php echo (int) $dropoff['dropoff_id']; ?>)" 
                                             class="px-6 py-3 bg-red-100 hover:bg-red-200 text-red-700 rounded-lg font-medium transition-all duration-200 flex items-center justify-center">
                                         <i data-lucide="x-circle" class="w-4 h-4 mr-2"></i>
                                         Reject Drop-off
                                     </button>
-                                    <button onclick="openVerifyModal(<?php echo $dropoff['dropoff_id']; ?>)" 
+                                    <button onclick="openVerifyModal(<?php echo (int) $dropoff['dropoff_id']; ?>)" 
                                             class="px-6 py-3 bg-green-100 hover:bg-green-200 text-green-700 rounded-lg font-medium transition-all duration-200 flex items-center justify-center">
                                         <i data-lucide="check-circle" class="w-4 h-4 mr-2"></i>
                                         Verify & Credit Points

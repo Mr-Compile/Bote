@@ -341,7 +341,7 @@ $requests = $stmt->get_result();
                                 <!-- Actions -->
                                 <div class="flex flex-col items-end space-y-3 ml-6">
                                     <?php if ($request['status'] == 'Pending'): ?>
-                                        <button onclick="cancelRequest(<?php echo $request['request_id']; ?>)" 
+                                        <button onclick="cancelRequest(<?php echo (int) $request['request_id']; ?>)" 
                                                 class="px-4 py-2 bg-red-100 hover:bg-red-200 text-red-700 rounded-xl font-medium transition-colors flex items-center space-x-2">
                                             <i data-lucide="x-circle" class="w-4 h-4"></i>
                                             <span>Cancel</span>
@@ -353,7 +353,7 @@ $requests = $stmt->get_result();
                                         </div>
                                     <?php endif; ?>
                                     
-                                    <button onclick="viewDetails(<?php echo $request['request_id']; ?>)"
+                                    <button onclick="viewDetails(<?php echo (int) $request['request_id']; ?>)"
                                             class="px-4 py-2 bg-blue-100 hover:bg-blue-200 text-blue-700 rounded-xl font-medium transition-colors flex items-center space-x-2">
                                         <i data-lucide="eye" class="w-4 h-4"></i>
                                         <span>Details</span>

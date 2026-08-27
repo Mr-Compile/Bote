@@ -201,11 +201,11 @@ $recent_verified = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 
                             <!-- Verification Actions -->
                             <div class="flex flex-col sm:flex-row justify-end space-y-2 sm:space-y-0 sm:space-x-4">
-                                <button onclick="openRejectModal(<?php echo $dropoff['dropoff_id']; ?>)" class="px-6 py-2 bg-red-100 hover:bg-red-200 text-red-700 rounded-lg font-medium transition-all duration-200">
+                                <button onclick="openRejectModal(<?php echo (int) $dropoff['dropoff_id']; ?>)" class="px-6 py-2 bg-red-100 hover:bg-red-200 text-red-700 rounded-lg font-medium transition-all duration-200">
                                     <i data-lucide="x-circle" class="w-4 h-4 inline mr-2"></i>
                                     Reject
                                 </button>
-                                <button onclick="openVerifyModal(<?php echo $dropoff['dropoff_id']; ?>)" class="px-6 py-2 bg-green-100 hover:bg-green-200 text-green-700 rounded-lg font-medium transition-all duration-200">
+                                <button onclick="openVerifyModal(<?php echo (int) $dropoff['dropoff_id']; ?>)" class="px-6 py-2 bg-green-100 hover:bg-green-200 text-green-700 rounded-lg font-medium transition-all duration-200">
                                     <i data-lucide="check-circle" class="w-4 h-4 inline mr-2"></i>
                                     Verify & Credit Points
                                 </button>

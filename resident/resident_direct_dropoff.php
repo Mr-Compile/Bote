@@ -253,7 +253,7 @@ $total_points = $stmt->get_result()->fetch_assoc()['total_points'];
                         <p class="text-gray-600 mb-6">Choose the type of recyclable you're dropping off</p>
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             <?php foreach ($recyclable_types as $type): ?>
-                            <div class="bg-gradient-to-br from-white to-gray-50 border-2 border-gray-200 rounded-2xl p-6 cursor-pointer transition-all duration-300 hover:border-green-500 hover:shadow-xl hover:-translate-y-1" onclick="selectMaterial(<?php echo $type['type_id']; ?>, '<?php echo $type['unit']; ?>', '<?php echo htmlspecialchars($type['name']); ?>')">
+                            <div class="bg-gradient-to-br from-white to-gray-50 border-2 border-gray-200 rounded-2xl p-6 cursor-pointer transition-all duration-300 hover:border-green-500 hover:shadow-xl hover:-translate-y-1" onclick="selectMaterial(<?php echo (int) $type['type_id']; ?>, <?php echo json_encode($type['unit'], JSON_HEX_QUOT | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS); ?>, <?php echo json_encode($type['name'], JSON_HEX_QUOT | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS); ?>)">
                                 <input type="radio" name="type_id" value="<?php echo $type['type_id']; ?>" id="type_<?php echo $type['type_id']; ?>" class="hidden" required>
                                 <div class="text-center">
                                     <div class="w-20 h-20 bg-gradient-to-br from-green-400 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-4 overflow-hidden shadow-lg">

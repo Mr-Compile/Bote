@@ -114,7 +114,7 @@ class SMSNotification {
     private function logSMSNotification($user_id, $message, $type, $sms_id) {
         try {
             $stmt = $this->conn->prepare("INSERT INTO smsnotifications (user_id, message, type, sms_id, sent_at) VALUES (?, ?, ?, ?, NOW())");
-            $stmt->bind_param("issi", $user_id, $message, $type, $sms_id);
+            $stmt->bind_param("isss", $user_id, $message, $type, $sms_id);
             $stmt->execute();
         } catch (Exception $e) {
             error_log("Failed to log SMS notification: " . $e->getMessage());

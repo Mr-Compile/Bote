@@ -6,23 +6,47 @@ require '../includes/auth_worker.php'; // Ensure only worker can access
 $user_id = $_SESSION['user_id'];
 
 // Handle form submission for new report
+$errors = [];
+$success_message = null;
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create_report'])) {
-    $report_date = $_POST['report_date'];
-    $collections_count = (int)$_POST['collections_count'];
-    $total_weight = (float)$_POST['total_weight'];
-    $notes = trim($_POST['notes']);
-    $route_efficiency = $_POST['route_efficiency'];
-    
-    $errors = [];
-    
-    if (empty($report_date)) $errors[] = "Report date is required";
+    $report_date = $_POST['report_date'] ?? null;
+    $collections_count = (int) ($_POST['collections_count'] ?? 0);
+    $total_weight = (float) ($_POST['total_weight'] ?? 0);
+    $notes = trim($_POST['notes'] ?? '');
+    $route_efficiency = $_POST['route_efficiency'] ?? 'good';
+
+    if (empty($report_date)) {
+        $errors[] = "Report date is required";
+    } elseif (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $report_date)) {
+        $errors[] = "Report date is invalid";
+    }
     if ($collections_count < 0) $errors[] = "Collections count cannot be negative";
     if ($total_weight < 0) $errors[] = "Total weight cannot be negative";
-    
+    if (!in_array($route_efficiency, ['excellent', 'good', 'average', 'needs_improvement'], true)) {
+        $errors[] = "Invalid route efficiency";
+    }
+
     if (empty($errors)) {
-        // Create daily report (this would typically go to a daily_reports table)
-        // For now, we'll create a summary based on actual data
-        $success_message = "Daily report created successfully!";
+        $stmt = prepare_statement($conn, "
+            INSERT INTO daily_reports (worker_id, report_date, collections_count, total_weight, route_efficiency, notes)
+            VALUES (?, ?, ?, ?, ?, ?)
+            ON DUPLICATE KEY UPDATE
+                collections_count = VALUES(collections_count),
+                total_weight = VALUES(total_weight),
+                route_efficiency = VALUES(route_efficiency),
+                notes = VALUES(notes)
+        ");
+        if ($stmt) {
+            $stmt->bind_param("isidss", $user_id, $report_date, $collections_count, $total_weight, $route_efficiency, $notes);
+            if ($stmt->execute()) {
+                $success_message = "Daily report saved successfully!";
+            } else {
+                $errors[] = "Failed to save report. Please try again.";
+            }
+        } else {
+            $errors[] = "Database error. Please try again.";
+        }
     }
 }
 
@@ -57,6 +81,28 @@ $stmt = prepare_statement($conn, "
 $stmt->bind_param("is", $user_id, $week_start);
 $stmt->execute();
 $week_stats = $stmt->get_result()->fetch_assoc();
+
+// Get saved reports for the last 7 days
+$stmt = prepare_statement($conn, "
+    SELECT report_id, report_date, collections_count, total_weight, route_efficiency, notes
+    FROM daily_reports
+    WHERE worker_id = ?
+    AND report_date >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
+    ORDER BY report_date DESC
+");
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$saved_reports = $stmt->get_result();
+
+// Get today's saved report for form defaults
+$stmt = prepare_statement($conn, "
+    SELECT collections_count, total_weight, route_efficiency, notes
+    FROM daily_reports
+    WHERE worker_id = ? AND report_date = ?
+");
+$stmt->bind_param("is", $user_id, $today);
+$stmt->execute();
+$today_report = $stmt->get_result()->fetch_assoc();
 
 // Get daily breakdown for the last 7 days
 $stmt = prepare_statement($conn, "
@@ -97,11 +143,24 @@ include 'worker_sidebar.php';
             </div>
         </div>
 
-        <?php if (isset($success_message)): ?>
+        <?php if (!empty($success_message)): ?>
         <div class="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-xl mb-6">
             <div class="flex items-center">
                 <i data-lucide="check-circle" class="w-5 h-5 mr-2"></i>
                 <?php echo htmlspecialchars($success_message); ?>
+            </div>
+        </div>
+        <?php endif; ?>
+
+        <?php if (!empty($errors)): ?>
+        <div class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl mb-6">
+            <div class="flex items-start">
+                <i data-lucide="alert-circle" class="w-5 h-5 mr-2 mt-0.5"></i>
+                <ul class="list-disc list-inside">
+                    <?php foreach ($errors as $error): ?>
+                        <li><?php echo htmlspecialchars($error); ?></li>
+                    <?php endforeach; ?>
+                </ul>
             </div>
         </div>
         <?php endif; ?>
@@ -190,45 +249,45 @@ include 'worker_sidebar.php';
         <!-- Daily Breakdown -->
         <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
             <div class="px-6 py-4 border-b border-gray-200 bg-gray-50">
-                <h2 class="text-xl font-semibold text-gray-900">Daily Breakdown (Last 7 Days)</h2>
+                <h2 class="text-xl font-semibold text-gray-900">Saved Daily Reports (Last 7 Days)</h2>
             </div>
-            
-            <?php if ($daily_breakdown->num_rows > 0): ?>
+
+            <?php if ($saved_reports->num_rows > 0): ?>
                 <div class="divide-y divide-gray-200">
-                    <?php
-                    $daily_breakdown->data_seek(0); // Reset pointer
-                    while ($day = $daily_breakdown->fetch_assoc()): 
-                    ?>
+                    <?php while ($day = $saved_reports->fetch_assoc()): ?>
                         <div class="p-6 hover:bg-gray-50 transition-colors">
                             <div class="flex items-center justify-between">
                                 <div class="flex-1">
                                     <h3 class="text-lg font-semibold text-gray-900 mb-2">
-                                        <?php echo date('l, F j, Y', strtotime($day['collection_date'])); ?>
+                                        <?php echo htmlspecialchars(date('l, F j, Y', strtotime($day['report_date']))); ?>
                                     </h3>
-                                    
-                                    <div class="grid grid-cols-3 gap-6 text-sm">
+
+                                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-sm mb-3">
                                         <div>
                                             <span class="text-gray-500">Collections:</span>
-                                            <span class="font-medium text-green-600 ml-1"><?php echo $day['daily_collections']; ?></span>
+                                            <span class="font-medium text-green-600 ml-1"><?php echo (int) $day['collections_count']; ?></span>
                                         </div>
                                         <div>
                                             <span class="text-gray-500">Total Weight:</span>
-                                            <span class="font-medium text-blue-600 ml-1"><?php echo number_format($day['daily_weight'], 1); ?> kg</span>
+                                            <span class="font-medium text-blue-600 ml-1"><?php echo number_format((float) $day['total_weight'], 1); ?> kg</span>
                                         </div>
                                         <div>
                                             <span class="text-gray-500">Avg per Collection:</span>
                                             <span class="font-medium text-purple-600 ml-1">
-                                                <?php echo $day['daily_collections'] > 0 ? number_format($day['daily_weight'] / $day['daily_collections'], 1) : 0; ?> kg
+                                                <?php echo $day['collections_count'] > 0 ? number_format((float) $day['total_weight'] / (int) $day['collections_count'], 1) : 0; ?> kg
                                             </span>
                                         </div>
+                                        <div>
+                                            <span class="text-gray-500">Efficiency:</span>
+                                            <span class="font-medium text-orange-600 ml-1"><?php echo htmlspecialchars(ucwords(str_replace('_', ' ', $day['route_efficiency']))); ?></span>
+                                        </div>
                                     </div>
-                                </div>
-                                
-                                <div class="text-right">
-                                    <button onclick="viewDayDetails('<?php echo $day['collection_date']; ?>')" 
-                                            class="text-blue-600 hover:text-blue-700 text-sm font-medium">
-                                        View Details
-                                    </button>
+
+                                    <?php if (!empty($day['notes'])): ?>
+                                        <p class="text-sm text-gray-600 bg-gray-50 p-3 rounded-lg mt-2">
+                                            <?php echo htmlspecialchars($day['notes']); ?>
+                                        </p>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>
@@ -239,8 +298,8 @@ include 'worker_sidebar.php';
                     <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
                         <i data-lucide="calendar-x" class="w-12 h-12 text-gray-400"></i>
                     </div>
-                    <h3 class="text-lg font-medium text-gray-900 mb-2">No activity in the last 7 days</h3>
-                    <p class="text-gray-500">Your daily reports will appear here once you start completing collections</p>
+                    <h3 class="text-lg font-medium text-gray-900 mb-2">No saved reports yet</h3>
+                    <p class="text-gray-500">Create your first daily report with the button above</p>
                 </div>
             <?php endif; ?>
         </div>
@@ -271,7 +330,7 @@ include 'worker_sidebar.php';
             <div>
                 <label for="collections_count" class="block text-sm font-medium text-gray-700 mb-2">Collections Completed</label>
                 <input type="number" id="collections_count" name="collections_count" min="0" 
-                       value="<?php echo $today_stats['today_collections'] ?? 0; ?>"
+                       value="<?php echo (int) ($today_report['collections_count'] ?? $today_stats['today_collections'] ?? 0); ?>"
                        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
                        required>
             </div>
@@ -279,19 +338,20 @@ include 'worker_sidebar.php';
             <div>
                 <label for="total_weight" class="block text-sm font-medium text-gray-700 mb-2">Total Weight (kg)</label>
                 <input type="number" id="total_weight" name="total_weight" min="0" step="0.1"
-                       value="<?php echo $today_stats['today_weight'] ?? 0; ?>"
+                       value="<?php echo number_format((float) ($today_report['total_weight'] ?? $today_stats['today_weight'] ?? 0), 1, '.', ''); ?>"
                        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
                        required>
             </div>
             
             <div>
                 <label for="route_efficiency" class="block text-sm font-medium text-gray-700 mb-2">Route Efficiency</label>
+                <?php $selectedEfficiency = $today_report['route_efficiency'] ?? 'good'; ?>
                 <select id="route_efficiency" name="route_efficiency"
                         class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500">
-                    <option value="excellent">Excellent</option>
-                    <option value="good" selected>Good</option>
-                    <option value="average">Average</option>
-                    <option value="needs_improvement">Needs Improvement</option>
+                    <option value="excellent" <?php echo $selectedEfficiency === 'excellent' ? 'selected' : ''; ?>>Excellent</option>
+                    <option value="good" <?php echo $selectedEfficiency === 'good' ? 'selected' : ''; ?>>Good</option>
+                    <option value="average" <?php echo $selectedEfficiency === 'average' ? 'selected' : ''; ?>>Average</option>
+                    <option value="needs_improvement" <?php echo $selectedEfficiency === 'needs_improvement' ? 'selected' : ''; ?>>Needs Improvement</option>
                 </select>
             </div>
             
@@ -299,7 +359,7 @@ include 'worker_sidebar.php';
                 <label for="notes" class="block text-sm font-medium text-gray-700 mb-2">Notes</label>
                 <textarea id="notes" name="notes" rows="3"
                           class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
-                          placeholder="Any additional notes or observations..."></textarea>
+                          placeholder="Any additional notes or observations..."><?php echo htmlspecialchars($today_report['notes'] ?? '', ENT_QUOTES, 'UTF-8'); ?></textarea>
             </div>
             
             <div class="flex space-x-4 pt-4">

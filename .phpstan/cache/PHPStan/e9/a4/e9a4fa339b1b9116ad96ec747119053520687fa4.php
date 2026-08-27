@@ -1,9 +1,0 @@
-<?php declare(strict_types = 1);
-
-// odsl-C:/wamp64/www/Bote/vendor/composer/../sebastian/complexity/src/
-return \PHPStan\Cache\CacheItem::__set_state(array(
-   'variableKey' => 'v1',
-   'data' => 
-  array (
-  ),
-));

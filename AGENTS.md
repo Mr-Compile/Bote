@@ -26,19 +26,29 @@
 - `includes/sms_notifications.php` — SMS wrapper (credentials from `.env`)
 
 ## Database Tables
-`users`, `puroks`, `recyclabletypes`, `pickuprequests`, `direct_dropoffs`, `pointsledger`, `rewards`, `rewardredemptions`, `collectionroutes`, `routestops`, `collection_points`, `carousel_slides`, `system_settings`, `smsnotifications`
+`users`, `puroks`, `recyclabletypes`, `pickuprequests`, `direct_dropoffs`, `pointsledger`, `rewards`, `rewardredemptions`, `collectionroutes`, `routestops`, `collection_points`, `carousel_slides`, `system_settings`, `smsnotifications`, `daily_reports`
+
+## Recent Schema Repairs
+- Created missing `bote` database and imported `bote (1).sql`.
+- Added `Cancelled` to `pickuprequests.status` enum.
+- Added `description` to `pointsledger` for audit context.
+- Dropped unused `rewards.image_url`.
+- Added missing `smsnotifications` table.
+- Created `daily_reports` table for worker self-reported summaries.
+- Widened `users.first_name`/`last_name`/`email`, `recyclabletypes.name`, and added performance indexes.
 
 ## Key Red Flags
 - SMS gateway credentials must be supplied through `.env`; default is empty.
-- `sms/function/sms.php` now requires `SMS_API_KEY` in `.env`.
-- `pointsledger.description` column is still missing from the live schema.
-- `worker_daily_reports.php` collects form data but does not persist it.
-- `rewards` table has redundant `image_url` and `image` columns.
+- `sms/function/sms.php` requires `SMS_API_KEY` in `.env`.
+- `worker_daily_reports.php` now persists to `daily_reports`.
+- `pointsledger.description` column exists and is used by `App\Repositories\MysqliPointsRepository`.
+- `rewards.image_url` removed; only `image` is used.
 - Sidebars are complete standalone HTML documents duplicated across roles.
-- The most common XSS vectors in role dashboards and lists have been escaped, but new pages may still introduce unescaped output.
+- JS `onclick` handlers that interpolate strings now use `json_encode()` with JSON hex flags.
+- User-facing output in forms and tables should use `htmlspecialchars()` or `json_encode()`.
 
 ## Recently Addressed
-- DB credentials moved to `.env`.
+- DB credentials moved to `.env` and `.env`/`.htaccess` blocks direct web access.
 - Session cookie set to HttpOnly and SameSite=Lax; session ID regenerated on login.
 - `resident_staff_verification.php` now uses staff/worker auth.
 - CSRF tokens added to all role forms and validated in `auth_admin.php`, `auth_worker.php`, `auth_res.php`, and `auth_staff.php`.
@@ -46,10 +56,17 @@
 - `shared/upload_photo.php` validates CSRF tokens.
 - JavaScript `onclick` attributes that passed user data with `addslashes()` now use `json_encode()` with JSON hex flags.
 - User-facing output in dashboards, request lists, leaderboards, and admin grids escaped with `htmlspecialchars()` or `json_encode()`.
+- Database schema repaired and `bote` database created/imported from the SQL dump.
+- `config/database.php` fixed by removing unsupported `NO_AUTO_CREATE_USER` from the `sql_mode` init command.
+- `worker_daily_reports.php` now persists reports to `daily_reports` and displays saved entries.
+- `admin_pickup_requests.php` status dashboard and dropdown include all enum values (Pending, Scheduled, In Progress, Completed, Cancelled).
+- `smsnotifications` table and `daily_reports` table created.
+- SMS bridge test form (`sms/index.php`) no longer hardcodes credentials.
+- All 42 PHPUnit tests and PHPStan level 9 pass; login/role paths smoke-tested.
 
 ## Environment Constraints
-- The live database contains only 3 user accounts.
-- Avoid destructive user/pickup/points operations; prefer creating isolated test data over modifying the 3 real accounts.
+- The live database contains 6 user accounts (1 admin, 2 workers, 3 residents).
+- Avoid destructive user/pickup/points operations; prefer creating isolated test data over modifying the live accounts.
 
 ## Core Application (new app/ layer)
 - `app/Core/ConnectionInterface.php` and `app/Core/Database.php` — MySQLi wrapper with typed `query/selectOne/execute/insert` and transaction helpers.

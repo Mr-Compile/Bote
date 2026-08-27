@@ -191,7 +191,7 @@ $total_points = $stmt->get_result()->fetch_assoc()['total_points'];
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             <?php foreach ($recyclable_types as $type): ?>
-                                <div class="material-card gradient-border rounded-2xl p-6 transition-all duration-300" onclick="selectMaterial(<?php echo $type['type_id']; ?>, '<?php echo htmlspecialchars($type['name']); ?>', '<?php echo $type['unit']; ?>', <?php echo $type['points_per_kg'] ?? 0; ?>, <?php echo $type['points_per_unit'] ?? 0; ?>)">
+                                <div class="material-card gradient-border rounded-2xl p-6 transition-all duration-300" onclick="selectMaterial(<?php echo (int) $type['type_id']; ?>, <?php echo json_encode($type['name'], JSON_HEX_QUOT | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS); ?>, <?php echo json_encode($type['unit'], JSON_HEX_QUOT | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS); ?>, <?php echo (float) ($type['points_per_kg'] ?? 0); ?>, <?php echo (float) ($type['points_per_unit'] ?? 0); ?>)">
                                     <input type="radio" name="type_id" value="<?php echo $type['type_id']; ?>" class="hidden" required>
                                     <div class="selection-check">
                                         <i data-lucide="check" class="w-4 h-4 text-white"></i>
@@ -403,12 +403,12 @@ $total_points = $stmt->get_result()->fetch_assoc()['total_points'];
                             <!-- Collection Points Grid -->
                             <div id="collectionPointsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                                 <?php foreach ($collection_points as $point): ?>
-                                    <div class="collection-point-card bg-white rounded-xl p-4 border-2 border-blue-100 hover:border-blue-300 cursor-pointer transition-all duration-300 hover:shadow-lg" 
-                                         onclick="selectCollectionPointCard(<?php echo $point['point_id']; ?>, '<?php echo htmlspecialchars($point['name']); ?>', <?php echo $point['latitude']; ?>, <?php echo $point['longitude']; ?>, '<?php echo htmlspecialchars($point['description']); ?>')"
-                                         data-name="<?php echo htmlspecialchars(strtolower($point['name'])); ?>"
-                                         data-description="<?php echo strtolower($point['description'] ?? ''); ?>"
-                                         data-lat="<?php echo $point['latitude']; ?>"
-                                         data-lng="<?php echo $point['longitude']; ?>"
+                                    <div class="collection-point-card bg-white rounded-xl p-4 border-2 border-blue-100 hover:border-blue-300 cursor-pointer transition-all duration-300 hover:shadow-lg"
+                                         onclick="selectCollectionPointCard(<?php echo (int) $point['point_id']; ?>, <?php echo json_encode($point['name'], JSON_HEX_QUOT | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS); ?>, <?php echo (float) $point['latitude']; ?>, <?php echo (float) $point['longitude']; ?>, <?php echo json_encode($point['description'] ?? '', JSON_HEX_QUOT | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS); ?>)"
+                                         data-name="<?php echo htmlspecialchars(strtolower($point['name']), ENT_QUOTES, 'UTF-8'); ?>"
+                                         data-description="<?php echo htmlspecialchars(strtolower($point['description'] ?? ''), ENT_QUOTES, 'UTF-8'); ?>"
+                                         data-lat="<?php echo (float) $point['latitude']; ?>"
+                                         data-lng="<?php echo (float) $point['longitude']; ?>"
                                     >
                                         
                                         <!-- Card Header -->

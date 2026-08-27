@@ -238,7 +238,7 @@ $redemptions = $stmt->get_result();
                                 <!-- Action Button -->
                                 <div class="pt-2">
                                     <?php if ($user_points >= $reward['points_required']): ?>
-                                        <button onclick="redeemReward(<?php echo $reward['reward_id']; ?>, <?php echo json_encode($reward['name'], JSON_HEX_QUOT | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS); ?>, <?php echo $reward['points_required']; ?>)" 
+                                        <button onclick="redeemReward(<?php echo (int) $reward['reward_id']; ?>, <?php echo json_encode($reward['name'], JSON_HEX_QUOT | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS); ?>, <?php echo (int) $reward['points_required']; ?>)" 
                                                 class="w-full bg-gradient-to-r from-purple-500 via-purple-600 to-pink-600 hover:from-purple-600 hover:via-purple-700 hover:to-pink-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center justify-center space-x-2">
                                             <i data-lucide="shopping-cart" class="w-5 h-5"></i>
                                             <span>Redeem Now</span>
@@ -317,7 +317,7 @@ $redemptions = $stmt->get_result();
                                 </span>
                                 
                                 <?php if ($user_points >= $reward['points_required']): ?>
-                                    <button onclick="redeemReward(<?php echo $reward['reward_id']; ?>, <?php echo json_encode($reward['name'], JSON_HEX_QUOT | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS); ?>, <?php echo $reward['points_required']; ?>)" 
+                                    <button onclick="redeemReward(<?php echo (int) $reward['reward_id']; ?>, <?php echo json_encode($reward['name'], JSON_HEX_QUOT | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS); ?>, <?php echo (int) $reward['points_required']; ?>)" 
                                             class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-medium transition-colors">
                                         Redeem
                                     </button>

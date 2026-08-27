@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $request_id = (int)$_POST['request_id'];
                 $new_status = $_POST['new_status'];
                 // Whitelist to match DB enum values exactly
-                $allowed_statuses = ['Pending', 'Scheduled', 'Completed'];
+                $allowed_statuses = ['Pending', 'Scheduled', 'In Progress', 'Completed', 'Cancelled'];
                 if (!in_array($new_status, $allowed_statuses, true)) {
                     $error_message = "Invalid status value.";
                     break;
@@ -154,7 +154,7 @@ if ($result) {
 }
 
 // Ensure all expected statuses are present, defaulting to 0 if not found
-$statuses = ['Pending', 'In Progress', 'Completed'];
+$statuses = ['Pending', 'Scheduled', 'In Progress', 'Completed', 'Cancelled'];
 foreach ($statuses as $status) {
     if (!isset($pickup_stats[$status])) {
         $pickup_stats[$status] = 0;
@@ -206,39 +206,63 @@ foreach ($statuses as $status) {
 
 
             <!-- Statistics Cards -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-6 mb-8">
                 <div class="bg-white rounded-xl shadow-lg p-6">
                     <div class="flex items-center">
                         <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
                             <i data-lucide="clock" class="w-6 h-6 text-yellow-600"></i>
                         </div>
                         <div class="ml-4">
-                            <p class="text-2xl font-bold text-gray-900"><?php echo $pickup_stats['Pending'] ?? 0; ?></p>
+                            <p class="text-2xl font-bold text-gray-900"><?php echo (int) ($pickup_stats['Pending'] ?? 0); ?></p>
                             <p class="text-sm text-gray-600">Pending</p>
                         </div>
                     </div>
                 </div>
-                
+
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                            <i data-lucide="calendar" class="w-6 h-6 text-blue-600"></i>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-2xl font-bold text-gray-900"><?php echo (int) ($pickup_stats['Scheduled'] ?? 0); ?></p>
+                            <p class="text-sm text-gray-600">Scheduled</p>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="bg-white rounded-xl shadow-lg p-6">
                     <div class="flex items-center">
                         <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
                             <i data-lucide="truck" class="w-6 h-6 text-orange-600"></i>
                         </div>
                         <div class="ml-4">
-                            <p class="text-2xl font-bold text-gray-900"><?php echo $pickup_stats['In Progress'] ?? 0; ?></p>
+                            <p class="text-2xl font-bold text-gray-900"><?php echo (int) ($pickup_stats['In Progress'] ?? 0); ?></p>
                             <p class="text-sm text-gray-600">In Progress</p>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="bg-white rounded-xl shadow-lg p-6">
                     <div class="flex items-center">
                         <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
                             <i data-lucide="check-circle" class="w-6 h-6 text-green-600"></i>
                         </div>
                         <div class="ml-4">
-                            <p class="text-2xl font-bold text-gray-900"><?php echo $pickup_stats['Completed'] ?? 0; ?></p>
+                            <p class="text-2xl font-bold text-gray-900"><?php echo (int) ($pickup_stats['Completed'] ?? 0); ?></p>
                             <p class="text-sm text-gray-600">Completed</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
+                            <i data-lucide="x-circle" class="w-6 h-6 text-red-600"></i>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-2xl font-bold text-gray-900"><?php echo (int) ($pickup_stats['Cancelled'] ?? 0); ?></p>
+                            <p class="text-sm text-gray-600">Cancelled</p>
                         </div>
                     </div>
                 </div>
@@ -268,7 +292,7 @@ foreach ($statuses as $status) {
                             <?php foreach ($pickup_requests as $request): ?>
                                 <tr class="hover:bg-gray-50">
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                        #<?php echo $request['request_id']; ?>
+                                        #<?php echo (int) $request['request_id']; ?>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="text-sm font-medium text-gray-900">
@@ -281,7 +305,7 @@ foreach ($statuses as $status) {
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="text-sm text-gray-900">
-                                            Est: <?php echo $request['weight_kg']; ?>kg
+                                            Est: <?php echo number_format((float) $request['weight_kg'], 2); ?>kg
                                         </div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
@@ -295,7 +319,9 @@ foreach ($statuses as $status) {
                                             switch($request['status']) {
                                                 case 'Pending': echo 'bg-yellow-100 text-yellow-800'; break;
                                                 case 'Scheduled': echo 'bg-blue-100 text-blue-800'; break;
+                                                case 'In Progress': echo 'bg-orange-100 text-orange-800'; break;
                                                 case 'Completed': echo 'bg-green-100 text-green-800'; break;
+                                                case 'Cancelled': echo 'bg-red-100 text-red-800'; break;
                                                 default: echo 'bg-gray-100 text-gray-800';
                                             }
                                             ?>">
@@ -307,18 +333,18 @@ foreach ($statuses as $status) {
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                         <?php if ($request['status'] === 'Pending'): ?>
-                                            <button onclick="showAssignWorkerModal(<?php echo htmlspecialchars(json_encode($request)); ?>)" 
+                                            <button onclick="showAssignWorkerModal(<?php echo htmlspecialchars(json_encode($request, JSON_HEX_QUOT | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS), ENT_QUOTES, 'UTF-8'); ?>)" 
                                                     class="text-blue-600 hover:text-blue-900 mr-2">
                                                 <i data-lucide="user-plus" class="w-4 h-4"></i>
                                             </button>
                                         <?php elseif ($request['status'] === 'Scheduled'): ?>
-                                            <button onclick="showCompleteModal(<?php echo htmlspecialchars(json_encode($request)); ?>)" 
+                                            <button onclick="showCompleteModal(<?php echo htmlspecialchars(json_encode($request, JSON_HEX_QUOT | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS), ENT_QUOTES, 'UTF-8'); ?>)" 
                                                     class="text-green-600 hover:text-green-900 mr-2">
                                                 <i data-lucide="check-circle" class="w-4 h-4"></i>
                                             </button>
                                         <?php endif; ?>
                                         
-                                        <button onclick="showStatusModal(<?php echo htmlspecialchars(json_encode($request)); ?>)" 
+                                        <button onclick="showStatusModal(<?php echo htmlspecialchars(json_encode($request, JSON_HEX_QUOT | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS), ENT_QUOTES, 'UTF-8'); ?>)" 
                                                 class="text-indigo-600 hover:text-indigo-900">
                                             <i data-lucide="edit" class="w-4 h-4"></i>
                                         </button>
@@ -427,7 +453,9 @@ foreach ($statuses as $status) {
                             class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
                         <option value="Pending">Pending</option>
                         <option value="Scheduled">Scheduled</option>
+                        <option value="In Progress">In Progress</option>
                         <option value="Completed">Completed</option>
+                        <option value="Cancelled">Cancelled</option>
                     </select>
                 </div>
                 
