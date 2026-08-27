@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Public landing page view.
  *
