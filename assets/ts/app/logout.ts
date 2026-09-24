@@ -1,4 +1,4 @@
-import { selectElement } from '../shared/dom';
+import { selectElement } from '../shared/dom.js';
 
 export {};
 

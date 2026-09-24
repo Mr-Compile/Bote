@@ -1,4 +1,4 @@
-import { getEl, getPageData } from '../../shared.js';
+import { getEl, getPageData, hideParent } from '../../shared.js';
 const data = getPageData('admin-users-data');
 const currentSort = {
     column: data?.column ?? 'first_name',
@@ -45,6 +45,64 @@ function updateSortIcons() {
     }
     lucide.createIcons();
 }
+function showAddWorkerModal() {
+    const modal = getEl('addWorkerModal');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+}
+function hideAddWorkerModal() {
+    const modal = getEl('addWorkerModal');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    const form = modal.querySelector('form');
+    if (form) {
+        form.reset();
+    }
+}
+function showEditModal(user) {
+    getEl('edit_user_id').value = String(user.user_id ?? '');
+    getEl('edit_user_name').textContent = `${user.first_name ?? ''} ${user.last_name ?? ''}`;
+    getEl('edit_user_email').textContent = String(user.email ?? '');
+    getEl('edit_role').value = String(user.role ?? 'resident');
+    const modal = getEl('editModal');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+}
+function hideEditModal() {
+    const modal = getEl('editModal');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+}
+function confirmDelete(userId) {
+    getEl('delete_user_id').value = String(userId);
+    const modal = getEl('deleteModal');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+}
+function hideDeleteModal() {
+    const modal = getEl('deleteModal');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+}
+function togglePassword(inputId, button) {
+    const input = getEl(inputId);
+    if (input.type === 'password') {
+        input.type = 'text';
+        const icon = button.querySelector('i');
+        if (icon) {
+            icon.setAttribute('data-lucide', 'eye-off');
+            lucide.createIcons();
+        }
+    }
+    else {
+        input.type = 'password';
+        const icon = button.querySelector('i');
+        if (icon) {
+            icon.setAttribute('data-lucide', 'eye');
+            lucide.createIcons();
+        }
+    }
+}
 document.addEventListener('DOMContentLoaded', () => {
     updateSortIcons();
     document.querySelectorAll('th .cursor-pointer').forEach(header => {
@@ -59,6 +117,14 @@ document.addEventListener('DOMContentLoaded', () => {
 Object.assign(window, {
     sortTable,
     applyFilters,
-    updateSortIcons
+    updateSortIcons,
+    showAddWorkerModal,
+    hideAddWorkerModal,
+    showEditModal,
+    hideEditModal,
+    confirmDelete,
+    hideDeleteModal,
+    togglePassword,
+    hideParent
 });
 //# sourceMappingURL=users.js.map

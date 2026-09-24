@@ -1,9 +1,11 @@
-import { getEl, getPageData } from '../../shared.js';
+import { getEl, getPageData, hideParent } from '../../shared.js';
 
 interface UsersSortData {
     column: string;
     order: string;
 }
+
+type UserData = Record<string, unknown>;
 
 const data = getPageData<UsersSortData>('admin-users-data');
 
@@ -61,6 +63,72 @@ function updateSortIcons(): void {
     lucide.createIcons();
 }
 
+function showAddWorkerModal(): void {
+    const modal = getEl<HTMLElement>('addWorkerModal');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+}
+
+function hideAddWorkerModal(): void {
+    const modal = getEl<HTMLElement>('addWorkerModal');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+
+    const form = modal.querySelector('form') as HTMLFormElement | null;
+    if (form) {
+        form.reset();
+    }
+}
+
+function showEditModal(user: UserData): void {
+    getEl<HTMLInputElement>('edit_user_id').value = String(user.user_id ?? '');
+    getEl<HTMLElement>('edit_user_name').textContent = `${user.first_name ?? ''} ${user.last_name ?? ''}`;
+    getEl<HTMLElement>('edit_user_email').textContent = String(user.email ?? '');
+    getEl<HTMLSelectElement>('edit_role').value = String(user.role ?? 'resident');
+
+    const modal = getEl<HTMLElement>('editModal');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+}
+
+function hideEditModal(): void {
+    const modal = getEl<HTMLElement>('editModal');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+}
+
+function confirmDelete(userId: number | string): void {
+    getEl<HTMLInputElement>('delete_user_id').value = String(userId);
+    const modal = getEl<HTMLElement>('deleteModal');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+}
+
+function hideDeleteModal(): void {
+    const modal = getEl<HTMLElement>('deleteModal');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+}
+
+function togglePassword(inputId: string, button: HTMLButtonElement): void {
+    const input = getEl<HTMLInputElement>(inputId);
+    if (input.type === 'password') {
+        input.type = 'text';
+        const icon = button.querySelector('i');
+        if (icon) {
+            icon.setAttribute('data-lucide', 'eye-off');
+            lucide.createIcons();
+        }
+    } else {
+        input.type = 'password';
+        const icon = button.querySelector('i');
+        if (icon) {
+            icon.setAttribute('data-lucide', 'eye');
+            lucide.createIcons();
+        }
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     updateSortIcons();
 
@@ -77,7 +145,15 @@ document.addEventListener('DOMContentLoaded', () => {
 Object.assign(window, {
     sortTable,
     applyFilters,
-    updateSortIcons
+    updateSortIcons,
+    showAddWorkerModal,
+    hideAddWorkerModal,
+    showEditModal,
+    hideEditModal,
+    confirmDelete,
+    hideDeleteModal,
+    togglePassword,
+    hideParent
 });
 
 export {};

@@ -57,4 +57,5 @@ export function dismissNotification(el) {
     const target = el.closest('.notification') ?? el.parentElement;
     target?.remove();
 }
+Object.assign(window, { hideParent, dismissNotification, triggerFileInput });
 //# sourceMappingURL=dom.js.map

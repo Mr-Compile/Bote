@@ -1,4 +1,4 @@
-import { getEl } from './dom';
+import { getEl } from './dom.js';
 export function createModal(modalId) {
     const modal = getEl(modalId);
     const closeOnEscape = (e) => {

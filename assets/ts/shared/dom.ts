@@ -66,3 +66,5 @@ export function dismissNotification(el: HTMLElement): void {
     const target = el.closest<HTMLElement>('.notification') ?? el.parentElement;
     target?.remove();
 }
+
+Object.assign(window, { hideParent, dismissNotification, triggerFileInput });

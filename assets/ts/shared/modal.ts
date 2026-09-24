@@ -1,4 +1,4 @@
-import { getEl } from './dom';
+import { getEl } from './dom.js';
 
 export interface ModalInstance {
     show: () => void;

@@ -1,3 +1,21 @@
+function showTab(tabName) {
+    document.querySelectorAll('.tab-content').forEach((content) => {
+        content.classList.remove('active');
+    });
+    document.querySelectorAll('[id^="tab-"]').forEach((btn) => {
+        btn.classList.remove('tab-active');
+        btn.classList.add('text-bote-stone-600', 'hover:text-bote-stone-800', 'hover:bg-bote-stone-200');
+    });
+    const content = document.getElementById(`content-${tabName}`);
+    if (content) {
+        content.classList.add('active');
+    }
+    const activeBtn = document.getElementById(`tab-${tabName}`);
+    if (activeBtn) {
+        activeBtn.classList.add('tab-active');
+        activeBtn.classList.remove('text-bote-stone-600', 'hover:text-bote-stone-800', 'hover:bg-bote-stone-200');
+    }
+}
 function openAddSlideModal() {
     window.location.href = 'carousel_editor.php';
 }
@@ -54,6 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
     lucide.createIcons();
 });
 Object.assign(window, {
+    showTab,
     openAddSlideModal,
     editSlide,
     toggleSlide,
