@@ -1,1 +1,1 @@
-import '../../../app/help';
+import '../../app/help.js';
