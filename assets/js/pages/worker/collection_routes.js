@@ -1164,6 +1164,7 @@ function resetMapView() {
 window.changeDate = changeDate;
 window.showCompletePickupModal = showCompletePickupModal;
 window.hideCompletePickupModal = hideCompletePickupModal;
+window.submitPickupCompletion = submitPickupCompletion;
 window.sortPickupsByTime = sortPickupsByTime;
 window.showOnMapWithLoading = showOnMapWithLoading;
 window.showOnMap = showOnMap;
