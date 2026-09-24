@@ -16,6 +16,22 @@ function showTab(tabName) {
         activeBtn.classList.remove('text-bote-stone-600', 'hover:text-bote-stone-800', 'hover:bg-bote-stone-200');
     }
 }
+function previewImage(input, previewId) {
+    const container = document.getElementById(previewId);
+    const file = input.files?.[0];
+    if (!container || !file)
+        return;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+        const result = typeof e.target?.result === 'string' ? e.target.result : '';
+        if (!result)
+            return;
+        container.innerHTML =
+            `<img src="${result}" alt="Preview" class="mx-auto max-h-36 w-auto object-cover rounded-lg shadow-md">` +
+                '<p class="text-sm text-bote-stone-600 mt-2">New Image Preview</p>';
+    };
+    reader.readAsDataURL(file);
+}
 function openAddSlideModal() {
     window.location.href = 'carousel_editor.php';
 }
@@ -73,6 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 Object.assign(window, {
     showTab,
+    previewImage,
     openAddSlideModal,
     editSlide,
     toggleSlide,
