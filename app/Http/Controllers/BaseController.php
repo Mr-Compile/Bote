@@ -205,7 +205,7 @@ abstract class BaseController
     protected function checkDbHealth(): bool
     {
         $conn = $this->container->database->connection();
-        if ($conn->connect_error !== '' && $conn->connect_error !== null || $conn->ping() === false) {
+        if ($conn->connect_error !== '' && $conn->connect_error !== null) {
             return false;
         }
 

@@ -13,7 +13,7 @@
                                 <p class="text-white text-opacity-80 text-lg">Configure system preferences and administrative settings</p>
                                 <div class="flex items-center mt-3 text-sm text-white text-opacity-70">
                                     <i data-lucide="user" class="w-4 h-4 mr-2"></i>
-                                    Welcome back, <?php echo htmlspecialchars($user_data['first_name'] . ' ' . $user_data['last_name']); ?>
+                                    Welcome back, <?php echo htmlspecialchars($currentUser['first_name'] . ' ' . $currentUser['last_name']); ?>
                                 </div>
                             </div>
                         </div>

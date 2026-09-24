@@ -30,9 +30,13 @@ final class ProfileController extends BaseController
     public function render(): void
     {
         $user_id = $this->currentUserId();
-        $user = $this->currentUser();
+        $user = $this->db->selectOne(
+            'SELECT * FROM users WHERE user_id = ?',
+            [$user_id],
+            'i',
+        );
 
-        if ($user['role'] !== 'admin') {
+        if ($user === null || $user['role'] !== 'admin') {
             $this->redirect('../logout.php');
         }
 
@@ -103,13 +107,13 @@ final class ProfileController extends BaseController
                         $this->db->execute(
                             'UPDATE users SET first_name = ?, last_name = ?, email = ?, phone = ?, address = ?, latitude = ?, longitude = ?, password = ? WHERE user_id = ?',
                             [$first_name, $last_name, $email, $phone, $address, $latitude, $longitude, $hashed_password, $user_id],
-                            'sssssdssi',
+                            'sssssddsi',
                         );
                     } else {
                         $this->db->execute(
                             'UPDATE users SET first_name = ?, last_name = ?, email = ?, phone = ?, address = ?, latitude = ?, longitude = ? WHERE user_id = ?',
                             [$first_name, $last_name, $email, $phone, $address, $latitude, $longitude, $user_id],
-                            'sssssdddi',
+                            'sssssddi',
                         );
                     }
 
@@ -117,7 +121,11 @@ final class ProfileController extends BaseController
                     $_SESSION['last_name'] = $last_name;
                     $success_message = 'Profile updated successfully!';
 
-                    $user = $this->currentUser();
+                    $user = $this->db->selectOne(
+                        'SELECT * FROM users WHERE user_id = ?',
+                        [$user_id],
+                        'i',
+                    ) ?? $user;
                 }
             }
         }
