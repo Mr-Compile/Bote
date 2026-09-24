@@ -64,9 +64,6 @@ declare global {
         type LatLng = import('leaflet').LatLng;
     }
 
-    type LeafletMap = L.Map;
-    type LeafletMarker = L.Marker;
-
     const feather: {
         replace(options?: { [key: string]: string }): void;
     };
